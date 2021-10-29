@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>My Todo List</h1>
+    <h1>My Todo TEST List</h1>
 
     <ul>
       <li v-for="todoItem in todos" v-bind:key="todoItem.id">{{todoItem.title}}</li>
@@ -21,14 +21,14 @@ export default {
   name: "HelloWorld",
   data: () => ({
     newTodo: "",
-    todos: [],
+    todos: []
   }),
   // ich verwende hier wieder localStorage, aber das Ganze würde natürlich auch mit Laravel funktionieren
   methods: {
     async saveTodo() {
       const newTodoData = {
         title: this.newTodo,
-        done: false,
+        done: false
       };
 
       this.todos.push(newTodoData);
@@ -37,7 +37,7 @@ export default {
         const dataEndpointUrl = "http://flow_backend.local/api/todos";
         // bitte beachte hier -> wir verwenden axios.post (um einen POST request zu machen)
         await axios.post(dataEndpointUrl, {
-          todo: newTodoData,
+          todo: newTodoData
         });
 
         this.newTodo = "";
@@ -46,7 +46,7 @@ export default {
       } catch (error) {
         alert("Es trat ein Fehler beim speichern auf: " + error);
       }
-    },
+    }
   },
   async created() {
     try {
@@ -59,6 +59,6 @@ export default {
     } catch (error) {
       alert("Es trat ein Fehler beim speichern auf: " + error);
     }
-  },
+  }
 };
 </script>
