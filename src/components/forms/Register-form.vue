@@ -3,12 +3,12 @@
         <h1>Register:</h1>
         <form action="#">
             <div class="input-flex">
-                <label for="signin_username">Username:</label>
+                <label for="signin_name">name:</label>
                 <input
                     type="text"
-                    id="signin_username"
-                    v-model="newUser.username"
-                    name="sigin_username"
+                    id="signin_name"
+                    v-model="newUser.name"
+                    name="sigin_name"
                 />
             </div>
             <div class="input-flex">
@@ -29,58 +29,59 @@
                     name="signin_password"
                 />
             </div>
-            <button type="submit">Submit!</button>
+            <SubmitBtn
+                text="Login"
+                :method="saveUser"
+            />       
         </form>
     </div>
 </template>
 
 <script>
+import SubmitBtn from "../Partials/SubmitBtn";
 import axios from "axios";
 
 export default {
+  props: {
+  },
     name: "",
+    components: {
+        SubmitBtn,
+    },
     data: () => {
         return {
             newUser: {
-                username: "",
+                name: "",
                 email: "",
                 password: "",
-                password_confirmation: "",
-                is_admin: "0",
             },
-
             errors: [],
-
             succesSignin: false,
-
-            showSubmit: true,
-
-            loader: false,
         };
     },
 
     methods: {
         saveUser() {
+            console.log('clicked');
             axios
-                .post("http://api.ipito.local/api/user/register", this.newUser)
+                .post("http://flow_backend.local/api/user/register", this.newUser)
+                .then((response) => {
+                    console.log('test hier rein?', this.newUser);
+                    console.log('noch mal mikado: ', response);
+                    alert("Speichern erfolgreich");
+                })
                 .then(() => {
                     this.succesSignin = true;
-                    this.loader = false;
-                    this.showSubmit = true;
-                    setTimeout(() => {
-                        window.location.href = "/";
-                    }, 3000);
+                    // setTimeout(() => {
+                        //     window.location.href = "/";
+                    // }, 3000);
                 })
+                // .catch(() => {
                 .catch((err) => {
+                    alert("Speichern nicht erfolgreich");
                     this.errors = err.response.data.errors;
-                    this.loader = false;
-                    this.showSubmit = true;
+                    console.log(this.errors);
                 });
-        },
-
-        showLoader() {
-            this.loader = true;
-            this.showSubmit = false;
         },
     },
 };
