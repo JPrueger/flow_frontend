@@ -2,8 +2,10 @@
   <div class="hello">
     <h1>My Todo List</h1>
 
-    <ul>
-      <li v-for="todoItem in todos" v-bind:key="todoItem.id">{{todoItem.title}}</li>
+    <ul class="w-80">
+      <li v-for="todoItem in todos" v-bind:key="todoItem.id">
+        {{ todoItem.title }}
+      </li>
     </ul>
 
     <div>
