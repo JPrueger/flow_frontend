@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-    <register-form />
+    <router-view />
   </div>
 </template>
 
 <script>
-import RegisterForm from './components/forms/Register-form.vue'
 
 export default {
   name: 'App',
-  components: {
-    RegisterForm
-  }
 }
 </script>
 
