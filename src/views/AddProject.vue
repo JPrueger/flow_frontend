@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AddProjectForm from "../components/Login/AddProjectForm.vue";
+import AddProjectForm from "../components/Project/AddProjectForm.vue";
 
 export default {
   name: "AddProject",
