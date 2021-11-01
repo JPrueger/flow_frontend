@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import TaskItem from "./TaskItem.vue";
+import TaskItem from "@/components/Project/TaskItem.vue";
 import draggable from "vuedraggable";
 
 //tutorial for drag & drop

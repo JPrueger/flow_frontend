@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ColoredUserIcon from "./ColoredUserIcon.vue";
+import ColoredUserIcon from "@/components/Partials/ColoredUserIcon.vue";
 // hier wird axios (http request library eingebunden), um die laravel endpunkte anzusteuern
 // import axios from "axios";
 

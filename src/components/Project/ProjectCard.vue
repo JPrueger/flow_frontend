@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ColoredUserIcon from "./ColoredUserIcon.vue";
+import ColoredUserIcon from "@/components/Partials/ColoredUserIcon.vue";
 
 export default {
   name: "ProjectCard",
