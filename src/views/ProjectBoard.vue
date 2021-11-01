@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import BoardColumn from "../components/BoardColumn";
+import BoardColumn from "@/components/Project/BoardColumn";
 
 export default {
   name: "ProjectBoard",

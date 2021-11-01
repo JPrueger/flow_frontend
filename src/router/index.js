@@ -4,6 +4,7 @@ import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import ProjectBoard from "../views/ProjectBoard.vue";
 import ProjectsOverview from "../views/ProjectsOverview.vue";
+import AddProject from "../views/AddProject.vue";
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,11 @@ const routes = [
     path: "/projects",
     name: "ProjectsOverview",
     component: ProjectsOverview,
+  },
+  {
+    path: "/add-project",
+    name: "AddProject",
+    component: AddProject,
   },
 ];
 const router = new VueRouter({

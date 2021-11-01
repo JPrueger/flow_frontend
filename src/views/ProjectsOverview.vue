@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "@/components/Project/ProjectCard";
 
 export default {
   name: "ProjectsOverview",
