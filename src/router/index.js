@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import ProjectBoard from "../views/ProjectBoard.vue";
+import ProjectsOverview from "../views/ProjectsOverview.vue";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,11 @@ const routes = [
     path: "/project-board",
     name: "ProjectBoard",
     component: ProjectBoard,
+  },
+  {
+    path: "/projects",
+    name: "ProjectsOverview",
+    component: ProjectsOverview,
   },
 ];
 const router = new VueRouter({
