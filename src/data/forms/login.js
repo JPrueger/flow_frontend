@@ -1,18 +1,18 @@
 const fields = [
   {
-    name: 'email',
-    type: 'email',
-    label: 'E-Mail Adresse',
-    placeholder: 'Bitte gib hier deine E-Mail Adresse ein',
+    name: "email",
+    type: "email",
+    label: "E-Mail Adress *",
+    placeholder: "jane.doe@gmail.com",
     inputProps: {
       required: true,
     },
   },
   {
-    name: 'password',
-    type: 'password',
-    label: 'Passwort',
-    placeholder: 'Bitte gib hier dein Passwort ein',
+    name: "password",
+    type: "password",
+    label: "Password *",
+    placeholder: "**********",
     inputProps: {
       required: true,
     },
