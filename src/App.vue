@@ -1,14 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" class="wrapper">
     <router-view />
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-}
+  name: "App"
+};
 </script>
 
 <style>
@@ -21,5 +20,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.wrapper {
+  padding: 1.25rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .wrapper {
+    padding: 8.75rem;
+  }
 }
 </style>
