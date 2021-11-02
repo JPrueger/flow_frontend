@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col text-left mb-8">
-    <label :for="name">{{ label }}</label>
+    <label :for="name" class="pb-2">{{ label }}</label>
     <input
       :id="name"
       type="text"
@@ -8,7 +8,7 @@
       v-bind="inputProps"
       :value="value"
       v-on:input="$emit('input', $event.target.value)"
-      class="rounded-bl p-3 border-pink border-solid"
+      class="rounded p-3 border border-borderGrey"
     />
   </div>
 </template>
