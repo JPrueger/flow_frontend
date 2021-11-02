@@ -2,20 +2,21 @@
   <BaseForm
     v-model="newUser"
     @input="saveUser"
-    headline="Registrieren Headline"
-    submitButton="Registrieren"
+    headline="Hey there!"
+    subheadline="Good seeing you. Tell us your details and choose a character to get you started into flow."
+    submitButton="Submit!"
     :responseState="response"
     :fields="fields"
   />
 </template>
 <script>
-import registerFields from '@/data/forms/registration.js';
+import registerFields from "@/data/forms/registration.js";
 import axios from "axios";
-import BaseForm from '../BaseForm/BaseForm.vue';
+import BaseForm from "../BaseForm/BaseForm.vue";
 
 export default {
   components: {
-    BaseForm,
+    BaseForm
   },
   data() {
     return {
@@ -25,31 +26,31 @@ export default {
       newUser: {
         name: "",
         email: "",
-        password: "",
+        password: ""
       },
       errors: [],
-      succesSignin: false,
+      succesSignin: false
     };
   },
   methods: {
     saveUser() {
-      console.log('clicked');
+      console.log("clicked");
       axios
         .post("http://flow_backend.local/api/user/register", this.newUser)
-        .then((response) => {
-            console.log('test hier rein?', this.newUser);
-            console.log('noch mal mikado: ', response);
-            alert("Speichern erfolgreich");
+        .then(response => {
+          console.log("test hier rein?", this.newUser);
+          console.log("noch mal mikado: ", response);
+          alert("Speichern erfolgreich");
         })
         .then(() => {
-            this.succesSignin = true;
+          this.succesSignin = true;
         })
-        .catch((err) => {
-            alert("Speichern nicht erfolgreich");
-            this.errors = err.response.data.errors;
-            console.log(this.errors);
+        .catch(err => {
+          alert("Speichern nicht erfolgreich");
+          this.errors = err.response.data.errors;
+          console.log(this.errors);
         });
-    },
-  },
+    }
+  }
 };
 </script>

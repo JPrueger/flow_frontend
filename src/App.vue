@@ -28,7 +28,7 @@ export default {
 
 @media only screen and (min-width: 1000px) {
   .wrapper {
-    padding: 8.75rem;
+    padding: 2rem 8.75rem;
   }
 }
 </style>
