@@ -13,35 +13,35 @@
 </template>
 <script>
 export default {
-  name: 'FormFieldsTextField',
+  name: "FormFieldsTextField",
   props: {
     value: {
       required: true,
       type: String,
-      default: '',
+      default: ""
     },
     label: {
       required: false,
-      type: String,
+      type: String
     },
     name: {
       required: true,
-      type: String,
+      type: String
     },
     placeholder: {
       required: false,
       type: String,
-      default: '',
+      default: ""
     },
     inputProps: {
       required: false,
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     icon: {
       required: false,
-      type: String,
-    },
-  },
+      type: String
+    }
+  }
 };
 </script>

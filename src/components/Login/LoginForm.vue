@@ -2,19 +2,19 @@
   <BaseForm
     v-model="credentials"
     @input="loginUser"
-    headline="Login Headline"
+    headline="Login"
     submitButton="Login"
     :fields="fields"
   />
 </template>
 <script>
-import loginFields from '@/data/forms/login.js';
+import loginFields from "@/data/forms/login.js";
 import userDataService from "@/services/userDataService";
-import BaseForm from '../BaseForm/BaseForm.vue';
+import BaseForm from "../BaseForm/BaseForm.vue";
 
 export default {
   components: {
-    BaseForm,
+    BaseForm
   },
   data() {
     return {
@@ -23,30 +23,30 @@ export default {
       error: null,
       token: null,
       success: false,
-      fields: loginFields,
+      fields: loginFields
     };
   },
-   methods: {
+  methods: {
     loginUser: function() {
       this.loading = true;
 
       userDataService
         .login(this.credentials)
-        .then((loginData) => {
-            this.success = true;
-            this.token = loginData.token;
-            localStorage.setItem("token", loginData.token);
-            this.loading = false;
+        .then(loginData => {
+          this.success = true;
+          this.token = loginData.token;
+          localStorage.setItem("token", loginData.token);
+          this.loading = false;
 
-            setTimeout(() => {
-                window.location.href = "/";
-            }, 3000);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 3000);
         })
-        .catch(async (error) => {
-            alert("Error: " + error.response.data.message);
-            this.loading = false;
+        .catch(async error => {
+          alert("Error: " + error.response.data.message);
+          this.loading = false;
         });
-      },
-    },
+    }
+  }
 };
 </script>
