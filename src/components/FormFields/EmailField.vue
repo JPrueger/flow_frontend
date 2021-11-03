@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <label :for="name">{{ label }}</label>
+  <div class="flex flex-col text-left mb-8">
+    <label :for="name" class="pb-2">{{ label }}</label>
     <input
       :id="name"
       type="email"
@@ -8,36 +8,37 @@
       v-bind="inputProps"
       :value="value"
       v-on:input="$emit('input', $event.target.value)"
+      class="rounded p-3 border border-borderGrey"
     />
   </div>
 </template>
 <script>
 export default {
-  name: 'FormFieldsEmailField',
+  name: "FormFieldsEmailField",
   props: {
     value: {
       required: true,
       type: String,
-      default: '',
+      default: ""
     },
     label: {
       required: false,
-      type: String,
+      type: String
     },
     name: {
       required: true,
-      type: String,
+      type: String
     },
     placeholder: {
       required: false,
       type: String,
-      default: '',
+      default: ""
     },
     inputProps: {
       required: false,
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 };
 </script>
