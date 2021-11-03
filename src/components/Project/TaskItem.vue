@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white w-100 shadow-sm rounded-sm mx-auto p-3">
+  <div class="bg-white w-100 shadow-sm rounded-sm mx-auto p-3 mb-4">
     <div class="flex justify-between mb-3">
       <div>{{ title }}</div>
       <div class="font-bold">{{storyPoints}}</div>
