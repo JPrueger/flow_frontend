@@ -8,6 +8,7 @@
       animation="200"
       @change="updateStatus"
     >
+      <!-- todo: statt @change die unterschiedlichen events (moved, added,... ) nehmen & dann eigenen functions dafür schreiebn -->
       <div v-for="el in list" :key="el.title">
         <TaskItem
           :title="el.title"
@@ -23,6 +24,7 @@
 <script>
 import TaskItem from "@/components/Project/TaskItem.vue";
 import draggable from "vuedraggable";
+import axios from "axios";
 
 //tutorial for drag & drop
 // https://www.youtube.com/watch?v=7UPoYcKhH4g&ab_channel=CodemitFloW
@@ -45,10 +47,26 @@ export default {
   },
   methods: {
     updateStatus() {
+      /**
+       * für added event neue logic
+       */
       //aus this.list neue reihung von alles task der spalte in db updaten
-      // const newContent = this.list.map(task => {
-      //   return task.id;
-      // });
+      const newContent = this.list.map(task => {
+        return task.id;
+      });
+      axios
+      /**
+       * für moved event
+       */
+        .post("http://flow_backend.local/api/sort-task", newContent)
+        .then(() => {
+          console.log("Speichern erfolgreich");
+        })
+        .catch(() => {
+          alert("Speichern nicht erfolgreich");
+          // this.errors = err.response.data.errors;
+          console.log(this.errors);
+        });
     }
   },
   data: () => ({
