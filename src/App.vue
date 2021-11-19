@@ -38,7 +38,7 @@ export default {
     @apply top-16 right-16;
   }
   &.shape-bottom-left {
-    @apply bottom-16 left-16;
+    @apply bottom-16 left-16 z-0;
   }
 }
 
