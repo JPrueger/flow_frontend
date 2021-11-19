@@ -22,7 +22,7 @@ export default {
   },
   props: {
     title: String,
-    storyPoints: Number,
+    storypoints: Number,
     assignedUser: String
   },
 };

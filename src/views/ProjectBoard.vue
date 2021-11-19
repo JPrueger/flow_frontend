@@ -8,8 +8,8 @@
     </div>
     <!-- <pre>
       {{ tasks }}
-    </pre> -->
-    <!-- <pre class="bg-yellow">
+    </pre>
+    <pre class="bg-yellow">
       {{ opentasks }}
     </pre>
     <pre class="bg-blueGreen-light">
@@ -49,6 +49,11 @@ export default {
     getPost() {
       axios.get("http://flow_backend.local/api/tasks/index/").then((res) => {
         this.tasks = res.data;
+      })
+      .then(() => {
+        this.getOpenedTask();
+        this.getProgressTask();
+        this.getDoneTask();
       });
     },
     // open
@@ -145,9 +150,9 @@ export default {
     console.log('mounted: ', `At this point, vm.$el has been created and el has been replaced.`);
   },
   beforeUpdate() {
-    this.getOpenedTask();
-    this.getProgressTask();
-    this.getDoneTask();
+    // this.getOpenedTask();
+    // this.getProgressTask();
+    // this.getDoneTask();
     console.log('beforeUpdate: ', `At this point, Virtual DOM has not re-rendered or patched yet.`)
     // Logs the counter value every second, before the DOM updates.
   },
