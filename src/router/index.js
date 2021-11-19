@@ -7,6 +7,7 @@ import ProjectsOverview from "../views/ProjectsOverview.vue";
 import AddProject from "../views/AddProject.vue";
 import AddTask from "../views/AddTask.vue";
 import Task from "../views/Task.vue";
+import TestVideo from "../views/TestVideo.vue";
 
 Vue.use(VueRouter);
 
@@ -50,6 +51,11 @@ const routes = [
     path: "/add-task",
     name: "AddTask",
     component: AddTask,
+  },
+  {
+    path: "/test-video",
+    name: "TestVideo",
+    component: TestVideo,
   },
 ];
 const router = new VueRouter({
