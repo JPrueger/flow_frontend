@@ -5,6 +5,11 @@ import router from './router'
 import store from './store'
 import moment from 'moment'
 import "./index.css";
+import Embed from 'v-video-embed'
+import vueVimeoPlayer from 'vue-vimeo-player'
+
+Vue.use(vueVimeoPlayer)
+Vue.use(Embed);
 
 // import input fields globablly for dynamic forms
 import TextField from '@/components/FormFields/TextField.vue';
