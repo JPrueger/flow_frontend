@@ -16,7 +16,6 @@
     "vue-axios": "^3.3.7",
     "vue-moment": "^4.1.0",
     "vue-router": "^3.5.3",
-    "vue-silentbox": "^2.4.5",
     "vue-tailwind": "^2.5.0",
     "vue-vimeo-player": "^0.2.2",
     "vuedraggable": "^2.24.3",
