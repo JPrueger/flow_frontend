@@ -26,6 +26,9 @@ export default {
 
       newTask: {
         title: "",
+        description: "",
+        storypoints: "",
+        status: "",
       },
     };
   },
