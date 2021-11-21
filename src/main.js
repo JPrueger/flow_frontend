@@ -6,10 +6,12 @@ import store from './store'
 import moment from 'moment'
 import "./index.css";
 import Embed from 'v-video-embed'
-import vueVimeoPlayer from 'vue-vimeo-player'
+import vueVimeoPlayer from 'vue-vimeo-player';
+import Main from './assets/styles/main.scss';
 
 Vue.use(vueVimeoPlayer)
 Vue.use(Embed);
+Vue.use(Main);
 
 // import input fields globablly for dynamic forms
 import TextField from '@/components/FormFields/TextField.vue';
