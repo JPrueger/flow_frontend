@@ -2,14 +2,14 @@
   <div class="bg-white w-100 shadow-sm rounded-sm mx-auto p-3 mb-4">
     <div class="flex justify-between mb-3">
       <div>{{ title }}</div>
-      <div class="font-bold">{{storyPoints}}</div>
+      <div class="font-bold">{{ storypoints }}</div>
     </div>
-    <ColoredUserIcon :userName="assignedUser.userName" :color="assignedUser.color" />
+    <!-- <ColoredUserIcon :userName="assigned_id.name" :color="assignedUser.color" /> -->
   </div>
 </template>
 
 <script>
-import ColoredUserIcon from "@/components/Partials/ColoredUserIcon.vue";
+// import ColoredUserIcon from "@/components/Partials/ColoredUserIcon.vue";
 
 export default {
   name: "TaskItem",
@@ -18,12 +18,12 @@ export default {
     todos: []
   }),
   components: {
-    ColoredUserIcon
+    // ColoredUserIcon
   },
   props: {
     title: String,
-    storyPoints: Number,
+    storypoints: Number,
     assignedUser: String
-  }
+  },
 };
 </script>

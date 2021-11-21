@@ -12,8 +12,7 @@
       <div v-for="el in list" :key="el.title">
         <TaskItem
           :title="el.title"
-          :storyPoints="el.storyPoints"
-          :assignedUser="el.assignedUser"
+          :storyPoints="el.storypoints"
           class="cursor-pointer"
         />
       </div>
