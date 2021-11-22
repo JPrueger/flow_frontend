@@ -23,7 +23,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;700&display=swap");
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Catamaran, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -36,7 +36,7 @@ export default {
   @apply absolute;
 
   &.shape-top-right {
-    @apply top-16 right-16;
+    @apply top-8 right-16;
   }
   &.shape-bottom-left {
     @apply bottom-16 left-16;
@@ -47,7 +47,7 @@ export default {
   padding: 1.25rem;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 768px) {
   .wrapper {
     padding: 2rem 4rem;
   }

@@ -46,7 +46,7 @@ export default {
         countTask: "5",
         members: [
           { userName: "Jeannie", color: "yellow" },
-          { userName: "Danny", color: "pink" }
+          { userName: "Danny", color: "pink-main" }
         ]
       },
       {

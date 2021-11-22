@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="mb-8 xl:mb-4">
         <ul>
             <li>
                 <router-link

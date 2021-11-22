@@ -8,7 +8,10 @@ module.exports = {
     },
     colors: {
       mainText: "#212121",
-      pink: "#99154E",
+      pink: {
+        main: "#99154E",
+        hover: "#6F0B36"
+      },
       yellow: "#FFB319",
       blueGreen: {
         light: "#49A6AA",

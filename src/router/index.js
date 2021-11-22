@@ -6,8 +6,10 @@ import ProjectBoard from "../views/ProjectBoard.vue";
 import ProjectsOverview from "../views/ProjectsOverview.vue";
 import AddProject from "../views/AddProject.vue";
 import AddTask from "../views/AddTask.vue";
+import EditTask from "../views/EditTask.vue";
 import Task from "../views/Task.vue";
 import TestVideo from "../views/TestVideo.vue";
+import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -17,6 +19,11 @@ const routes = [
   //   name: "404",
   //   component: NotFound,
   // },
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
+  },
   {
     path: "/register",
     name: "Register",
@@ -52,6 +59,12 @@ const routes = [
     name: "AddTask",
     component: AddTask,
   },
+  {
+    path: "/edit-task",
+    name: "EditTask",
+    component: EditTask,
+  },
+
   {
     path: "/test-video",
     name: "TestVideo",
