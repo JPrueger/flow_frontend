@@ -8,7 +8,7 @@
         </button>
       </div>
       <div v-if="isActiveGhost" class="Lightbox" @click="closeLightboxGhost">
-        <div class="Lightbox--card text-left p-12 rounded flex justify-between">
+        <div class="Lightbox--card text-left p-10 rounded flex justify-between">
           <div class="flex flex-col justify-between">
             <div>
               <h1 class="font-bold text-5xl mb-2">You made it!</h1>
@@ -33,7 +33,7 @@
                   w-12
                   h-12
                   text-white
-                  bg-pink
+                  bg-pink-main
                   font-bold
                   rounded-full
                 "
@@ -52,12 +52,12 @@
     </div>
     <div class="Button">
       <div class="bg-pink-main text-white rounded p-2 text-center">
-        <button @click="toggleLightboxDragon" class="bg-pink font-bold">
+        <button @click="toggleLightboxDragon" class="bg-pink-main font-bold">
           Show Dragon
         </button>
       </div>
       <div v-if="isActiveDragon" class="Lightbox" @click="closeLightboxDragon">
-        <div class="Lightbox--card text-left p-12 rounded flex justify-between">
+        <div class="Lightbox--card text-left p-10 rounded flex justify-between">
           <div class="flex flex-col justify-between">
             <div>
               <h1 class="font-bold text-5xl mb-2">You made it!</h1>
@@ -82,7 +82,7 @@
                   w-12
                   h-12
                   text-white
-                  bg-pink
+                  bg-pink-main
                   font-bold
                   rounded-full
                 "
@@ -162,8 +162,8 @@ export default {
     }
 
     &--dragon {
-      width: 650px;
-      @apply right-0 bottom-16 -z-10;
+      width: 400px;
+      @apply right-6 bottom-6 -z-10;
     }
   }
 
