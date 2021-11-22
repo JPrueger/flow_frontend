@@ -1,5 +1,5 @@
 <template>
-    <button type="submit" @click.prevent="method">
+    <button class="bg-pink text-white rounded p-2 text-center w-100" type="submit" @click.prevent="method">
         Submit hier
     </button>
 </template>

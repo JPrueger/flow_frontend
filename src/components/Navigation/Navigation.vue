@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="pb-8 md:mb-8">
         <ul>
             <li>
                 <router-link

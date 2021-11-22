@@ -5,7 +5,9 @@ import router from './router'
 import store from './store'
 import moment from 'moment'
 import "./index.css";
+import Main from './assets/styles/main.scss'
 
+Vue.use(Main);
 // import input fields globablly for dynamic forms
 import TextField from '@/components/FormFields/TextField.vue';
 import PasswordField from '@/components/FormFields/PasswordField.vue';
