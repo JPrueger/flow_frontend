@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="pl-11 font-bold text-4xl mb-16">Show Videos (Testingpage)</h1>
+    <h1 class="font-bold text-4xl mb-16">Show Videos (Testingpage)</h1>
     <div class="Button">
-      <div class="bg-pink text-white rounded p-2 text-center">
+      <div class="bg-pink-main text-white rounded p-2 text-center">
         <button @click="toggleLightboxGhost" class="bg-pink font-bold">
           Show Ghost
         </button>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="Button">
-      <div class="bg-pink text-white rounded p-2 text-center">
+      <div class="bg-pink-main text-white rounded p-2 text-center">
         <button @click="toggleLightboxDragon" class="bg-pink font-bold">
           Show Dragon
         </button>
@@ -149,7 +149,6 @@ export default {
 <style lang="scss">
 .Button {
   max-width: 300px;
-  margin: 0 auto;
   @apply mb-8;
 }
 
