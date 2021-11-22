@@ -4,6 +4,9 @@
       <h1 class="font-bold mb-6 ">A fun way to manage
         your projects.</h1>
       <p class="mb-6">Flow is a powerful tool to manage your projects in a still simple way. First choose your character and see it’s growth every time you finish up a ticket. All you need to do first is register and we’ll help you to keep your projects going.</p>
+      <p class="mb-6">Flow is a powerful tool to manage your projects in a still simple way. First choose your character and see it’s growth every time you finish up a ticket. All you need to do first is register and we’ll help you to keep your projects going.</p>
+      <p class="mb-6">Flow is a powerful tool to manage your projects in a still simple way. First choose your character and see it’s growth every time you finish up a ticket. All you need to do first is register and we’ll help you to keep your projects going.</p>
+      <p class="mb-6">Flow is a powerful tool to manage your projects in a still simple way. First choose your character and see it’s growth every time you finish up a ticket. All you need to do first is register and we’ll help you to keep your projects going.</p>
 
     <CtaLink />
     </div>
