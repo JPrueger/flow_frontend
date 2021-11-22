@@ -46,7 +46,7 @@ export default {
   padding: 1.25rem;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 768px) {
   .wrapper {
     padding: 2rem 4rem;
   }

@@ -61,7 +61,7 @@ export default {
         id: 6,
         title: "Projektplan",
         storyPoints: "5",
-        assignedUser: { userName: "Danny", color: "pink" }
+        assignedUser: { userName: "Danny", color: "pink-main" }
       }
     ]
   })
