@@ -3,7 +3,7 @@
     <div class="bg-pink text-white rounded p-2 text-center">
       <button @click="toggleLightbox" class="bg-pink font-bold">Click me</button>
     </div>
-    <div v-if="isActive" class="Lightbox">
+    <div v-if="isActive" class="Lightbox" @click="closeLightbox">
       <div
         class="
           Lightbox--card
@@ -66,6 +66,9 @@ export default {
     toggleLightbox() {
       this.isActive = !this.isActive;
     },
+    closeLightbox() {
+      this.isActive = false;
+    }
   },
 };
 </script>
