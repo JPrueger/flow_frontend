@@ -32,13 +32,14 @@ export default {
 }
 
 .background-shapes {
-  position: absolute;
+  z-index: -10;
+  @apply absolute;
 
   &.shape-top-right {
     @apply top-16 right-16;
   }
   &.shape-bottom-left {
-    @apply bottom-16 left-16 z-0;
+    @apply bottom-16 left-16;
   }
 }
 
