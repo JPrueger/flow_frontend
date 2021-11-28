@@ -1,11 +1,18 @@
 <template>
-  <BaseForm
-    v-model="credentials"
-    @input="loginUser"
-    headline="Login"
-    submitButton="Login"
-    :fields="fields"
-  />
+ <div>
+    <BaseForm
+      v-model="credentials"
+      @input="loginUser"
+      headline="Login"
+      submitButton="Login"
+      :fields="fields"
+      class="mb-4"
+    />
+    <p class="text-center">
+      No account yet?
+      <router-link to="/" class="text-center Link">Register here!</router-link>
+    </p>
+  </div>
 </template>
 <script>
 import loginFields from "@/data/forms/login.js";
