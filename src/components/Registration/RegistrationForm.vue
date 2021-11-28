@@ -1,13 +1,20 @@
 <template>
-  <BaseForm
-    v-model="newUser"
-    @input="saveUser"
-    headline="Hey there!"
-    subheadline="Good seeing you. Tell us your details and choose a character to get you started into flow."
-    submitButton="Submit!"
-    :responseState="response"
-    :fields="fields"
-  />
+  <div>
+    <BaseForm
+      v-model="newUser"
+      @input="saveUser"
+      headline="Hey there!"
+      subheadline="Good seeing you. Tell us your details and choose a character to get you started into flow."
+      submitButton="Submit!"
+      :responseState="response"
+      :fields="fields"
+      class="mb-4"
+    />
+    <p class="text-center">
+      Already registered?
+      <router-link to="/" class="text-center Link">Login here!</router-link>
+    </p>
+  </div>
 </template>
 <script>
 import registerFields from "@/data/forms/registration.js";
@@ -16,7 +23,7 @@ import BaseForm from "../BaseForm/BaseForm.vue";
 
 export default {
   components: {
-    BaseForm
+    BaseForm,
   },
   data() {
     return {
@@ -26,10 +33,10 @@ export default {
       newUser: {
         name: "",
         email: "",
-        password: ""
+        password: "",
       },
       errors: [],
-      succesSignin: false
+      succesSignin: false,
     };
   },
   methods: {
@@ -37,7 +44,7 @@ export default {
       console.log("clicked");
       axios
         .post("http://flow_backend.local/api/user/register", this.newUser)
-        .then(response => {
+        .then((response) => {
           console.log("test hier rein?", this.newUser);
           console.log("noch mal mikado: ", response);
           alert("Speichern erfolgreich");
@@ -45,12 +52,12 @@ export default {
         .then(() => {
           this.succesSignin = true;
         })
-        .catch(err => {
+        .catch((err) => {
           alert("Speichern nicht erfolgreich");
           this.errors = err.response.data.errors;
           console.log(this.errors);
         });
-    }
-  }
+    },
+  },
 };
 </script>
