@@ -1,0 +1,7 @@
+.Link {
+    @apply font-bold text-pink-main;
+
+    &:hover {
+        @apply underline;  
+    }
+}
