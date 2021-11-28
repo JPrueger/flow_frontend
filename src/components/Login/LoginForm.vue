@@ -10,7 +10,7 @@
     />
     <p class="text-center">
       No account yet?
-      <router-link to="/" class="text-center Link">Register here!</router-link>
+      <router-link to="/register" class="text-center Link">Register here!</router-link>
     </p>
   </div>
 </template>

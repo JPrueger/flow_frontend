@@ -12,7 +12,7 @@
     />
     <p class="text-center">
       Already registered?
-      <router-link to="/" class="text-center Link">Login here!</router-link>
+      <router-link to="/login" class="text-center Link">Login here!</router-link>
     </p>
   </div>
 </template>
