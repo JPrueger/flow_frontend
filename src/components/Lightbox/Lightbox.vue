@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1 class="font-bold text-4xl mb-16">Show Videos (Testingpage)</h1>
-    <div class="Button">
-      <div class="bg-pink-main text-white rounded p-2 text-center">
-        <button @click="toggleLightboxGhost" class="bg-pink font-bold">
+    <div>
+      <div>
+        <button @click="toggleLightboxGhost" class="Button">
           Show Ghost
         </button>
       </div>
@@ -50,9 +50,9 @@
         </div>
       </div>
     </div>
-    <div class="Button">
-      <div class="bg-pink-main text-white rounded p-2 text-center">
-        <button @click="toggleLightboxDragon" class="bg-pink-main font-bold">
+    <div>
+      <div>
+        <button @click="toggleLightboxDragon" class="Button">
           Show Dragon
         </button>
       </div>
@@ -146,7 +146,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .Button {
   max-width: 300px;
   @apply mb-8;
