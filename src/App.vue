@@ -36,10 +36,10 @@ export default {
   @apply absolute;
 
   &.shape-top-right {
-    @apply top-8 right-16;
+    @apply top-28 right-16;
   }
   &.shape-bottom-left {
-    @apply bottom-16 left-16;
+    @apply bottom-10 left-8;
   }
 }
 
