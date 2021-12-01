@@ -30,8 +30,12 @@
         </div>
       </div>
       <div class="flex flex-col text-left mb-8">
-        <label for="storypoints" class="pb-2">Status:</label>
-        <select id="storypoints" class="rounded p-3 border border-borderGrey"  v-model="newTask.status">
+        <label for="state" class="pb-2">Status:</label>
+        <select
+          id="state"
+          class="rounded p-3 border border-borderGrey"
+          v-model="newTask.status"
+        >
           <option value="open">Open</option>
           <option value="progress">In Progress</option>
           <option value="done">Done</option>
@@ -39,7 +43,11 @@
       </div>
       <div class="flex flex-col text-left mb-8">
         <label for="storypoints" class="pb-2">Storypoints:</label>
-        <select id="storypoints" class="rounded p-3 border border-borderGrey"  v-model="newTask.storypoints">
+        <select
+          id="storypoints"
+          class="rounded p-3 border border-borderGrey"
+          v-model="newTask.storypoints"
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
