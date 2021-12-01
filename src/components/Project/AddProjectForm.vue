@@ -21,7 +21,6 @@ export default {
     return {
       loading: false,
       error: null,
-      token: null,
       success: false,
       fields: addProjectFields,
 
@@ -41,6 +40,7 @@ export default {
       axios
         .post("http://flow_backend.local/api/add-project/create", formData)
         .then(() => {
+          alert("Speichern erfolgreich");
           this.createSuccess = true;
           this.error = false;
         })
@@ -53,6 +53,10 @@ export default {
     userDataService.me().then((userData) => {
       this.newProject.user_id = userData.id;
       console.log('user id here: ', this.newProject.user_id);
+    })
+    .catch(async error => {
+      alert("Error: " + error.response.data.message);
+      this.loading = false;
     });
   },
   updated() {
