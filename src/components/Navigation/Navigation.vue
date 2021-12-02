@@ -16,7 +16,7 @@
     <ul class="nav-links">
       <li class="nav-link">
         <router-link class="hover:text-pink-hover"
-                     to="/project-board"
+                     to="/projects"
         >
           Dashboard
         </router-link>
