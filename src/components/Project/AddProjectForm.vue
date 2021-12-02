@@ -11,6 +11,7 @@
 import addProjectFields from "@/data/forms/addProject.js";
 import BaseForm from "../BaseForm/BaseForm.vue";
 import axios from "axios";
+import userDataService from "@/services/userDataService";
 
 export default {
   components: {
@@ -20,28 +21,49 @@ export default {
     return {
       loading: false,
       error: null,
-      token: null,
       success: false,
       fields: addProjectFields,
 
       newProject: {
         title: "",
+        user_id: "",
       },
     };
   },
   methods: {
     saveProject() {
+      console.log('saveProject aufgerufen')
+      let formData = new FormData();
+      formData.append("title", this.newProject.title);
+      formData.append("user_id", this.newProject.user_id);
+
       axios
-        .post("http://flow_backend.local/api/add-project/create", this.newProject)
+        .post("http://flow_backend.local/api/add-project/create", formData)
         .then(() => {
           alert("Speichern erfolgreich");
+          this.createSuccess = true;
+          this.error = false;
         })
-        .catch((err) => {
-            alert("Speichern nicht erfolgreich");
-            this.errors = err.response.data.errors;
-            console.log(this.errors);
+        .catch(() => {
+          this.error = true;
         });
-    }
+    },
+  },
+  mounted() {
+    userDataService.me().then((userData) => {
+      this.newProject.user_id = userData.id;
+      console.log('user id here: ', this.newProject.user_id);
+    })
+    .catch(async error => {
+      alert("Error: " + error.response.data.message);
+      this.loading = false;
+    });
+  },
+  updated() {
+    userDataService.me().then((userData) => {
+      this.newProject.user_id = userData.id;
+      console.log('user id here: ', this.newProject.user_id);
+    });
   },
 };
 </script>

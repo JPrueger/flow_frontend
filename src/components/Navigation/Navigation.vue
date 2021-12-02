@@ -29,6 +29,16 @@
           Profile
         </router-link>
       </li>
+      <li>
+        <button
+            @click="
+                        logout();
+                    "
+            class="mobile-menu-item extern-link"
+        >
+          logout
+        </button>
+      </li>
     </ul>
   </header>
 <!--    <nav class="mb-8 xl:mb-4 xl:pb-5">
@@ -59,6 +69,15 @@
 <script>
 export default {
   name: "Navigation",
+     methods: {
+        logout() {
+            localStorage.removeItem("token");
+            // redirect auf die Startseite nach 3 Sekunden
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 3000);
+        },
+    },
 };
 
 const header = document.querySelector(".main-header");

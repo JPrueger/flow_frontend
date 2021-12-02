@@ -27,6 +27,16 @@ const fields = [
       required: true,
     },
   },
+  {
+    name: "characterName",
+    type: "text",
+    label: "Character Name *",
+    placeholder: "Casper",
+    inputProps: {
+      required: true,
+      maxLength: 255,
+    },
+  },
 ];
 
 export default fields;
