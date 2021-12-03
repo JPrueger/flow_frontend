@@ -8,7 +8,7 @@
     </div>
 
     <router-link
-        to="/add-task"
+        :to="'/add-task/'  + this.$route.params.id"
     >Add New Task
     </router-link>
     <!-- <pre>
@@ -36,6 +36,9 @@ export default {
 
   components: {
     BoardColumn,
+  },
+  props: {
+    project_id: Number,
   },
 
   data: () => {

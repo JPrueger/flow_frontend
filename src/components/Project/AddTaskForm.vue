@@ -2,6 +2,10 @@
   <div>
     <form @submit.prevent class="shadow p-11 rounded mt-6">
       <div>
+        <input
+            v-model="newTask.project_id"
+            type="hidden"
+        />
         <div class="flex flex-col text-left mb-8" type="text">
           <label for="title" class="pb-2">Title</label
           ><input
@@ -66,6 +70,9 @@ import addTaskFields from "@/data/forms/addTask.js";
 import axios from "axios";
 
 export default {
+  props: {
+    project_id: String,
+  },
   data() {
     return {
       loading: false,
@@ -79,6 +86,7 @@ export default {
         description: "",
         storypoints: "",
         status: "",
+        project_id: ""
       },
     };
   },
@@ -95,6 +103,10 @@ export default {
           console.log(this.errors);
         });
     },
+  },
+  created() {
+    this.newTask.project_id = this.$route.params.id;
+    console.log('created: ', this.newTask.project_id)
   },
 };
 </script>
