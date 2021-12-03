@@ -6,6 +6,11 @@
       <BoardColumn columnName="In Progress" :list="progresstasks" />
       <BoardColumn columnName="Done" :list="donetasks" />
     </div>
+
+    <router-link
+        to="/add-task"
+    >Add New Task
+    </router-link>
     <!-- <pre>
       {{ tasks }}
     </pre>
@@ -28,6 +33,7 @@ import BoardColumn from "@/components/Project/BoardColumn";
 export default {
   watch: {},
   name: "ProjectBoard",
+
   components: {
     BoardColumn,
   },
@@ -43,11 +49,13 @@ export default {
         progress: 'progress',
         done: 'done'
       },
+      taskUpdated: false,
+      projectId: '',
     };
   },
   methods: {
     getPost() {
-      axios.get("http://flow_backend.local/api/tasks/index/").then((res) => {
+      axios.get("http://flow_backend.local/api/tasks/index/" + this.$route.params.id).then((res) => {
         this.tasks = res.data;
       })
       .then(() => {
@@ -134,6 +142,24 @@ export default {
     getDoneTask() {
       this.donetasks = this.filtered_tasks_done();
       return this.donetasks;
+    },
+    updateTask() {
+      let formData = new FormData();
+      formData.append("status", this.newUserData.username);
+      formData.append("_method", "PUT");
+
+      axios
+          .post("http://api.ipito.local/api/tasks/{id}", formData, {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                  "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then(() => {
+            this.taskUpdated = true;
+          });
     },
   },
   beforeCreate() {

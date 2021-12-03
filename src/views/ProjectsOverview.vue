@@ -9,10 +9,13 @@
 <!--         :countTask="project.tasks.size()"-->
 <!--          :members="project.members"-->
 <!--        />-->
+
         <ProjectCard
             :title="project.title"
             :members="project.members"
+            :project_id="project.id"
         />
+
       </li>
     </ul>
   </div>
@@ -37,7 +40,7 @@ export default {
     };
   },
   methods: {
-    getPost() {
+    getProjects() {
       axios
           .get(
               "http://flow_backend.local/api/projects/" + this.userId
@@ -50,7 +53,7 @@ export default {
   created() {
     userDataService.me().then((userData) => {
       this.userId = userData.id;
-      this.getPost();
+      this.getProjects();
     });
   },
 };
