@@ -10,6 +10,7 @@ import EditTask from "../views/EditTask.vue";
 import Task from "../views/Task.vue";
 import TestVideo from "../views/TestVideo.vue";
 import Home from "../views/Home.vue";
+import UserProfile from "../views/UserProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -35,7 +36,7 @@ const routes = [
     component: Login,
   },
   {
-    path: "/project-board",
+    path: "/project-board/:id",
     name: "ProjectBoard",
     component: ProjectBoard,
   },
@@ -64,11 +65,15 @@ const routes = [
     name: "EditTask",
     component: EditTask,
   },
-
   {
     path: "/test-video",
     name: "TestVideo",
     component: TestVideo,
+  },
+  {
+    path: "/user-profile",
+    name: "UserProfile",
+    component: UserProfile,
   },
 ];
 const router = new VueRouter({
