@@ -49,9 +49,15 @@ export default {
       /**
        * für added event neue logic
        */
-      //aus this.list neue reihung von alles task der spalte in db updaten
+      //aus this.list neue reihung von allen task der spalte in db updaten
       const newContent = this.list.map(task => {
-        return task.id;
+            var taskObjekt = {
+              id: task.id,
+              status: task.status
+            }
+            return taskObjekt;
+
+        // return task.id;
       });
       axios
       /**
