@@ -13,6 +13,7 @@
         <TaskItem
           :title="el.title"
           :storyPoints="el.storypoints"
+          :taskId="el.id"
           class="cursor-pointer"
         />
       </div>

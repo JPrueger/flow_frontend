@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import ProjectBoard from "../views/ProjectBoard.vue";
 import ProjectsOverview from "../views/ProjectsOverview.vue";
 import AddProject from "../views/AddProject.vue";
+import TaskDetails from "../views/TaskDetails.vue";
 import AddTask from "../views/AddTask.vue";
 import EditTask from "../views/EditTask.vue";
 import Task from "../views/Task.vue";
@@ -54,6 +55,11 @@ const routes = [
     path: "/tasks",
     name: "Task",
     component: Task,
+  },
+  {
+    path: "/task/:id",
+    name: "TaskDetails",
+    component: TaskDetails,
   },
   {
     path: "/add-task/:id",
