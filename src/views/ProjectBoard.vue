@@ -2,9 +2,9 @@
   <div class="hello">
     <h1 class="font-bold text-4xl mb-6">Test Headline</h1>
     <div class="lg:flex lg:justify-around">
-      <BoardColumn columnName="Open" :list="opentasks" />
-      <BoardColumn columnName="In Progress" :list="progresstasks" />
-      <BoardColumn columnName="Done" :list="donetasks" />
+      <BoardColumn columnName="Open" :list="opentasks" statusKey="open" />
+      <BoardColumn columnName="In Progress" :list="progresstasks"  statusKey="progress"/>
+      <BoardColumn columnName="Done" :list="donetasks"  statusKey="done"/>
     </div>
 
     <router-link
@@ -146,7 +146,8 @@ export default {
       this.donetasks = this.filtered_tasks_done();
       return this.donetasks;
     },
-    updateTask() {
+    updateTask() { //unused?
+      console.log('updateTask')
       let formData = new FormData();
       formData.append("status", this.newUserData.username);
       formData.append("_method", "PUT");

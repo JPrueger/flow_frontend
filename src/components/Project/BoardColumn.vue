@@ -40,26 +40,38 @@ export default {
   },
   props: {
     columnName: String,
+    statusKey: String,
     list: {
       type: Array,
       required: true
     }
   },
   methods: {
-    updateStatus() {
+    updateStatus(params) {
+      // @todo: liste an server schicken
+      // @todo: daten in vue aktualisieren
+      console.log(params, this.statusKey, this.list )
+      console.log('updateStatus')
       /**
        * für added event neue logic
        */
       //aus this.list neue reihung von allen task der spalte in db updaten
-      const newContent = this.list.map(task => {
-            var taskObjekt = {
+          const newContent = this.list.map(task => {
+            task.status = this.statusKey
+            return {
               id: task.id,
-              status: task.status
+              newStatus: this.statusKey
             }
-            return taskObjekt;
-
-        // return task.id;
-      });
+          })
+      // const newContent = this.list.map(task => {
+      //       var taskObjekt = {
+      //         id: task.id,
+      //         status: task.status
+      //       }
+      //       return taskObjekt;
+      //
+      //   // return task.id;
+      // });
       axios
       /**
        * für moved event
