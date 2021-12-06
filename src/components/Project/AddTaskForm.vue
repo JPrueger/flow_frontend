@@ -96,9 +96,7 @@ export default {
         .post("http://flow_backend.local/api/add-task/create", this.newTask)
         .then(() => {
           //alert("Speichern erfolgreich");
-          setTimeout(() => {
-            window.location.href = "/project-board/" + this.project_id;
-          }, 1000);
+          window.location.href = "/project-board/" + this.project_id;
         })
         .catch((err) => {
           alert("Speichern nicht erfolgreich");

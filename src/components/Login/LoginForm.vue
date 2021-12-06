@@ -43,11 +43,9 @@ export default {
           this.success = true;
           this.token = loginData.token;
           localStorage.setItem("token", loginData.token);
+          console.log('token: ', loginData.token)
           this.loading = false;
-
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 3000);
+          window.location.href = "/";
         })
         .catch(async error => {
           alert("Error: " + error.response.data.message);
