@@ -23,6 +23,7 @@ export default {
       error: null,
       success: false,
       fields: addProjectFields,
+      allUsers: [],
 
       newProject: {
         title: "",
@@ -48,6 +49,18 @@ export default {
           this.error = true;
         });
     },
+
+    getAllUsers() {
+      axios
+          .get("http://flow_backend.local/api/user/all-users")
+          .then((res) => {
+              this.allUsers = res.data;
+            console.log("users",this.allUsers);
+          })
+          .catch(() => {
+            this.error = true;
+          });
+    }
   },
   mounted() {
     userDataService.me().then((userData) => {
@@ -58,6 +71,9 @@ export default {
       alert("Error: " + error.response.data.message);
       this.loading = false;
     });
+
+    this.getAllUsers();
+
   },
   updated() {
     userDataService.me().then((userData) => {
