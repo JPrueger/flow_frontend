@@ -8,8 +8,10 @@ import "./index.css";
 import Embed from 'v-video-embed'
 import vueVimeoPlayer from 'vue-vimeo-player';
 import Main from './assets/styles/main.scss';
+import Multiselect from 'vue-multiselect';
 
-Vue.use(vueVimeoPlayer)
+Vue.component('multiselect', Multiselect);
+Vue.use(vueVimeoPlayer);
 Vue.use(Embed);
 Vue.use(Main);
 

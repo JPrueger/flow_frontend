@@ -40,9 +40,7 @@ export default {
     logout() {
       localStorage.removeItem("token");
       // redirect auf die Startseite nach 3 Sekunden
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 3000);
+      window.location.href = "/";
     },
   },
 };
