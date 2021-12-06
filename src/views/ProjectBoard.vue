@@ -88,8 +88,9 @@ export default {
     },
     sortedTasks: function () {
       function compare(a, b) {
-        if (a.status < b.status) return -1;
-        if (a.status > b.status) return 1;
+        console.log(a, b)
+        if (a.sort_index < b.sort_index) return -1;
+        if (a.sort_index > b.sort_index) return 1;
 
         return 0;
       }
@@ -116,8 +117,8 @@ export default {
     },
     sortedTasksProgress: function () {
       function compare(a, b) {
-        if (a.status < b.status) return -1;
-        if (a.status > b.status) return 1;
+        if (a.sort_index < b.sort_index) return -1;
+        if (a.sort_index > b.sort_index) return 1;
 
         return 0;
       }
@@ -142,8 +143,8 @@ export default {
     },
     sortedTasksDone: function () {
       function compare(a, b) {
-        if (a.status < b.status) return -1;
-        if (a.status > b.status) return 1;
+        if (a.sort_index < b.sort_index) return -1;
+        if (a.sort_index > b.sort_index) return 1;
 
         return 0;
       }
