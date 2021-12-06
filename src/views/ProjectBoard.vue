@@ -3,13 +3,16 @@
     <h1 class="font-bold text-4xl mb-6">Test Headline</h1>
     <div class="lg:flex lg:justify-around">
       <BoardColumn columnName="Open" :list="opentasks" statusKey="open" />
-      <BoardColumn columnName="In Progress" :list="progresstasks"  statusKey="progress"/>
-      <BoardColumn columnName="Done" :list="donetasks"  statusKey="done"/>
+      <BoardColumn
+        columnName="In Progress"
+        :list="progresstasks"
+        statusKey="progress"
+      />
+      <BoardColumn columnName="Done" :list="donetasks" statusKey="done" />
     </div>
 
-    <router-link
-        :to="'/add-task/'  + this.$route.params.id"
-    >Add New Task
+    <router-link :to="'/add-task/' + this.$route.params.id"
+      >Add New Task
     </router-link>
     <!-- <pre>
       {{ tasks }}
@@ -48,24 +51,28 @@ export default {
       progresstasks: [],
       donetasks: [],
       filters: {
-        open: 'open',
-        progress: 'progress',
-        done: 'done'
+        open: "open",
+        progress: "progress",
+        done: "done",
       },
       taskUpdated: false,
-      projectId: '',
+      projectId: "",
     };
   },
   methods: {
     getPost() {
-      axios.get("http://flow_backend.local/api/tasks/index/" + this.$route.params.id).then((res) => {
-        this.tasks = res.data;
-      })
-      .then(() => {
-        this.getOpenedTask();
-        this.getProgressTask();
-        this.getDoneTask();
-      });
+      axios
+        .get(
+          "http://flow_backend.local/api/tasks/index/" + this.$route.params.id
+        )
+        .then((res) => {
+          this.tasks = res.data;
+        })
+        .then(() => {
+          this.getOpenedTask();
+          this.getProgressTask();
+          this.getDoneTask();
+        });
     },
     // open
     filtered_tasks() {
@@ -101,8 +108,9 @@ export default {
       }
       return this.sortedTasksProgress().filter((task) => {
         return (
-          task.status.toLowerCase().indexOf(this.filters.progress.toLowerCase()) !=
-          -1
+          task.status
+            .toLowerCase()
+            .indexOf(this.filters.progress.toLowerCase()) != -1
         );
       });
     },
@@ -146,48 +154,66 @@ export default {
       this.donetasks = this.filtered_tasks_done();
       return this.donetasks;
     },
-    updateTask() { //unused?
-      console.log('updateTask')
+    updateTask() {
+      //unused?
+      console.log("updateTask");
       let formData = new FormData();
       formData.append("status", this.newUserData.username);
       formData.append("_method", "PUT");
 
       axios
-          .post("http://api.ipito.local/api/tasks/{id}", formData, {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "multipart/form-data",
-              Authorization:
-                  "Bearer " + localStorage.getItem("token"),
-            },
-          })
-          .then(() => {
-            this.taskUpdated = true;
-          });
+        .post("http://api.ipito.local/api/tasks/{id}", formData, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then(() => {
+          this.taskUpdated = true;
+        });
     },
   },
   beforeCreate() {
-    console.log('beforeCreate: ', 'At this point, events and lifecycle have been initialized.')
+    console.log(
+      "beforeCreate: ",
+      "At this point, events and lifecycle have been initialized."
+    );
   },
   created() {
     this.getPost();
-    console.log('created: ', 'At this point, this.property is now reactive and propertyComputed will update.')
+    console.log(
+      "created: ",
+      "At this point, this.property is now reactive and propertyComputed will update."
+    );
   },
   beforeMount() {
-    console.log('beforeMount: ', `At this point, vm.$el has not been created yet.`)
+    console.log(
+      "beforeMount: ",
+      `At this point, vm.$el has not been created yet.`
+    );
   },
   mounted() {
-    console.log('mounted: ', `At this point, vm.$el has been created and el has been replaced.`);
+    console.log(
+      "mounted: ",
+      `At this point, vm.$el has been created and el has been replaced.`
+    );
   },
   beforeUpdate() {
     // this.getOpenedTask();
     // this.getProgressTask();
     // this.getDoneTask();
-    console.log('beforeUpdate: ', `At this point, Virtual DOM has not re-rendered or patched yet.`)
+    console.log(
+      "beforeUpdate: ",
+      `At this point, Virtual DOM has not re-rendered or patched yet.`
+    );
     // Logs the counter value every second, before the DOM updates.
   },
   updated() {
-    console.log('updated: ', `At this point, Virtual DOM has re-rendered and patched.`)
+    console.log(
+      "updated: ",
+      `At this point, Virtual DOM has re-rendered and patched.`
+    );
     // Fired every second, should always be true
   },
 };
