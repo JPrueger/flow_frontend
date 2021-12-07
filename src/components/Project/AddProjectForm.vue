@@ -55,9 +55,10 @@ export default {
       axios
         .post("http://flow_backend.local/api/add-project/create", formData)
         .then(() => {
-          alert("Speichern erfolgreich");
+          // alert("Speichern erfolgreich");
           this.createSuccess = true;
           this.error = false;
+          window.location.href = "/projects/";
         })
         .catch(() => {
           this.error = true;

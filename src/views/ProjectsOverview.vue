@@ -10,6 +10,8 @@
 <!--          :members="project.members"-->
 <!--        />-->
 
+
+
         <ProjectCard
             :title="project.title"
             :members="project.members"
@@ -18,7 +20,8 @@
 
       </li>
     </ul>
-  </div>
+
+    <router-link to="/add-project">Add Project</router-link>  </div>
 </template>
 
 <script>
@@ -36,6 +39,7 @@ export default {
   data: () => {
     return {
       projects: "",
+      projectUsers: "",
       userId: "",
     };
   },
@@ -46,7 +50,9 @@ export default {
               "http://flow_backend.local/api/projects/" + this.userId
           )
           .then((res) => {
+            console.log(res.data);
             this.projects = res.data;
+            // this.projectUsers = res.data;
           });
       },
   },
