@@ -1,11 +1,18 @@
 <template>
   <div class="text-left">
     <div
-      class="rounded-lg py-1 px-3 text-white w-auto inline-block items-start"
-      :class="'bg-' + `${color}`"
+      class="rounded-lg py-1 px-3 text-white w-auto inline-block items-start bg-pink-main"
     >
       {{ userName }}
     </div>
+
+
+<!--    <div-->
+<!--        class="rounded-lg py-1 px-3 text-white w-auto inline-block items-start bg-pink-main"-->
+<!--        :class="'bg-' + `${color}`"-->
+<!--    >-->
+<!--      {{ userName }}-->
+<!--    </div>-->
   </div>
 </template>
 

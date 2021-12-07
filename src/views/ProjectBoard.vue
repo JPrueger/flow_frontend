@@ -14,18 +14,6 @@
     <router-link :to="'/add-task/' + this.$route.params.id"
       >Add New Task
     </router-link>
-    <!-- <pre>
-      {{ tasks }}
-    </pre>
-    <pre class="bg-yellow">
-      {{ opentasks }}
-    </pre>
-    <pre class="bg-blueGreen-light">
-      {{ progresstasks }}
-    </pre>
-    <pre class="bg-grey">
-      {{ donetasks }}
-    </pre> -->
   </div>
 </template>
 
