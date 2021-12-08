@@ -61,6 +61,17 @@
           <option value="20">20</option>
         </select>
       </div>
+      <div>
+        <multiselect
+            v-model="value"
+            :options="options"
+            :show-labels="true"
+            :allow-empty="false"
+            :multiple="false"
+            label="name"
+            track-by="id"
+        />
+      </div>
       <input type="submit" @click="saveTask()" class="Button" />
     </form>
   </div>
@@ -80,6 +91,8 @@ export default {
       token: null,
       success: false,
       fields: addTaskFields,
+      projectUsers: [],
+      value: null,
 
       newTask: {
         title: "",
@@ -92,8 +105,17 @@ export default {
   },
   methods: {
     saveTask() {
+
+      let formData = new FormData();
+      formData.append("title", this.newTask.title);
+      formData.append("description", this.newTask.description);
+      formData.append("storypoints", this.newTask.storypoints);
+      formData.append("status", this.newTask.status);
+      formData.append("project_id", this.newTask.project_id);
+      formData.append("assigne_id", JSON.stringify(this.value.id));
+
       axios
-        .post("http://flow_backend.local/api/add-task/create", this.newTask)
+        .post("http://flow_backend.local/api/add-task/create", formData)
         .then(() => {
           //alert("Speichern erfolgreich");
           window.location.href = "/project-board/" + this.project_id;
@@ -104,6 +126,25 @@ export default {
           console.log(this.errors);
         });
     },
+    getAllUsersForThisProject() {
+      axios
+          .get("http://flow_backend.local/api/project-users/" + this.project_id)
+          .then((res) => {
+            this.projectUsers = res.data;
+            console.log("users", this.projectUsers);
+          })
+          .catch(() => {
+            this.error = true;
+          });
+    },
+  },
+  computed:{
+    options () {
+      return this.projectUsers.map((item) => ({name: item.name, id: item.id}))
+    }
+  },
+  mounted() {
+    this.getAllUsersForThisProject();
   },
   created() {
     this.newTask.project_id = this.$route.params.id;
