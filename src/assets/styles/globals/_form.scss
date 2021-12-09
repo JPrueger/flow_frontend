@@ -1,7 +1,15 @@
 .Form {
-    @apply shadow p-6 rounded mt-6 max-w-lg m-auto;
+    @apply shadow p-6 rounded mx-auto max-w-lg;
 }
 
 .InputField {
     @apply rounded p-2 border border-borderGrey;
+}
+
+label {
+    @apply text-sm;
+}
+
+::placeholder {
+    @apply text-sm;
 }

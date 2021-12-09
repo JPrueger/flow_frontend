@@ -1,6 +1,6 @@
 <template>
-  <div class="lg:w-1/2 mx-auto text-left relative">
-    <h1 class="pl-11 font-bold text-4xl mb-6" v-if="headline">{{ headline }}</h1>
+  <div class="max-w-lg mx-auto text-left relative">
+    <h1 v-if="headline">{{ headline }}</h1>
     <div v-if="subheadline" class="pl-11 text-left">{{ subheadline }}</div>
     <form @submit.prevent="$emit('input', fieldValues)" class="Form">
       <div v-for="field in fields" :key="field.name">
