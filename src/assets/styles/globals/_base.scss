@@ -7,38 +7,38 @@ html {
 }
 
 /*shadow-on-scroll Start*/
-.shadow-on-scroll {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  -webkit-backface-visibility: hidden;
-}
+// .shadow-on-scroll {
+//   position: sticky;
+//   top: 0;
+//   z-index: 1;
+//   -webkit-backface-visibility: hidden;
+// }
 
-.shadow-on-scroll::before, .shadow-on-scroll::after {
-  content: "";
-  display: block;
-  height: 16px;
-  position: sticky;
-}
+// .shadow-on-scroll::before, .shadow-on-scroll::after {
+//   content: "";
+//   display: block;
+//   height: 16px;
+//   position: sticky;
+// }
 
-.shadow-on-scroll::before {
-  top: 48px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-}
+// .shadow-on-scroll::before {
+//   top: 48px;
+//   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+// }
 
-.shadow-on-scroll::after {
-  background: linear-gradient(180deg, rgba(0,0,0,0.027048319327731107) 0%, rgba(0,0,0,0) 30%);
-  top: 0;
-  z-index: 2;
-}
+// .shadow-on-scroll::after {
+//   background: linear-gradient(180deg, rgba(0,0,0,0.027048319327731107) 0%, rgba(0,0,0,0) 30%);
+//   top: 0;
+//   z-index: 2;
+// }
 
-.shadow-on-scroll .scroll-navigation {
-  height: 64px;
-  position: sticky;
-  top: 0px;
-  margin-top: -16px;
-  z-index: 3;
-}
+// .shadow-on-scroll .scroll-navigation {
+//   height: 64px;
+//   position: sticky;
+//   top: 0px;
+//   margin-top: -16px;
+//   z-index: 3;
+// }
 
 * {
   box-sizing: border-box;
@@ -56,4 +56,9 @@ p {
 h1 {
   line-height: 1.1;
   @apply font-bold text-3xl mb-4 text-left;
+}
+
+h2 {
+  line-height: 1.1;
+  @apply font-normal text-sm text-left;
 }

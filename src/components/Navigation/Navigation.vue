@@ -94,7 +94,7 @@ window.addEventListener("scroll", () => {
 
 <style lang="scss">
 .main-header {
-  @apply p-8;
+  @apply px-12 py-10;
   position: fixed;
   display: flex;
   top: 0;
