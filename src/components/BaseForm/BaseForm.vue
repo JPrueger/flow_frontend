@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-lg mx-auto text-left relative">
     <h1 v-if="headline">{{ headline }}</h1>
-    <div v-if="subheadline" class="pl-11 text-left">{{ subheadline }}</div>
+    <p v-if="subheadline" class="text-left">{{ subheadline }}</p>
     <form @submit.prevent="$emit('input', fieldValues)" class="Form">
       <div v-for="field in fields" :key="field.name">
         <keep-alive>

@@ -1,8 +1,8 @@
 <template>
   <router-link :to="'/project-board/' + project_id">
     <div class="bg-white shadow-md rounded-sm mx-auto p-3">
-      <div class="text-left font-bold text-xl mb-1">{{ title }}</div>
-      <div class="text-left mb-5">{{ countTask }} Tasks</div>
+      <p class="text-left font-bold text-xl mb-1">{{ title }}</p>
+      <p class="text-left mb-5">{{ countTask }} Tasks</p>
       <ul class="flex justify-between">
         <li v-for="member in users" :key="member.name" class="px-2">
 

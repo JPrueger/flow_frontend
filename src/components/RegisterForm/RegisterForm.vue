@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto text-left relative">
     <h1 v-if="headline">{{ headline }}</h1>
-    <div v-if="subheadline" class="pl-11 text-left">{{ subheadline }}</div>
+    <p v-if="subheadline" class="text-left">{{ subheadline }}</p>
     <div class="flex justify-between shadow p-11 rounded mt-6">
       <form @submit.prevent="$emit('input', fieldValues)" class="w-64 mr-10">
         <div v-for="field in fields" :key="field.name">

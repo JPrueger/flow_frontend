@@ -1,10 +1,10 @@
 <template>
   <div class="text-left">
-    <div
+    <p
       class="rounded-lg py-1 px-3 text-white w-auto inline-block items-start bg-pink-main"
     >
       {{ userName }}
-    </div>
+    </p>
 
 
 <!--    <div-->
