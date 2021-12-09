@@ -9,7 +9,7 @@
       v-bind="inputProps"
       :value="value"
       v-on:input="$emit('input', $event.target.value)"
-      class="rounded p-3 border border-borderGrey"
+      class="InputField"
     />
   </div>
 </template>

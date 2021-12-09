@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent class="shadow p-11 rounded mt-6">
+    <form @submit.prevent class="Form">
       <div>
         <input v-model="newTask.project_id" type="hidden" />
         <div class="flex flex-col text-left mb-8" type="text">
@@ -12,7 +12,7 @@
             placeholder="Your Task Title"
             required="required"
             maxlength="255"
-            class="rounded p-3 border border-borderGrey"
+            class="InputField"
           />
         </div>
       </div>
@@ -26,7 +26,7 @@
             placeholder="Your Task Description"
             required="required"
             maxlength="500"
-            class="rounded p-3 border border-borderGrey"
+            class="InputField"
           />
         </div>
       </div>
@@ -34,7 +34,7 @@
         <label for="state" class="pb-2">Status:</label>
         <select
           id="state"
-          class="rounded p-3 border border-borderGrey"
+          class="InputField"
           v-model="newTask.status"
         >
           <option value="open">Open</option>
@@ -46,7 +46,7 @@
         <label for="storypoints" class="pb-2">Storypoints:</label>
         <select
           id="storypoints"
-          class="rounded p-3 border border-borderGrey"
+          class="InputField"
           v-model="newTask.storypoints"
         >
           <option value="1">1</option>
