@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="max-w-lg mx-auto">
+    <h1>Add Task</h1>
     <form @submit.prevent class="Form">
       <div>
         <input v-model="newTask.project_id" type="hidden" />

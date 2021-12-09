@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto text-left relative">
-    <h1 class="pl-11 font-bold text-4xl mb-6" v-if="headline">{{ headline }}</h1>
+    <h1 v-if="headline">{{ headline }}</h1>
     <div v-if="subheadline" class="pl-11 text-left">{{ subheadline }}</div>
     <div class="flex justify-between shadow p-11 rounded mt-6">
       <form @submit.prevent="$emit('input', fieldValues)" class="w-64 mr-10">

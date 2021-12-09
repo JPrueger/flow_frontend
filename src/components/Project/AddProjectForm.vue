@@ -3,8 +3,8 @@
     <BaseForm
       v-model="newProject"
       @input="saveProject"
-      headline="Add Project Headline"
-      submitButton="Add Project"
+      headline="Add Project"
+      submitButton="Create Project"
       :fields="fields"
     />
     <multiselect
