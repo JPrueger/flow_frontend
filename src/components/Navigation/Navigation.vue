@@ -1,53 +1,55 @@
 <template>
-  <header class="main-header bg-white">
-    <div class="logo">
-      <router-link to="/">
-        <img src="@/assets/images/logo.svg" alt="flow" class="block h-8">
-      </router-link>
-    </div>
-
-    <input type="checkbox" class="menu-btn" id="menu-btn" />
-    <label for="menu-btn" class="menu-icon">
-      <span class="menu-icon-line"></span>
-    </label>
-
-    <ul class="nav-links">
-      <li v-if="!userData" class="nav-link">
-        <router-link class="hover:text-pink-hover" to="/register">
-          Register
+  <header class="shadow-on-scroll">
+    <nav class="main-header bg-white scroll-navigation">
+      <div class="logo">
+        <router-link to="/">
+          <img src="@/assets/images/logo.svg" alt="flow" class="block h-6">
         </router-link>
-      </li>
+      </div>
 
-      <li v-if="userData" class="nav-link">
-        <router-link class="hover:text-pink-hover" to="/add-project">
-          Add Projekt
-        </router-link>
-      </li>
+      <input type="checkbox" class="menu-btn" id="menu-btn" />
+      <label for="menu-btn" class="menu-icon">
+        <span class="menu-icon-line"></span>
+      </label>
 
-      <li v-if="userData" class="nav-link">
-        <router-link class="hover:text-pink-hover" to="/projects">
-          Dashboard
-        </router-link>
-      </li>
+      <ul class="nav-links">
+        <li v-if="!userData" class="nav-link">
+          <router-link class="hover:text-pink-hover" to="/register">
+            Register
+          </router-link>
+        </li>
 
-      <li v-if="userData" class="nav-link">
-        <router-link class="hover:text-pink-hover" to="/user-profile">
-          Profile
-        </router-link>
-      </li>
+        <li v-if="userData" class="nav-link">
+          <router-link class="hover:text-pink-hover" to="/add-project">
+            Add Projekt
+          </router-link>
+        </li>
 
-      <li v-if="!userData" class="nav-link">
-        <router-link class="hover:text-pink-hover mobile-menu-item extern-link" to="/login">
-          Login
-        </router-link>
-      </li>
+        <li v-if="userData" class="nav-link">
+          <router-link class="hover:text-pink-hover" to="/projects">
+            Dashboard
+          </router-link>
+        </li>
 
-      <li v-if="userData" class="nav-link">
-        <button @click="logout()" class="hover:text-pink-hover mobile-menu-item extern-link font-bold">
-          Logout
-        </button>
-      </li>
-    </ul>
+        <li v-if="userData" class="nav-link">
+          <router-link class="hover:text-pink-hover" to="/user-profile">
+            Profile
+          </router-link>
+        </li>
+
+        <li v-if="!userData" class="nav-link">
+          <router-link class="hover:text-pink-hover mobile-menu-item extern-link" to="/login">
+            Login
+          </router-link>
+        </li>
+
+        <li v-if="userData" class="nav-link">
+          <button @click="logout()" class="hover:text-pink-hover mobile-menu-item extern-link">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
@@ -92,7 +94,7 @@ window.addEventListener("scroll", () => {
 
 <style lang="scss">
 .main-header {
-  @apply p-10;
+  @apply p-8;
   position: fixed;
   display: flex;
   top: 0;
@@ -110,12 +112,18 @@ window.addEventListener("scroll", () => {
   }
 
   .nav-links {
+    // transform: translateY(15px);
     display: flex;
     list-style: none;
+    font-weight: 400;
 
     > li {
       margin: 0.2rem;
-      padding: 1rem 0.5rem;
+      padding: 1rem 1.05rem;
+      
+      &:last-child {
+        padding-right: 0;
+      }
     }
 
     .nav-link {
