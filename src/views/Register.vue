@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <Registration />
-    </div>
+  <div>
+    <Registration />
+  </div>
 </template>
 
 <script>

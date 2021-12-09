@@ -2,10 +2,7 @@
   <div>
     <form @submit.prevent class="shadow p-11 rounded mt-6">
       <div>
-        <input
-            v-model="newTask.project_id"
-            type="hidden"
-        />
+        <input v-model="newTask.project_id" type="hidden" />
         <div class="flex flex-col text-left mb-8" type="text">
           <label for="title" class="pb-2">Title</label
           ><input
@@ -63,13 +60,13 @@
       </div>
       <div>
         <multiselect
-            v-model="value"
-            :options="options"
-            :show-labels="true"
-            :allow-empty="false"
-            :multiple="false"
-            label="name"
-            track-by="id"
+          v-model="value"
+          :options="options"
+          :show-labels="true"
+          :allow-empty="false"
+          :multiple="false"
+          label="name"
+          track-by="id"
         />
       </div>
       <input type="submit" @click="saveTask()" class="Button" />
@@ -99,13 +96,12 @@ export default {
         description: "",
         storypoints: "",
         status: "",
-        project_id: ""
+        project_id: "",
       },
     };
   },
   methods: {
     saveTask() {
-
       let formData = new FormData();
       formData.append("title", this.newTask.title);
       formData.append("description", this.newTask.description);
@@ -117,7 +113,6 @@ export default {
       axios
         .post("http://flow_backend.local/api/add-task/create", formData)
         .then(() => {
-          //alert("Speichern erfolgreich");
           window.location.href = "/project-board/" + this.project_id;
         })
         .catch((err) => {
@@ -128,27 +123,30 @@ export default {
     },
     getAllUsersForThisProject() {
       axios
-          .get("http://flow_backend.local/api/project-users/" + this.project_id)
-          .then((res) => {
-            this.projectUsers = res.data;
-            console.log("users", this.projectUsers);
-          })
-          .catch(() => {
-            this.error = true;
-          });
+        .get("http://flow_backend.local/api/project-users/" + this.project_id)
+        .then((res) => {
+          this.projectUsers = res.data;
+          console.log("users", this.projectUsers);
+        })
+        .catch(() => {
+          this.error = true;
+        });
     },
   },
-  computed:{
-    options () {
-      return this.projectUsers.map((item) => ({name: item.name, id: item.id}))
-    }
+  computed: {
+    options() {
+      return this.projectUsers.map((item) => ({
+        name: item.name,
+        id: item.id,
+      }));
+    },
   },
   mounted() {
     this.getAllUsersForThisProject();
   },
   created() {
     this.newTask.project_id = this.$route.params.id;
-    console.log('created: ', this.newTask.project_id)
+    console.log("created: ", this.newTask.project_id);
   },
 };
 </script>

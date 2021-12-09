@@ -1,27 +1,17 @@
 <template>
   <div class="hello">
     <h1 class="font-bold text-4xl mb-6">Projects</h1>
-
     <ul class="md:flex justify-between flex-wrap">
       <li v-for="project in projects" :key="project.title" class="w-1/4">
-<!--        <ProjectCard-->
-<!--          :title="project.title"-->
-<!--         :countTask="project.tasks.size()"-->
-<!--          :members="project.members"-->
-<!--        />-->
-
-
-
         <ProjectCard
-            :title="project.title"
-            :members="project.members"
-            :project_id="project.id"
+          :title="project.title"
+          :members="project.members"
+          :project_id="project.id"
         />
-
       </li>
     </ul>
-
-    <router-link to="/add-project">Add Project</router-link>  </div>
+    <router-link class="Button" to="/add-project">Add Project</router-link> 
+  </div>
 </template>
 
 <script>
