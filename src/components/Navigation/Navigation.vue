@@ -12,20 +12,38 @@
     </label>
 
     <ul class="nav-links">
-      <li class="nav-link">
+      <li v-if="!userData" class="nav-link">
+        <router-link class="hover:text-pink-hover" to="/register">
+          Register
+        </router-link>
+      </li>
+
+      <li v-if="userData" class="nav-link">
+        <router-link class="hover:text-pink-hover" to="/add-project">
+          Add Projekt
+        </router-link>
+      </li>
+
+      <li v-if="userData" class="nav-link">
         <router-link class="hover:text-pink-hover" to="/projects">
           Dashboard
         </router-link>
       </li>
 
-      <li class="nav-link">
+      <li v-if="userData" class="nav-link">
         <router-link class="hover:text-pink-hover" to="/user-profile">
           Profile
         </router-link>
       </li>
 
-      <li class="nav-link">
-        <button @click="logout()" class="hover:text-pink-hover mobile-menu-item extern-link">
+      <li v-if="!userData" class="nav-link">
+        <router-link class="hover:text-pink-hover mobile-menu-item extern-link" to="/login">
+          Login
+        </router-link>
+      </li>
+
+      <li v-if="userData" class="nav-link">
+        <button @click="logout()" class="hover:text-pink-hover mobile-menu-item extern-link font-bold">
           Logout
         </button>
       </li>
@@ -34,8 +52,16 @@
 </template>
 
 <script>
+import userDataService from "@/services/userDataService";
+
 export default {
   name: "Navigation",
+  data: () => {
+    return {
+      userData: null,
+    };
+  },
+
   methods: {
     logout() {
       localStorage.removeItem("token");
@@ -43,6 +69,12 @@ export default {
       window.location.href = "/";
     },
   },
+  created() {
+      userDataService.me().then((userData) => {
+        this.userData = userData;
+        this.isAdmin = userData.is_admin;
+      });
+    },
 };
 
 const header = document.querySelector(".main-header");
