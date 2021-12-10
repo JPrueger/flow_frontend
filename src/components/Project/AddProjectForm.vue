@@ -49,8 +49,9 @@ export default {
       let formData = new FormData();
       formData.append("title", this.newProject.title);
       formData.append("user_id", this.newProject.user_id);
-      formData.append("users", JSON.stringify(this.value.map((item) => item.id)));
-      // todo: hier noch eingegebene user namen mitangeben
+      if(this.value != null) {
+        formData.append("users", JSON.stringify(this.value.map((item) => item.id)));
+      } // todo: hier noch eingegebene user namen mitangeben
 
       axios
         .post("http://flow_backend.local/api/add-project/create", formData)

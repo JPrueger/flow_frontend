@@ -3,7 +3,7 @@
     <nav class="main-header bg-white scroll-navigation">
       <div class="logo">
         <router-link to="/">
-          <img src="@/assets/images/logo.svg" alt="flow" class="block h-6">
+          <img src="@/assets/images/logo.svg" alt="flow" class="block h-6" />
         </router-link>
       </div>
 
@@ -38,13 +38,19 @@
         </li>
 
         <li v-if="!userData" class="nav-link">
-          <router-link class="hover:text-pink-hover mobile-menu-item extern-link" to="/login">
+          <router-link
+            class="hover:text-pink-hover mobile-menu-item extern-link"
+            to="/login"
+          >
             Login
           </router-link>
         </li>
 
         <li v-if="userData" class="nav-link">
-          <button @click="logout()" class="hover:text-pink-hover mobile-menu-item extern-link">
+          <button
+            @click="logout()"
+            class="hover:text-pink-hover mobile-menu-item extern-link"
+          >
             Logout
           </button>
         </li>
@@ -72,11 +78,11 @@ export default {
     },
   },
   created() {
-      userDataService.me().then((userData) => {
-        this.userData = userData;
-        this.isAdmin = userData.is_admin;
-      });
-    },
+    userDataService.me().then((userData) => {
+      this.userData = userData;
+      this.isAdmin = userData.is_admin;
+    });
+  },
 };
 
 const header = document.querySelector(".main-header");
@@ -120,10 +126,15 @@ window.addEventListener("scroll", () => {
     > li {
       margin: 0.2rem;
       padding: 1rem 1.05rem;
-      
+
       &:last-child {
         padding-right: 0;
       }
+    }
+
+    > li {
+      margin: 0.2rem;
+      padding: 1rem 0.5rem;
     }
 
     .nav-link {
@@ -245,7 +256,7 @@ window.addEventListener("scroll", () => {
         opacity: 1;
         transform: translateX(0);
         transition: opacity 0.4s ease-in-out,
-          transform .9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
         &:nth-of-type(1) {
           transition-delay: 0.7s;
