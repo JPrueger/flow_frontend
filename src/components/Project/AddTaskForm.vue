@@ -68,6 +68,7 @@
           :multiple="false"
           label="name"
           track-by="id"
+          class="mb-10"
         />
       </div>
       <input type="submit" @click="saveTask()" class="Button" />

@@ -1,18 +1,16 @@
 <template>
   <div class="text-left">
     <p
-      class="rounded-lg py-1 px-3 text-white w-auto inline-block items-start bg-pink-main"
-    >
-      {{ userName }}
-    </p>
-
-
-<!--    <div-->
-<!--        class="rounded-lg py-1 px-3 text-white w-auto inline-block items-start bg-pink-main"-->
-<!--        :class="'bg-' + `${color}`"-->
-<!--    >-->
-<!--      {{ userName }}-->
-<!--    </div>-->
+      class="
+        rounded
+        py-1
+        px-3
+        text-white
+        bg-pink-main
+        text-xs
+      "
+      v-text="username"
+    />
   </div>
 </template>
 
@@ -27,5 +25,10 @@ export default {
     userName: String,
     color: String,
   },
+  computed: {
+    username() {
+      return this.userName.charAt(0).toUpperCase() + this.userName.slice(1);
+    }
+  }
 };
 </script>
