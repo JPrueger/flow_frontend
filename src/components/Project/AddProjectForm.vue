@@ -1,32 +1,40 @@
 <template>
-  <div>
-    <BaseForm
-      v-model="newProject"
-      @input="saveProject"
-      headline="Add Project"
-      submitButton="Create Project"
-      :fields="fields"
-    />
-    <multiselect
-      v-model="value"
-      :options="options"
-      :show-labels="true"
-      :allow-empty="true"
-      :multiple="true"
-      label="name"
-      track-by="id"
-    />
+  <div class="max-w-lg mx-auto">
+    <h1>Add Projekt</h1>
+    <form @submit.prevent class="shadow p-11 rounded mt-6">
+      <div class="flex flex-col text-left mb-8" type="text">
+        <label for="title" class="pb-2">Title</label>
+        <input
+          v-model="newProject.title"
+          id="title"
+          type="text"
+          placeholder="Your Project Title"
+          required="required"
+          maxlength="255"
+          class="InputField"
+        />
+      </div>
+      <multiselect
+        v-model="value"
+        :options="options"
+        :show-labels="true"
+        :allow-empty="true"
+        :multiple="true"
+        label="name"
+        track-by="id"
+        class="mb-10"
+      />
+      <input type="submit" @click="saveProject()" class="Button" />
+    </form>
   </div>
 </template>
 <script>
 import addProjectFields from "@/data/forms/addProject.js";
-import BaseForm from "../BaseForm/BaseForm.vue";
 import axios from "axios";
 import userDataService from "@/services/userDataService";
 
 export default {
   components: {
-    BaseForm,
   },
   data() {
     return {
@@ -56,7 +64,6 @@ export default {
       axios
         .post("http://flow_backend.local/api/add-project/create", formData)
         .then(() => {
-          // alert("Speichern erfolgreich");
           this.createSuccess = true;
           this.error = false;
           window.location.href = "/projects/";
@@ -78,10 +85,10 @@ export default {
         });
     },
   },
-  computed:{
-    options () {
-      return this.allUsers.map((item) => ({name: item.name, id: item.id}))
-    }
+  computed: {
+    options() {
+      return this.allUsers.map((item) => ({ name: item.name, id: item.id }));
+    },
   },
   mounted() {
     userDataService

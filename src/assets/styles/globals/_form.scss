@@ -13,3 +13,56 @@ label {
 ::placeholder {
     @apply text-sm;
 }
+
+// vue multiselect styling
+.multiselect__tags {
+    min-height: 52px;
+    @apply rounded p-2 border border-borderGrey;
+}
+
+.multiselect__placeholder {
+    margin-bottom: 0;
+    padding-top: 6px;
+    font-weight: 400;
+    @apply text-sm;
+}
+
+.multiselect__select {
+    height: 52px;
+}
+
+.multiselect__tag {
+    @apply bg-pink-main;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    height: 40px;
+    @apply bg-pink-main;
+}
+
+.multiselect__tag-icon:after {
+    @apply text-white;
+}
+
+
+.multiselect__tag-icon:hover, 
+.multiselect__tag-icon:focus {
+    @apply bg-pink-hover;
+}
+
+.multiselect__option--highlight,
+.multiselect__option--selected.multiselect__option--highlight {
+    @apply text-pink-main bg-white rounded;
+}
+
+.multiselect--active {
+    @apply bg-pink-main rounded;
+}
+
+.multiselect__input {
+    padding-top: 9px;
+}
+
+.multiselect__option--highlight:after {
+    @apply text-pink-main bg-white rounded;  
+}
