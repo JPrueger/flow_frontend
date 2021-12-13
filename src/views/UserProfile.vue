@@ -3,13 +3,14 @@
     <h1>Profile</h1>
     <div class="flex justify-between shadow p-6 rounded h-80 relative">
       <div class="text-left flex flex-col justify-between">
-        <div>
+        <Loader v-if="loader" />
+        <div v-if="!loader">
           <h2>Username:</h2>
           <p class="mb-4">{{ userData.name }}</p>
           <h2>E-Mail Address:</h2>
           <p>{{ userData.email }}</p>
         </div>
-        <div>
+        <div v-if="!loader">
           <h2>Current Storypoints:</h2>
           <p class="text-lg font-bold">20 SP</p>
         </div>
@@ -27,13 +28,18 @@
 <script>
 import axios from "axios";
 import userDataService from "@/services/userDataService";
+import Loader from "@/components/Partials/Loader";
 
 export default {
+  components: {
+    Loader,
+  },
   name: "UserProfile",
   data: () => {
     return {
       userData: "",
       userId: "",
+      loader: true,
     };
   },
   methods: {
@@ -43,7 +49,10 @@ export default {
         .then((res) => {
           this.userData = res.data;
           console.log(this.userData);
-        });
+        })
+        .then(() => {
+          this.loader = false;
+        })
     },
   },
   created() {

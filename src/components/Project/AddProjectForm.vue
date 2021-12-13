@@ -2,7 +2,8 @@
   <div class="max-w-lg mx-auto">
     <h1>Add Projekt</h1>
     <form @submit.prevent class="shadow p-11 rounded mt-6">
-      <div class="flex flex-col text-left mb-8" type="text">
+      <Loader v-if="loader" />
+      <div v-if="!loader" class="flex flex-col text-left mb-8" type="text">
         <label for="title" class="pb-2">Title</label>
         <input
           v-model="newProject.title"
@@ -15,6 +16,7 @@
         />
       </div>
       <multiselect
+        v-if="!loader" 
         v-model="value"
         :options="options"
         :show-labels="true"
@@ -24,7 +26,7 @@
         track-by="id"
         class="mb-10"
       />
-      <input type="submit" @click="saveProject()" class="Button" />
+      <input v-if="!loader" type="submit" @click="saveProject()" class="Button" />
     </form>
   </div>
 </template>
@@ -32,9 +34,11 @@
 import addProjectFields from "@/data/forms/addProject.js";
 import axios from "axios";
 import userDataService from "@/services/userDataService";
+import Loader from "../Partials/Loader";
 
 export default {
   components: {
+    Loader,
   },
   data() {
     return {
@@ -44,6 +48,7 @@ export default {
       fields: addProjectFields,
       allUsers: [],
       value: null,
+      loader: false,
 
       newProject: {
         title: "",
@@ -53,6 +58,7 @@ export default {
   },
   methods: {
     saveProject() {
+      this.loader = true;
       console.log("saveProject aufgerufen");
       let formData = new FormData();
       formData.append("title", this.newProject.title);
@@ -64,11 +70,15 @@ export default {
       axios
         .post("http://flow_backend.local/api/add-project/create", formData)
         .then(() => {
+          this.loader = false;
+        })
+        .then(() => {
           this.createSuccess = true;
           this.error = false;
           window.location.href = "/projects/";
         })
         .catch(() => {
+          this.loader = false;
           this.error = true;
         });
     },

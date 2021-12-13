@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Projects</h1>
-    <ul class="md:flex justify-start flex-wrap mb-10 ProjectCard">
+    <Loader v-if="loader" />
+    <ul v-if="!loader" class="md:flex justify-start flex-wrap mb-10 ProjectCard">
       <li v-for="project in projects" :key="project.title" class="mr-5 bg-white shadow-md rounded-sm mb-8">
         <ProjectCard
           :title="project.title"
@@ -19,30 +20,35 @@
 import axios from "axios";
 import ProjectCard from "@/components/Project/ProjectCard";
 import userDataService from "@/services/userDataService";
-
+import Loader from "@/components/Partials/Loader";
 
 export default {
   name: "ProjectsOverview",
   components: {
-    ProjectCard
+    ProjectCard,
+    Loader,
   },
   data: () => {
     return {
       projects: "",
       projectUsers: "",
       userId: "",
+      loader: true,
     };
   },
   methods: {
     getProjects() {
       axios
           .get(
-              "http://flow_backend.local/api/projects/" + this.userId
+            "http://flow_backend.local/api/projects/" + this.userId
           )
           .then((res) => {
             console.log(res.data);
             this.projects = res.data;
-          });
+          })
+          .then(() => {
+            this.loader = false;
+          })
       },
   },
   created() {
