@@ -12,7 +12,7 @@
         </div>
         <div v-if="!loader">
           <h2>Current Storypoints:</h2>
-          <p class="text-lg font-bold">20 SP</p>
+          <p class="text-lg font-bold">{{ userData.storypoints }} SP</p>
         </div>
       </div>
       <div class="flex justify-end h-auto flex-col">

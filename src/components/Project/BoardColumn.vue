@@ -58,6 +58,7 @@ export default {
       //aus this.list neue reihung von allen task der spalte in db updaten
           const newContent = this.list.map(task => {
             task.status = this.statusKey
+
             return {
               id: task.id,
               newStatus: this.statusKey
@@ -79,13 +80,17 @@ export default {
         .post("http://flow_backend.local/api/sort-task", newContent)
         .then(() => {
           console.log("Speichern erfolgreich");
+          // this.checkIfCharacterShouldEvolve();
         })
         .catch(() => {
           alert("Speichern nicht erfolgreich");
           // this.errors = err.response.data.errors;
           console.log(this.errors);
         });
-    }
+    },
+    // checkIfCharacterShouldEvolve() {
+    //
+    // },
   },
   data: () => ({
     newTodo: "",
