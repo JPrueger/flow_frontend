@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1 class="font-bold text-4xl mb-6">Test Headline</h1>
+    <h1 class="font-bold text-4xl mb-6">TODO Project Title {{projectTitle}}</h1>
     <div class="lg:flex lg:justify-around">
       <BoardColumn columnName="Open" :list="opentasks" statusKey="open" />
       <BoardColumn
@@ -29,7 +29,7 @@ export default {
     BoardColumn,
   },
   props: {
-    project_id: Number,
+    project_id: Number
   },
 
   data: () => {
