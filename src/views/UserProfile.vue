@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-2xl mx-auto">
+  <div class="max-w-3xl mx-auto">
     <h1>Profile</h1>
 <!--    <pre>-->
 <!--      {{ userData }}-->
@@ -21,7 +21,7 @@
       </div>
       <div class="flex justify-end h-auto flex-col">
         <div>
-          <video class="w-52" width="320" height="240" autoplay loop>
+          <video class="w-52-why" width="380" height="240" autoplay loop>
             <source src="@/assets/videos/dragon-1.mp4" type="video/mp4">
           </video>
 <!--          <img class="w-52" src="@/assets/images/placeholder-dragon.png" alt="" />-->
