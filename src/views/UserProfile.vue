@@ -1,6 +1,9 @@
 <template>
   <div class="max-w-2xl mx-auto">
     <h1>Profile</h1>
+    <pre>
+      {{ userData }}
+    </pre>
     <div class="flex justify-between shadow p-6 rounded h-80 relative">
       <div class="text-left flex flex-col justify-between">
         <Loader v-if="loader" />
@@ -12,7 +15,8 @@
         </div>
         <div v-if="!loader">
           <h2>Current Storypoints:</h2>
-          <p class="text-lg font-bold">{{ userData.storypoints }} SP</p>
+          <p v-if="userData.storypoints === null" class="text-lg font-bold">No Storypoints collected yet.</p>
+          <p v-else class="text-lg font-bold">{{ userData.storypoints }} SP</p>
         </div>
       </div>
       <div class="flex justify-end h-auto flex-col">

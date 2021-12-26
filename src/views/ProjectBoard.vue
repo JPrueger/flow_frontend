@@ -1,7 +1,13 @@
 <template>
   <div class="hello">
+    <pre>
+      {{ userData.storypoints }}
+    </pre>
+    {{ usersStorypoints }}
+    <!-- v-if="userData.storypoints >= 80" -->
+    <LightboxFinal v-if="userData.storypoints >= 80"/>
     <h1 class="font-bold text-4xl mb-6">TODO Project Title {{projectTitle}}</h1>
-    <div class="lg:flex lg:justify-around">
+    <div class="lg:flex lg:justify-between mb-10">
       <BoardColumn columnName="Open" :list="opentasks" statusKey="open" />
       <BoardColumn
         columnName="In Progress"
@@ -11,7 +17,7 @@
       <BoardColumn columnName="Done" :list="donetasks" statusKey="done" />
     </div>
 
-    <router-link :to="'/add-task/' + this.$route.params.id"
+    <router-link :to="'/add-task/' + this.$route.params.id" class="Button"
       >Add New Task
     </router-link>
   </div>
@@ -20,13 +26,15 @@
 <script>
 import axios from "axios";
 import BoardColumn from "@/components/Project/BoardColumn";
+import userDataService from "@/services/userDataService";
+import LightboxFinal from '../components/Lightbox/LightboxFinal.vue'
 
 export default {
-  watch: {},
   name: "ProjectBoard",
 
   components: {
     BoardColumn,
+    LightboxFinal
   },
   props: {
     project_id: Number
@@ -45,6 +53,8 @@ export default {
       },
       taskUpdated: false,
       projectId: "",
+      userData: "",
+      storypoints: null
     };
   },
   methods: {
@@ -162,6 +172,31 @@ export default {
           this.taskUpdated = true;
         });
     },
+    getUserDetails() {
+      axios
+        .get("http://flow_backend.local/api/user/" + this.userId)
+        .then((res) => {
+          this.userData = res.data;
+          console.log(this.userData);
+        })
+        .then(() => {
+          this.loader = false;
+        })
+    },
+  },
+  watch: {
+    storypoints: function(value) {
+
+      console.log('valueeeee: ', value);
+      this.storypoints = value;
+      // console.log('ssp: ', this.userData.storypoints)
+    }
+  },
+  computed: {
+    usersStorypoints() {
+      console.log('usersStorypoints: ', this.storypoints);
+      return this.storypoints;
+    }
   },
   beforeCreate() {
     console.log(
@@ -175,6 +210,10 @@ export default {
       "created: ",
       "At this point, this.property is now reactive and propertyComputed will update."
     );
+    userDataService.me().then((userData) => {
+      this.userId = userData.id;
+      this.getUserDetails();
+    });
   },
   beforeMount() {
     console.log(
