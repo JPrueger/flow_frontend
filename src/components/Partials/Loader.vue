@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full">
+  <div class="flex loader-wrapper items-center justify-center">
     <!-- <p class="mb-3">We're getting ready.</p> -->
     <div class="loader">
       <div></div>
@@ -17,6 +17,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.loader-wrapper {
+  height: calc(100vh - 400px);
+}
 .loader {
   position: relative;
   width: 80px;
