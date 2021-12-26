@@ -2,7 +2,7 @@
   <div class="lg:w-1/4">
     <h2 class="mb-4 font-bold text-xl text-left">{{ columnName }}</h2>
     <draggable
-      class="bg-grey rounded-sm p-6"
+      class="bg-grey h-full rounded-sm p-6"
       :list="list"
       group="tasks"
       animation="200"

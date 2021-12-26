@@ -26,7 +26,9 @@
         track-by="id"
         class="mb-10"
       />
-      <input v-if="!loader" type="submit" @click="saveProject()" class="Button" />
+      <div class="grid">
+        <input v-if="!loader" type="submit" @click="saveProject()" class="Button justify-self-center" value="Save"/>
+      </div>
     </form>
   </div>
 </template>

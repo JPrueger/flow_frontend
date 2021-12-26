@@ -1,25 +1,27 @@
 <template>
-  <div class="hello">
-    <pre>
-      {{ userData.storypoints }}
-    </pre>
+  <div>
+
+<!--    <pre>-->
+<!--      {{ userData.storypoints }}-->
+<!--    </pre>-->
     {{ usersStorypoints }}
     <!-- v-if="userData.storypoints >= 80" -->
     <LightboxFinal v-if="userData.storypoints >= 80"/>
-    <h1 class="font-bold text-4xl mb-6">TODO Project Title {{projectTitle}}</h1>
-    <div class="lg:flex lg:justify-between mb-10">
-      <BoardColumn columnName="Open" :list="opentasks" statusKey="open" />
-      <BoardColumn
+    <h1>TODO Project Title {{projectTitle}}</h1>
+    <Loader v-if="loader" />
+    <div class="lg:flex lg:justify-between mb-10 columns-wrapper">
+      <BoardColumn v-if="!loader" columnName="Open" :list="opentasks" statusKey="open" />
+      <BoardColumn v-if="!loader"
         columnName="In Progress"
         :list="progresstasks"
         statusKey="progress"
       />
-      <BoardColumn columnName="Done" :list="donetasks" statusKey="done" />
+      <BoardColumn v-if="!loader" columnName="Done" :list="donetasks" statusKey="done" />
     </div>
 
-    <router-link :to="'/add-task/' + this.$route.params.id" class="Button"
-      >Add New Task
-    </router-link>
+  <router-link :to="'/add-task/' + this.$route.params.id" class="Button mt-10"
+  >Add New Task
+  </router-link>
   </div>
 </template>
 
@@ -28,13 +30,15 @@ import axios from "axios";
 import BoardColumn from "@/components/Project/BoardColumn";
 import userDataService from "@/services/userDataService";
 import LightboxFinal from '../components/Lightbox/LightboxFinal.vue'
+import Loader from "../components/Partials/Loader";
 
 export default {
   name: "ProjectBoard",
 
   components: {
     BoardColumn,
-    LightboxFinal
+    LightboxFinal,
+    Loader
   },
   props: {
     project_id: Number
@@ -54,7 +58,8 @@ export default {
       taskUpdated: false,
       projectId: "",
       userData: "",
-      storypoints: null
+      storypoints: null,
+      loader: true,
     };
   },
   methods: {
@@ -70,7 +75,10 @@ export default {
           this.getOpenedTask();
           this.getProgressTask();
           this.getDoneTask();
-        });
+        })
+      .then(() => {
+        this.loader = false;
+      });
     },
     // open
     filtered_tasks() {
@@ -180,7 +188,7 @@ export default {
           console.log(this.userData);
         })
         .then(() => {
-          this.loader = false;
+          // this.loader = true;
         })
     },
   },
@@ -246,3 +254,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.columns-wrapper {
+  min-height: calc(100vh - 500px);
+}
+</style>

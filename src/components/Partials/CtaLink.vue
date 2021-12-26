@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-pink-main hover:bg-pink-hover text-white rounded p-2 text-center w-100 md:w-1/2 xl:w-full" >
+    <div class="Button" >
       <router-link
           to="/add-project"
       >
