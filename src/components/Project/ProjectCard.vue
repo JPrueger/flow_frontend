@@ -1,6 +1,6 @@
 <template>
   <router-link :to="'/project-board/' + project_id">
-    <div class="mx-auto px-3 pt-2 text-left h-full flex flex-col justify-between ProjectCardList">
+    <div class="mx-auto px-5 py-5 text-left h-full flex flex-col ProjectCardList">
       <div>
         <p class="font-bold text-lg leading-snug" v-text="projectTitle" />
         <p class="text-sm mb-5">{{ countTask }}XX  Tasks</p>
