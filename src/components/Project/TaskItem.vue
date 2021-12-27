@@ -2,7 +2,7 @@
   <router-link :to="'/task/' + taskId">
     <div class="bg-white w-100 shadow-sm rounded-sm mx-auto p-3 mb-4">
       <div class="flex justify-between mb-3">
-        <div>{{ task.title }}</div>
+        <div class="font-normal">{{ task.title }}</div>
         <div class="font-bold">{{ task.storypoints }}</div>
       </div>
       <div class="user-icon-width">
