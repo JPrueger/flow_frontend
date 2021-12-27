@@ -5,7 +5,7 @@
 <!--      {{ userData }}-->
 <!--    </pre>-->
     <div class="md:flex justify-between shadow p-6 rounded md:h-80 relative">
-      <div class="text-left flex flex-col justify-between">
+      <div class="text-left flex flex-col justify-between md:mr-10 lg:mr-12">
         <Loader v-if="loader" />
         <div v-if="!loader">
           <h2>Username:</h2>
