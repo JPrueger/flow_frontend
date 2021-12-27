@@ -19,7 +19,7 @@ export default {
 <style lang="scss" scoped>
 
 .loader-wrapper {
-  height: calc(100vh - 400px);
+  height: 40vh;
 }
 .loader {
   position: relative;
@@ -40,7 +40,7 @@ export default {
   animation: loader1 0.6s infinite;
 }
 .loader div:nth-child(2) {
-  left: 4px; 
+  left: 4px;
   animation: loader2 0.6s infinite;
 }
 .loader div:nth-child(3) {
