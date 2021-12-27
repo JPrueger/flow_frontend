@@ -100,7 +100,7 @@ export default {
 
 <style lang="scss">
 .main-header {
-  @apply px-12 py-10;
+  @apply px-6 py-10 lg:px-12;
   position: fixed;
   display: flex;
   top: 0;

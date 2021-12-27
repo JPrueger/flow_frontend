@@ -97,7 +97,8 @@ export default {
           this.task
         )
         .then(() => {
-          alert("Speichern erfolgreich");
+          // alert("Speichern erfolgreich");
+          window.location.href = "/project-board/" + this.task.project_id;
         })
         .catch((err) => {
           alert("Speichern nicht erfolgreich");
