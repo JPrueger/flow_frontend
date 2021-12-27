@@ -7,7 +7,7 @@
     {{ usersStorypoints }}
     <!-- v-if="userData.storypoints >= 80" -->
     <LightboxFinal v-if="userData.storypoints >= 80"/>
-    <h1>TODO Project Title {{projectTitle}}</h1>
+    <h1 v-text="projectTitle"></h1>
     <Loader v-if="loader" />
     <div class="lg:flex lg:justify-between mb-10 columns-wrapper">
       <BoardColumn v-if="!loader" columnName="Open" :list="opentasks" statusKey="open" />
@@ -57,6 +57,7 @@ export default {
       },
       taskUpdated: false,
       projectId: "",
+      project: "",
       userData: "",
       storypoints: null,
       loader: true,
@@ -79,6 +80,18 @@ export default {
       .then(() => {
         this.loader = false;
       });
+    },
+    gerProjectDetails() {
+      axios
+          .get(
+              "http://flow_backend.local/api/project-details/" + this.$route.params.id
+          )
+          .then((res) => {
+            this.project = res.data;
+          })
+          .then(() => {
+            this.loader = false;
+          });
     },
     // open
     filtered_tasks() {
@@ -204,6 +217,9 @@ export default {
     usersStorypoints() {
       console.log('usersStorypoints: ', this.storypoints);
       return this.storypoints;
+    },
+    projectTitle() {
+      return this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1);
     }
   },
   beforeCreate() {
@@ -214,6 +230,7 @@ export default {
   },
   created() {
     this.getPost();
+    this.gerProjectDetails();
     console.log(
       "created: ",
       "At this point, this.property is now reactive and propertyComputed will update."
