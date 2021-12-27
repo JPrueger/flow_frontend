@@ -2,3 +2,10 @@
     @apply bg-pink-main hover:bg-pink-hover font-bold text-white rounded py-2 px-7 text-center block cursor-pointer w-max;
     min-width: 200px;
 }
+
+@media screen and (max-width: 767px) {
+    .Button {
+        @apply mx-auto;
+        min-width: 100%;
+    }
+}
