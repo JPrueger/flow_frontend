@@ -1,14 +1,11 @@
 <template>
   <div>
-
-<!--    <pre>-->
-<!--      {{ userData.storypoints }}-->
-<!--    </pre>-->
-    {{ usersStorypoints }}
-    <!-- v-if="userData.storypoints >= 80" -->
-    <LightboxFinal v-if="userData.storypoints >= 80"/>
-    <h1 v-text="projectTitle"></h1>
-    <Loader v-if="loader" />
+    <h1>Current Storypoints:  {{ userData.storypoints }}</h1>
+    <pre>
+      {{ userData }}
+    </pre>
+    <LightboxFinal v-if="userData.storypoints >= 7 && userData.videoPlayed === 0" />
+    <!-- <Loader v-if="loader" /> -->
     <div class="lg:flex lg:justify-between mb-10 columns-wrapper">
       <BoardColumn v-if="!loader" columnName="Open" :list="opentasks" statusKey="open" />
       <BoardColumn v-if="!loader"
@@ -30,7 +27,7 @@ import axios from "axios";
 import BoardColumn from "@/components/Project/BoardColumn";
 import userDataService from "@/services/userDataService";
 import LightboxFinal from '../components/Lightbox/LightboxFinal.vue'
-import Loader from "../components/Partials/Loader";
+// import Loader from "../components/Partials/Loader";
 
 export default {
   name: "ProjectBoard",
@@ -38,10 +35,11 @@ export default {
   components: {
     BoardColumn,
     LightboxFinal,
-    Loader
+    // Loader
   },
   props: {
-    project_id: Number
+    project_id: Number,
+    isActiveGhost: Boolean,
   },
 
   data: () => {
@@ -61,6 +59,7 @@ export default {
       userData: "",
       storypoints: null,
       loader: true,
+      polling: null
     };
   },
   methods: {
@@ -204,13 +203,21 @@ export default {
           // this.loader = true;
         })
     },
-  },
-  watch: {
-    storypoints: function(value) {
-
-      console.log('valueeeee: ', value);
-      this.storypoints = value;
-      // console.log('ssp: ', this.userData.storypoints)
+    firstTimePlayed() {
+      axios
+        .post("http://flow_backend.local/api/user/" + this.userId)
+        .then((res) => {
+          this.userData = res.data;
+        })
+    },
+    pollData () {
+      this.polling = setInterval(() => {
+        console.log('alle 3 sekunden')
+        this.getUserDetails()
+      }, 3000)
+    },
+    logVideo() {
+      console.log("OK OK");
     }
   },
   computed: {
@@ -231,6 +238,7 @@ export default {
   created() {
     this.getPost();
     this.gerProjectDetails();
+    this.pollData()
     console.log(
       "created: ",
       "At this point, this.property is now reactive and propertyComputed will update."
@@ -247,15 +255,14 @@ export default {
     );
   },
   mounted() {
+    // this.$refs.playVideo.click();
     console.log(
       "mounted: ",
       `At this point, vm.$el has been created and el has been replaced.`
     );
   },
   beforeUpdate() {
-    // this.getOpenedTask();
-    // this.getProgressTask();
-    // this.getDoneTask();
+    // this.$refs.playVideo.click();
     console.log(
       "beforeUpdate: ",
       `At this point, Virtual DOM has not re-rendered or patched yet.`
@@ -263,6 +270,10 @@ export default {
     // Logs the counter value every second, before the DOM updates.
   },
   updated() {
+    this.storypoints = this.userData.storypoints;
+    // this.$nextTick(() => {
+    //   });  
+    // this.$refs.playVideo.click();
     console.log(
       "updated: ",
       `At this point, Virtual DOM has re-rendered and patched.`
