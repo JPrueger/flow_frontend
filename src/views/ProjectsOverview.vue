@@ -2,8 +2,23 @@
   <div>
     <h1>Projects</h1>
     <Loader v-if="loader" />
-    <ul v-if="!loader" class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 ProjectCard w-full">
-      <li v-for="project in projects" :key="project.title" class=" bg-white shadow-md rounded-sm">
+    <ul
+      v-if="!loader"
+      class="
+        grid
+        gap-6
+        md:grid-cols-2
+        lg:grid-cols-4
+        xl:grid-cols-5
+        ProjectCard
+        w-full
+      "
+    >
+      <li
+        v-for="project in projects"
+        :key="randomNumber() + `${project.title}`"
+        class="bg-white shadow-md rounded-sm"
+      >
         <ProjectCard
           :title="project.title"
           :members="project.members"
@@ -11,12 +26,13 @@
         />
       </li>
     </ul>
-    <router-link class="Button mt-10" to="/add-project">Add New Project</router-link>
+    <router-link class="Button mt-10" to="/add-project"
+      >Add New Project</router-link
+    >
   </div>
 </template>
 
 <script>
-
 import axios from "axios";
 import ProjectCard from "@/components/Project/ProjectCard";
 import userDataService from "@/services/userDataService";
@@ -36,20 +52,27 @@ export default {
       loader: true,
     };
   },
+  computed: {
+    getRandomInt() {
+      console.log("random number: ", Math.floor(Math.random() * 10));
+      return Math.floor(Math.random() * 10);
+    },
+  },
   methods: {
     getProjects() {
       axios
-          .get(
-            "http://flow_backend.local/api/projects/" + this.userId
-          )
-          .then((res) => {
-            console.log(res.data);
-            this.projects = res.data;
-          })
-          .then(() => {
-            this.loader = false;
-          })
-      },
+        .get("http://flow_backend.local/api/projects/" + this.userId)
+        .then((res) => {
+          console.log(res.data);
+          this.projects = res.data;
+        })
+        .then(() => {
+          this.loader = false;
+        });
+    },
+    randomNumber() {
+      return Math.floor(Math.random() * 1000);
+    }
   },
   created() {
     userDataService.me().then((userData) => {

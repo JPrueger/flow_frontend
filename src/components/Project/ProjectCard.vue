@@ -7,7 +7,7 @@
       </div>
       <div>
         <ul class="flex ProjectMember flex-wrap">
-          <li v-for="member in users" :key="member.name" class="ProjectMember__item pr-2 mb-2">
+          <li v-for="member in users" :key="randomNumber() + `${member.name}`" class="ProjectMember__item pr-2 mb-2">
             <ColoredUserIcon :userName="member.name" :color="member.tag_color" />
           </li>
         </ul>
@@ -25,7 +25,7 @@ export default {
   data: () => {
     return {
       users: "",
-      tasks: ""
+      tasks: "",
     };
   },
   methods: {
@@ -46,6 +46,9 @@ export default {
           .then((res) => {
             this.tasks = res.data;
           });
+    },
+    randomNumber() {
+      return Math.floor(Math.random() * 1000);
     }
   },
 
