@@ -106,7 +106,6 @@ export default {
     },
     sortedTasks: function () {
       function compare(a, b) {
-        console.log(a, b)
         if (a.sort_index < b.sort_index) return -1;
         if (a.sort_index > b.sort_index) return 1;
 
@@ -116,7 +115,6 @@ export default {
       return sortedArr;
     },
     getOpenedTask() {
-      console.log("test: ", this.filtered_tasks());
       this.opentasks = this.filtered_tasks();
       return this.opentasks;
     },
@@ -175,7 +173,6 @@ export default {
     },
     updateTask() {
       //unused?
-      console.log("updateTask");
       let formData = new FormData();
       formData.append("status", this.newUserData.username);
       formData.append("_method", "PUT");
@@ -197,10 +194,6 @@ export default {
         .get("http://flow_backend.local/api/user/" + this.userId)
         .then((res) => {
           this.userData = res.data;
-          console.log(this.userData);
-        })
-        .then(() => {
-          // this.loader = true;
         })
     },
     firstTimePlayed() {
@@ -212,74 +205,33 @@ export default {
     },
     pollData () {
       this.polling = setInterval(() => {
-        console.log('alle 3 sekunden')
         this.getUserDetails()
       }, 3000)
     },
-    logVideo() {
-      console.log("OK OK");
-    }
   },
   computed: {
     usersStorypoints() {
-      console.log('usersStorypoints: ', this.storypoints);
       return this.storypoints;
     },
     projectTitle() {
       return this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1);
     }
   },
-  beforeCreate() {
-    console.log(
-      "beforeCreate: ",
-      "At this point, events and lifecycle have been initialized."
-    );
-  },
   created() {
     this.getPost();
     this.gerProjectDetails();
     this.pollData()
-    console.log(
-      "created: ",
-      "At this point, this.property is now reactive and propertyComputed will update."
-    );
     userDataService.me().then((userData) => {
       this.userId = userData.id;
       this.getUserDetails();
     });
   },
-  beforeMount() {
-    console.log(
-      "beforeMount: ",
-      `At this point, vm.$el has not been created yet.`
-    );
-  },
-  mounted() {
-    // this.$refs.playVideo.click();
-    console.log(
-      "mounted: ",
-      `At this point, vm.$el has been created and el has been replaced.`
-    );
-  },
-  beforeUpdate() {
-    // this.$refs.playVideo.click();
-    console.log(
-      "beforeUpdate: ",
-      `At this point, Virtual DOM has not re-rendered or patched yet.`
-    );
-    // Logs the counter value every second, before the DOM updates.
-  },
   updated() {
     this.storypoints = this.userData.storypoints;
-    // this.$nextTick(() => {
-    //   });  
-    // this.$refs.playVideo.click();
-    console.log(
-      "updated: ",
-      `At this point, Virtual DOM has re-rendered and patched.`
-    );
-    // Fired every second, should always be true
   },
+  beforeDestroy () {
+    clearInterval(this.polling)
+  }
 };
 </script>
 

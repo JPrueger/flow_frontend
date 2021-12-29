@@ -50,13 +50,11 @@ export default {
           .get("http://flow_backend.local/api/user/" + this.task.assigne_id)
           .then((res) => {
             this.userData = res.data;
-            console.log(this.userData);
           });
     },
   },
   created() {
     this.getPost();
-    console.log("created");
   },
 };
 </script>
