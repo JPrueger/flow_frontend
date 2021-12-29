@@ -8,7 +8,7 @@
       <div>
         <ul class="flex ProjectMember flex-wrap">
           <li v-for="member in users" :key="randomNumber() + `${member.name}`" class="ProjectMember__item pr-2 mb-2">
-            <ColoredUserIcon :userName="member.name" :color="member.tag_color" />
+            <ColoredUserIcon :userName="taskAssignee(member)" :color="member.tag_color" />
           </li>
         </ul>
       </div>
@@ -49,9 +49,11 @@ export default {
     },
     randomNumber() {
       return Math.floor(Math.random() * 1000);
+    },
+    taskAssignee(member) {
+      return member.name.charAt(0).toUpperCase() + member.name.slice(1);
     }
   },
-
   created() {
     this.getUsersOfProject();
     this.getTasksOfProject();
@@ -70,8 +72,8 @@ export default {
   computed: {
     projectTitle() {
       return this.title.charAt(0).toUpperCase() + this.title.slice(1);
-    }
-  }
+    },
+  },
 };
 </script>
 

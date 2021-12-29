@@ -3,7 +3,7 @@
     <p
       class="rounded py-1 px-3 text-white text-xs"
       :style="`background-color:`+ `${ color }`"
-      v-text="username"
+      v-text="taskAssignee()"
     />
   </div>
 </template>
@@ -16,13 +16,15 @@ export default {
     todos: [],
   }),
   props: {
-    userName: String,
     color: String,
+    userName: String
   },
-  computed: {
-    username() {
-      return this.userName.charAt(0).toUpperCase() + this.userName.slice(1);
-    },
-  },
+  methods: {
+    taskAssignee() {
+      if(this.userName) {
+        return this.userName.charAt(0).toUpperCase() + this.userName.slice(1);
+      }
+    }
+  }
 };
 </script>
