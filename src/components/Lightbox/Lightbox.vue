@@ -1,31 +1,23 @@
 <template>
   <div>
-    <h1 class="font-bold text-4xl mb-16">Show Videos (Testingpage)</h1>
-    <div>
-      <div>
-        <button @click="toggleLightboxGhost" class="Button">
-          Show Ghost
-        </button>
-      </div>
-      <div v-if="isActiveGhost" class="Lightbox" @click="closeLightboxGhost">
+    <form @submit.prevent>
+      <div v-if="isActive" class="Lightbox" @click="toggleLightbox">
         <div class="Lightbox--card text-left p-10 rounded flex justify-between">
           <div class="flex flex-col justify-between">
             <div>
               <h1 class="font-bold text-5xl mb-2">You made it!</h1>
               <p class="font-bold">Casper keeps growing.</p>
-              <video class="mt-4 absolute Video Video--ghost" width="320" height="240" autoplay loop>
-                <source src="@/assets/videos/ghost-1.mp4" type="video/mp4">
-              </video>
-              <!-- <vimeo-player
+              <vimeo-player
                 class="mt-4 absolute Video"
                 ref="player"
                 :options="options"
-                :video-id="videoID"
+                :video-id="videoId"
                 :player-height="height"
-              /> -->
-              <!-- <video-embed :params="{autoplay: 1, controls: 0, showinfo: 1, modestbranding: 1, autohide: 1, showinfo: 0}" class="mt-6" width="640" height="360" src="https://www.youtube.com/watch?v=bQmzk05I3nw"></video-embed> -->
+              />
               <button
-                @click="toggleLightboxGhost"
+                type="submit"
+    
+                @click="toggleLightbox"
                 class="
                   absolute
                   -right-6
@@ -44,105 +36,80 @@
 
             <div>
               <p>Current Storypoints:</p>
-              <p class="text-xl font-bold">30 SP</p>
+              <!-- <p v-if="userData.storypoints" class="text-xl font-bold">{{ userData.storypoints }}</p> -->
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      <div>
-        <button @click="toggleLightboxDragon" class="Button">
-          Show Dragon
-        </button>
-      </div>
-      <div v-if="isActiveDragon" class="Lightbox" @click="closeLightboxDragon">
-        <div class="Lightbox--card text-left p-10 rounded flex justify-between">
-          <div class="flex flex-col justify-between">
-            <div>
-              <h1 class="font-bold text-5xl mb-2">You made it!</h1>
-              <p class="font-bold">Casper keeps growing.</p>
-              <video class="mt-4 absolute Video Video--dragon" width="320" height="240" autoplay loop>
-                <source src="@/assets/videos/dragon-1.mp4" type="video/mp4">
-              </video>
-              <!-- <vimeo-player
-                class="mt-4 absolute Video"
-                ref="player"
-                :options="options"
-                :video-id="videoID"
-                :player-height="height"
-              /> -->
-              <!-- <video-embed :params="{autoplay: 1, controls: 0, showinfo: 1, modestbranding: 1, autohide: 1, showinfo: 0}" class="mt-6" width="640" height="360" src="https://www.youtube.com/watch?v=bQmzk05I3nw"></video-embed> -->
-              <button
-                @click="toggleLightboxDragon"
-                class="
-                  absolute
-                  -right-6
-                  -top-6
-                  w-12
-                  h-12
-                  text-white
-                  bg-pink-main
-                  font-bold
-                  rounded-full
-                "
-              >
-                X
-              </button>
-            </div>
-
-            <div>
-              <p>Current Storypoints:</p>
-              <p class="text-xl font-bold">30 SP</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+// import userDataService from "@/services/userDataService";
 
 export default {
-  name: "TestVideo",
+  name: "Lightbox",
   props: {
     showLightboxGhost: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    showLightboxDragon: {
-      type: Boolean,
-      default: false
+    videoId: {
+      type: String,
+      required: true,
     },
+    storypoints: {
+      type: Number,
+      required: true,
+    }
   },
   data: () => ({
-    isActiveGhost: false,
-    isActiveDragon: false,
-    videoID: '648594265',
+    isActive: true,
     height: 380,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
-      muted: false,
+      muted: true,
       autoplay: true,
       controls: false,
       loop: true,
     },
+    videoSource: "",
+    levelOnePlayed: 1,
+    levelTwoPlayed: 1,
+    levelThreePlayed: 1,
+    userData: "",
+    userId: "",
   }),
   methods: {
-    toggleLightboxGhost() {
-      this.isActiveGhost = !this.isActiveGhost;
-    },
-    toggleLightboxDragon() {
-      this.isActiveDragon = !this.isActiveDragon;
-    },
-    closeLightboxGhost() {
-      this.isActiveGhost = false;
-    },
-    closeLightboxDragon() {
-      this.isActiveDragon = false;
+    toggleLightbox() {
+      this.isActive = !this.isActive;
+      let formData = new FormData();
+      if (this.storypoints >= 5 && this.storypoints <= 9) {
+        formData.append("levelOnePlayed", this.levelOnePlayed);
+      } else if (this.storypoints >= 10 && this.storypoints <= 14) {
+        formData.append("levelTwoPlayed", this.levelTwoPlayed);
+      } else if (this.storypoints >= 15) {
+        formData.append("levelThreePlayed", this.levelThreePlayed);
+      }
+      // todo: user details noch ausgeben, damit id dynamisch kommt
+      axios.post(
+        "http://flow_backend.local/api/user/update/" + 21,
+        formData
+      )
+      .then(() => {
+        this.$emit.isActive = !this.isActive;
+      })
     },
   },
+  // created() {
+  //   userDataService.me().then((userData) => {
+  //     this.userId = userData.id;
+  //     this.getUserDetails();
+  //   });
+  //   // todo: get user details
+  // },
 };
 </script>
 
@@ -153,18 +120,13 @@ export default {
 }
 
 .Lightbox {
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.7);
   @apply w-screen h-screen absolute top-0 left-0;
 
   .Video {
-    &--ghost {
-      @apply right-8 bottom-8 -z-10;
-    }
-
-    &--dragon {
-      width: 400px;
-      @apply right-6 bottom-6 -z-10;
-    }
+    right: -120px;
+    @apply bottom-8 -z-10;
   }
 
   &--card {

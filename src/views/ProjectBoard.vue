@@ -1,24 +1,42 @@
 <template>
   <div>
-    <h1>Current Storypoints:  {{ userData.storypoints }}</h1>
+    <h1>Current Storypoints: {{ userData.storypoints }}</h1>
     <pre>
       {{ userData }}
     </pre>
-    <LightboxFinal v-if="userData.storypoints >= 7 && userData.videoPlayed === 0" />
+    <Lightbox
+      :videoId="getVideoIdFromLevel()"
+      :storypoints="storypoints"
+      v-if="(
+        (this.storypoints >= 5 && this.storypoints <= 9) && userData.level_one_played !== 1)
+        || ((this.storypoints >= 10 && this.storypoints <= 14) && userData.level_two_played !== 1)
+        || (userData.storypoints >= 15 && userData.level_three_played !== 1)"
+    />
     <!-- <Loader v-if="loader" /> -->
     <div class="lg:flex lg:justify-between mb-10 columns-wrapper">
-      <BoardColumn v-if="!loader" columnName="Open" :list="opentasks" statusKey="open" />
-      <BoardColumn v-if="!loader"
+      <BoardColumn
+        v-if="!loader"
+        columnName="Open"
+        :list="opentasks"
+        statusKey="open"
+      />
+      <BoardColumn
+        v-if="!loader"
         columnName="In Progress"
         :list="progresstasks"
         statusKey="progress"
       />
-      <BoardColumn v-if="!loader" columnName="Done" :list="donetasks" statusKey="done" />
+      <BoardColumn
+        v-if="!loader"
+        columnName="Done"
+        :list="donetasks"
+        statusKey="done"
+      />
     </div>
 
-  <router-link :to="'/add-task/' + this.$route.params.id" class="Button mt-10"
-  >Add New Task
-  </router-link>
+    <router-link :to="'/add-task/' + this.$route.params.id" class="Button mt-10"
+      >Add New Task
+    </router-link>
   </div>
 </template>
 
@@ -26,7 +44,7 @@
 import axios from "axios";
 import BoardColumn from "@/components/Project/BoardColumn";
 import userDataService from "@/services/userDataService";
-import LightboxFinal from '../components/Lightbox/LightboxFinal.vue'
+import Lightbox from "../components/Lightbox/Lightbox.vue";
 // import Loader from "../components/Partials/Loader";
 
 export default {
@@ -34,7 +52,7 @@ export default {
 
   components: {
     BoardColumn,
-    LightboxFinal,
+    Lightbox,
     // Loader
   },
   props: {
@@ -59,7 +77,7 @@ export default {
       userData: "",
       storypoints: null,
       loader: true,
-      polling: null
+      polling: null,
     };
   },
   methods: {
@@ -76,21 +94,22 @@ export default {
           this.getProgressTask();
           this.getDoneTask();
         })
-      .then(() => {
-        this.loader = false;
-      });
+        .then(() => {
+          this.loader = false;
+        });
     },
     gerProjectDetails() {
       axios
-          .get(
-              "http://flow_backend.local/api/project-details/" + this.$route.params.id
-          )
-          .then((res) => {
-            this.project = res.data;
-          })
-          .then(() => {
-            this.loader = false;
-          });
+        .get(
+          "http://flow_backend.local/api/project-details/" +
+            this.$route.params.id
+        )
+        .then((res) => {
+          this.project = res.data;
+        })
+        .then(() => {
+          this.loader = false;
+        });
     },
     // open
     filtered_tasks() {
@@ -194,19 +213,31 @@ export default {
         .get("http://flow_backend.local/api/user/" + this.userId)
         .then((res) => {
           this.userData = res.data;
-        })
+        });
     },
     firstTimePlayed() {
       axios
         .post("http://flow_backend.local/api/user/" + this.userId)
         .then((res) => {
           this.userData = res.data;
-        })
+        });
     },
-    pollData () {
+    pollData() {
       this.polling = setInterval(() => {
-        this.getUserDetails()
-      }, 3000)
+        this.getUserDetails();
+      }, 3000);
+    },
+    getVideoIdFromLevel() {
+      console.log("aktuelle sp: ", this.storypoints);
+      if (this.storypoints >= 5 && this.storypoints <= 9) {
+        return String("648594265");
+      } else if (this.storypoints >= 10 && this.storypoints <= 14) {
+        return String("648594814");
+      } else if (this.storypoints >= 15) {
+        return String("648594265");
+      } else {
+        return String("254736788");
+      }
     },
   },
   computed: {
@@ -214,13 +245,15 @@ export default {
       return this.storypoints;
     },
     projectTitle() {
-      return this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1);
-    }
+      return (
+        this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1)
+      );
+    },
   },
   created() {
     this.getPost();
     this.gerProjectDetails();
-    this.pollData()
+    this.pollData();
     userDataService.me().then((userData) => {
       this.userId = userData.id;
       this.getUserDetails();
@@ -229,9 +262,9 @@ export default {
   updated() {
     this.storypoints = this.userData.storypoints;
   },
-  beforeDestroy () {
-    clearInterval(this.polling)
-  }
+  beforeDestroy() {
+    clearInterval(this.polling);
+  },
 };
 </script>
 
