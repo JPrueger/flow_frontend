@@ -11,16 +11,17 @@ import EditTask from "../views/EditTask.vue";
 import Task from "../views/Task.vue";
 import TestVideo from "../views/TestVideo.vue";
 import Home from "../views/Home.vue";
+import NotFound from "../views/NotFound.vue";
 import UserProfile from "../views/UserProfile.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: "*",
-  //   name: "404",
-  //   component: NotFound,
-  // },
+  {
+    path: "*",
+    name: "404",
+    component: NotFound,
+  },
   {
     path: "/",
     name: "Home",
