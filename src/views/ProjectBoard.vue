@@ -5,6 +5,7 @@
       {{ userData }}
     </pre>
     <Lightbox
+      :userId="userId"
       :videoId="getVideoIdFromLevel()"
       :storypoints="storypoints"
       v-if="(
@@ -78,6 +79,7 @@ export default {
       storypoints: null,
       loader: true,
       polling: null,
+      userId: ''
     };
   },
   methods: {

@@ -36,7 +36,7 @@
 
             <div>
               <p>Current Storypoints:</p>
-              <!-- <p v-if="userData.storypoints" class="text-xl font-bold">{{ userData.storypoints }}</p> -->
+              <p class="text-xl font-bold">{{ storypoints }}</p>
             </div>
           </div>
         </div>
@@ -47,7 +47,6 @@
 
 <script>
 import axios from "axios";
-// import userDataService from "@/services/userDataService";
 
 export default {
   name: "Lightbox",
@@ -61,6 +60,10 @@ export default {
       required: true,
     },
     storypoints: {
+      type: Number,
+      required: true,
+    },
+    userId: {
       type: Number,
       required: true,
     }
@@ -80,7 +83,6 @@ export default {
     levelTwoPlayed: 1,
     levelThreePlayed: 1,
     userData: "",
-    userId: "",
   }),
   methods: {
     toggleLightbox() {
@@ -93,9 +95,8 @@ export default {
       } else if (this.storypoints >= 15) {
         formData.append("levelThreePlayed", this.levelThreePlayed);
       }
-      // todo: user details noch ausgeben, damit id dynamisch kommt
       axios.post(
-        "http://flow_backend.local/api/user/update/" + 21,
+        "http://flow_backend.local/api/user/update/" + this.userId,
         formData
       )
       .then(() => {
@@ -103,13 +104,6 @@ export default {
       })
     },
   },
-  // created() {
-  //   userDataService.me().then((userData) => {
-  //     this.userId = userData.id;
-  //     this.getUserDetails();
-  //   });
-  //   // todo: get user details
-  // },
 };
 </script>
 
