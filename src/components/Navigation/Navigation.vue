@@ -99,6 +99,10 @@ export default {
 </script>
 
 <style lang="scss">
+nav a.router-link-active {
+  @apply text-pink-main;
+  font-weight: 700;
+}
 .main-header {
   @apply px-6 py-10 lg:px-12;
   position: fixed;
@@ -139,7 +143,7 @@ export default {
 
     .nav-link {
       transition: opacity 0.4s ease-in-out,
-        transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
       &:nth-of-type(2) {
         transition-delay: 0.1s;
