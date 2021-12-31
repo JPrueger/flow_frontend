@@ -13,31 +13,31 @@
       </label>
 
       <ul class="nav-links">
-        <li v-if="!userData" class="nav-link">
+        <li v-if="!userData" class="nav-link font-medium">
           <router-link class="hover:text-pink-hover" to="/register">
             Register
           </router-link>
         </li>
 
-        <li v-if="userData" class="nav-link">
+        <li v-if="userData" class="nav-link font-medium">
           <router-link class="hover:text-pink-hover" to="/add-project">
             Add Projekt
           </router-link>
         </li>
 
-        <li v-if="userData" class="nav-link">
+        <li v-if="userData" class="nav-link font-medium">
           <router-link class="hover:text-pink-hover" to="/projects">
             Dashboard
           </router-link>
         </li>
 
-        <li v-if="userData" class="nav-link">
+        <li v-if="userData" class="nav-link font-medium">
           <router-link class="hover:text-pink-hover" to="/user-profile">
             Profile
           </router-link>
         </li>
 
-        <li v-if="!userData" class="nav-link">
+        <li v-if="!userData" class="nav-link font-medium">
           <router-link
             class="hover:text-pink-hover mobile-menu-item extern-link"
             to="/login"
@@ -49,7 +49,7 @@
         <li v-if="userData" class="nav-link">
           <button
             @click="logout()"
-            class="hover:text-pink-hover mobile-menu-item extern-link"
+            class="hover:text-pink-hover mobile-menu-item extern-link font-medium"
           >
             Logout
           </button>
