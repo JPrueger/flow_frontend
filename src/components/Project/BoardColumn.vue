@@ -1,12 +1,15 @@
 <template>
   <div class="lg:w-1/4 mb-10">
-    <h2 class="mb-4 font-bold text-xl text-left">{{ columnName }}</h2>
+    <div class="flex justify-between"><h2 class="mb-4 font-bold text-xl text-left">{{ columnName }}</h2> <span @click="toggleAccordion()" :aria-expanded="isOpen"
+                                                                                               :aria-controls="`collapse${_uid}`">+</span></div>
     <draggable
       class="bg-grey h-full rounded-sm p-6"
       :list="list"
       group="tasks"
       animation="200"
       @change="updateStatus"
+      :v-show="screenWidth >= 768 ? true : isOpen"
+      :id="`collapse${_uid}`"
     >
       <div v-for="el in list" :key="el.title">
         <TaskItem
@@ -28,7 +31,6 @@ import axios from "axios";
 // tutorial for drag & drop
 // https://www.youtube.com/watch?v=7UPoYcKhH4g&ab_channel=CodemitFloW
 
-// todo: save status in DB
 // todo: when task is done, remove drag
 
 export default {
@@ -46,6 +48,9 @@ export default {
     }
   },
   methods: {
+    toggleAccordion() {
+      this.isOpen = !this.isOpen;
+    },
     updateStatus(params) {
       console.log(params, this.statusKey, this.list )
       console.log('updateStatus')
@@ -74,9 +79,17 @@ export default {
         });
     },
   },
+  created() {
+    console.log(screen.width);
+      // this.isOpen = true;
+      this.screenWidth = screen.width;
+      console.log(this.isOpen);
+    },
   data: () => ({
     newTodo: "",
-    todos: []
+    todos: [],
+    isOpen: false,
+    screenWidth: ''
   })
 };
 </script>

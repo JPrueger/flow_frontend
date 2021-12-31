@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Current Storypoints: {{ userData.storypoints }}</h1>
-    <pre>
-      {{ userData }}
-    </pre>
+<!--    <h1>{{projectTitle}}</h1>-->
+<!--    <pre>-->
+<!--      {{ userData }}-->
+<!--    </pre>-->
     <Lightbox
       :userId="userId"
       :videoId="getVideoIdFromLevel()"
@@ -248,6 +248,7 @@ export default {
     },
     projectTitle() {
       return (
+          console.log('project title: ', this.project),
         this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1)
       );
     },
