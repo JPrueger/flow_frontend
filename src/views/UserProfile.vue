@@ -1,16 +1,16 @@
 <template>
   <div class="max-w-3xl mx-auto">
     <h1>Profile</h1>
-    <div class="md:flex justify-between shadow p-6 rounded md:h-80 relative">
+    <Loader v-if="loader" />
+    <div v-if="!loader" class="md:flex justify-between shadow p-6 rounded md:h-80 relative">
       <div class="text-left flex flex-col justify-between md:mr-10 lg:mr-12">
-        <Loader v-if="loader" />
-        <div v-if="!loader">
+        <div>
           <h2>Username:</h2>
           <p class="mb-4">{{ userData.name }}</p>
           <h2>E-Mail Address:</h2>
           <p>{{ userData.email }}</p>
         </div>
-        <div v-if="!loader" class="mt-4 md:mt-0">
+        <div class="mt-4 md:mt-0">
           <h2>Current Storypoints:</h2>
           <p v-if="userData.storypoints === null" class="text-lg font-bold">No Storypoints collected yet.</p>
           <p v-else class="text-lg font-bold">{{ userData.storypoints }} SP</p>
