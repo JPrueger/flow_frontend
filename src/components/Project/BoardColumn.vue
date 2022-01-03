@@ -11,7 +11,7 @@
       :v-show="screenWidth >= 768 ? true : isOpen"
       :id="`collapse${_uid}`"
     >
-      <div v-for="el in list" :key="el.title">
+      <div v-for="el in list" :key="el.title" :class="{overlay : statusKey === 'done'}">
         <TaskItem
           :title="el.title"
           :storyPoints="el.storypoints"
@@ -93,3 +93,11 @@ export default {
   })
 };
 </script>
+
+
+<style lang="scss">
+.overlay {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+</style>
