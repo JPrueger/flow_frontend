@@ -26,7 +26,7 @@
         />
       </li>
     </ul>
-    <router-link class="Button mt-10" to="/add-project"
+    <router-link v-if="!loader" class="Button mt-10" to="/add-project"
       >Add New Project</router-link
     >
   </div>
