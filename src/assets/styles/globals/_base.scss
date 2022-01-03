@@ -63,8 +63,12 @@ h2 {
   @apply font-normal text-sm text-left;
 }
 
+.form-shape {
+  transform: scale(.9);
+}
+
 @media screen and (max-width: 767px) {
   .form-shape {
-    width:60px;
+    transform: scale(.7);
   }
 }
