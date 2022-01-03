@@ -63,7 +63,6 @@ export default {
       axios
         .get("http://flow_backend.local/api/projects/" + this.userId)
         .then((res) => {
-          console.log(res.data);
           this.projects = res.data;
         })
         .then(() => {

@@ -21,7 +21,6 @@ export default {
           "http://flow_backend.local/api/user/me"
         )
         .then((res) => {
-          console.log(res.data);
           this.user = res.data;
       });
     },

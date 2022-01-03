@@ -52,21 +52,24 @@ export default {
   },
   methods: {
     saveUser() {
-      console.log("clicked");
       axios
         .post("http://flow_backend.local/api/user/register", this.newUser)
-        .then((response) => {
-          console.log("test hier rein?", this.newUser);
-          console.log("noch mal mikado: ", response);
-          alert("Speichern erfolgreich");
+        .then(() => {
+          this.$toasted.show('Hey there! Successfully registered.', {
+            duration: 5000,
+            type: 'success',
+            position: 'top-center',
+          });
         })
         .then(() => {
           this.succesSignin = true;
         })
-        .catch((err) => {
-          alert("Speichern nicht erfolgreich");
-          this.errors = err.response.data.errors;
-          console.log(this.errors);
+        .catch(() => {
+          this.$toasted.show('Seems like something went wrong. Please try again!', {
+            duration: 5000,
+            type: 'error',
+            position: 'top-center',
+          });
         });
     },
     changeSlide: function(num) {

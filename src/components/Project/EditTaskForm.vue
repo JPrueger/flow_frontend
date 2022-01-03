@@ -97,13 +97,20 @@ export default {
           this.task
         )
         .then(() => {
-          // alert("Speichern erfolgreich");
-          window.location.href = "/project-board/" + this.task.project_id;
+          this.$router.push("/project-board/" + this.task.project_id, () => {
+            this.$toasted.show('Successfully updated your task!', {
+              duration: 5000,
+              type: 'success',
+              position: 'top-center',
+            });
+          });
         })
-        .catch((err) => {
-          alert("Speichern nicht erfolgreich");
-          this.errors = err.response.data.errors;
-          console.log(this.errors);
+        .catch(() => {
+          this.$toasted.show('Seems like something went wrong. Please try again!', {
+            duration: 5000,
+            type: 'error',
+            position: 'top-center',
+          });
         });
     },
     getPost() {

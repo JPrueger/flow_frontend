@@ -21,7 +21,7 @@
 
         <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
           <router-link to="/add-project">
-            Add Projekt
+            Add Project
           </router-link>
         </li>
 
@@ -68,14 +68,20 @@ export default {
     return {
       userData: null,
       showMobileNav: false,
-      menuBtn: true,
+      menuBtn: false,
     };
   },
 
   methods: {
     logout() {
       localStorage.removeItem("token");
-      window.location.href = "/";
+      this.$router.push("/", () => {
+        this.$toasted.show('Successfully logged out. See you soon!', {
+          duration: 5000,
+          type: 'success',
+          position: 'top-center',
+        });
+      });
     },
     closeNavigation() {
       this.menuBtn = false;

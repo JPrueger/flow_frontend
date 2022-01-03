@@ -43,13 +43,21 @@ export default {
           this.success = true;
           this.token = loginData.token;
           localStorage.setItem("token", loginData.token);
-          console.log('token: ', loginData.token)
           this.loading = false;
-          window.location.href = "/";
+          this.$router.push("/", () => {
+            this.$toasted.show('Successfully logged in. Good to see you!', {
+              duration: 5000,
+              type: 'success',
+              position: 'top-center',
+            });
+          });
         })
-        .catch(async error => {
-          alert("Error: " + error.response.data.message);
-          this.loading = false;
+        .catch(() => {
+          this.$toasted.show('Seems like something went wrong. Please try again!', {
+            duration: 5000,
+            type: 'error',
+            position: 'top-center',
+          });
         });
     }
   }
