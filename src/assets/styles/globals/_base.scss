@@ -62,3 +62,9 @@ h2 {
   line-height: 1.1;
   @apply font-normal text-sm text-left;
 }
+
+@media screen and (max-width: 767px) {
+  .form-shape {
+    width:60px;
+  }
+}
