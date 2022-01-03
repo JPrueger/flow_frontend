@@ -11,6 +11,8 @@ import EditTask from "../views/EditTask.vue";
 import Task from "../views/Task.vue";
 import TestVideo from "../views/TestVideo.vue";
 import Home from "../views/Home.vue";
+import Privacy from "../views/Privacy.vue";
+import Terms from "../views/Terms.vue";
 import NotFound from "../views/NotFound.vue";
 import UserProfile from "../views/UserProfile.vue";
 
@@ -26,6 +28,16 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/terms-and-conditions",
+    name: "Terms",
+    component: Terms,
+  },
+  {
+    path: "/privacy-policy",
+    name: "Privacy",
+    component: Privacy,
   },
   {
     path: "/register",
