@@ -9,11 +9,13 @@ import Embed from 'v-video-embed'
 import vueVimeoPlayer from 'vue-vimeo-player';
 import Main from './assets/styles/main.scss';
 import Multiselect from 'vue-multiselect';
+import Toasted from 'vue-toasted';
 
 Vue.component('multiselect', Multiselect);
 Vue.use(vueVimeoPlayer);
 Vue.use(Embed);
 Vue.use(Main);
+Vue.use(Toasted);
 
 // import input fields globablly for dynamic forms
 import TextField from '@/components/FormFields/TextField.vue';
