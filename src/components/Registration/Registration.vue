@@ -19,8 +19,6 @@
   </div>
 </template>
 <script>
-import registerFields from "@/data/forms/registration.js";
-import axios from "axios";
 import RegisterForm from "../RegisterForm/RegisterForm.vue";
 
 export default {
@@ -31,12 +29,6 @@ export default {
     return {
       formData: {},
       response: {},
-      fields: registerFields,
-      newUser: {
-        name: "",
-        email: "",
-        password: "",
-      },
       errors: [],
       succesSignin: false,
       activeSlide: 1
@@ -51,27 +43,6 @@ export default {
     }
   },
   methods: {
-    saveUser() {
-      axios
-        .post("http://flow_backend.local/api/user/register", this.newUser)
-        .then(() => {
-          this.$toasted.show('Hey there! Successfully registered.', {
-            duration: 5000,
-            type: 'success',
-            position: 'top-center',
-          });
-        })
-        .then(() => {
-          this.succesSignin = true;
-        })
-        .catch(() => {
-          this.$toasted.show('Seems like something went wrong. Please try again!', {
-            duration: 5000,
-            type: 'error',
-            position: 'top-center',
-          });
-        });
-    },
     changeSlide: function(num) {
       this.activeSlide = num
     },

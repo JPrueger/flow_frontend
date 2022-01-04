@@ -7,7 +7,7 @@
         <div class="w-64 mr-6">
           <div>
             <div class="flex flex-col text-left mb-8" type="text">
-              <label for="title" class="pb-2">name *</label
+              <label for="title" class="pb-2">Name *</label
               ><input
                 v-model="newUser.name"
                 id="name"
@@ -74,7 +74,7 @@
                   <div class="mt-5 text-center">
                     <label class="ml-2 container" for="dragon">
                       Choose this character
-                      <input type="checkbox" id="dragon" name="subscribe" value="1">
+                      <input v-model="newUser.characterId" type="radio" id="dragon" name="subscribe" value="1">
                       <span class="checkmark"></span>
                     </label>
                   </div>
@@ -84,7 +84,7 @@
                   <div class="mt-5 text-center">
                     <label class="ml-2 container" for="ghost">
                       Choose this character
-                      <input type="checkbox" id="ghost" name="subscribe" value="2">
+                      <input v-model="newUser.characterId" type="radio" id="ghost" name="subscribe" value="2">
                       <span class="checkmark"></span>
                     </label>
                   </div>
@@ -127,6 +127,7 @@ export default {
         email: "",
         password: "",
         characterName: "",
+        characterId: null,
       },
     };
   },
