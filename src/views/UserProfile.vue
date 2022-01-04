@@ -13,7 +13,7 @@
           Edit
         </router-link>
       </div>
-      <div class="md:flex justify-between shadow p-6 rounded md:h-80 relative">
+      <div class="md:flex justify-between shadow p-6 rounded md:h-80 relative wrapper-profile">
         <div class="md:flex justify-between">
           <div class="text-left flex flex-col justify-between md:mr-10 lg:mr-12">
             <div>
@@ -28,11 +28,18 @@
               <p v-else class="text-lg font-bold">{{ userData.storypoints }} SP</p>
             </div>
           </div>
-          <div class="flex justify-end h-auto flex-col">
+          <div class="flex justify-end h-auto flex-col relative">
             <div>
-              <video class="w-52-why" width="380" height="240" autoplay loop>
+              <vimeo-player
+                class="mt-4 Video"
+                ref="player"
+                :options="options"
+                :video-id="648594265"
+                :player-height="height"
+              />
+              <!-- <video class="w-52-why" width="380" height="240" autoplay loop>
                 <source src="@/assets/videos/dragon-1.mp4" type="video/mp4">
-              </video>
+              </video> -->
             </div>
           </div>
           <svg class="absolute -bottom-7 -left-7 form-shape" xmlns="http://www.w3.org/2000/svg" width="70.47" height="68.074"><g data-name="Gruppe 61" fill="none" stroke="#ffb319" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"><g data-name="Gruppe 37"><path data-name="Pfad 27" d="M56.139 32.711c5.135 4.624-3.95 12.932 2.603 18.832"/><path data-name="Pfad 28" d="M34.533 13.258c5.136 4.623-3.948 12.932 2.603 18.831"/><path data-name="Pfad 29" d="M56.139 32.711c-5.136-4.624-12.45 5.278-19.003-.622"/><path data-name="Pfad 31" d="M34.533 13.258c-5.135-4.624-12.448 5.279-19.001-.622"/></g><g data-name="Gruppe 38"><path data-name="Pfad 27" d="M44.139 45.711c5.135 4.624-3.95 12.932 2.603 18.832"/><path data-name="Pfad 28" d="M22.533 26.258c5.136 4.623-3.948 12.932 2.603 18.831"/><path data-name="Pfad 29" d="M44.139 45.711c-5.136-4.624-12.45 5.278-19.003-.622"/><path data-name="Pfad 31" d="M22.533 26.258c-5.135-4.624-12.448 5.279-19.001-.622"/></g></g></svg>
@@ -57,6 +64,12 @@ export default {
       userData: "",
       userId: "",
       loader: true,
+      options: {
+        muted: true,
+        autoplay: true,
+        controls: false,
+        loop: true,
+      },
     };
   },
   methods: {
@@ -84,5 +97,17 @@ export default {
 <style lang="scss" scoped>
 .slide {
   @apply mt-0;
+}
+
+.wrapper-profile {
+  width: 650px;
+}
+
+.Video {
+  width: 200px;
+  position: absolute;
+  right: -50px;
+  top: 5px;
+  @apply bottom-8 -z-10;
 }
 </style>
