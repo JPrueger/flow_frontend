@@ -72,20 +72,18 @@ export default {
   .background-shapes {
 
     &.shape-top-right {
-      @apply top-20 right-12;
+      @apply top-20 right-12 fixed;
     }
 
     &.shape-bottom-left {
       width: 60px;
-      position: fixed;
-      @apply bottom-24 left-16;
+      @apply bottom-24 left-16 fixed;
     }
 
     &.shape-bottom-right {
       display: block;
       width: 110px;
-      position: fixed;
-      @apply bottom-20 right-12;
+      @apply bottom-20 right-12 fixed;
     }
   }
 }
