@@ -6,7 +6,7 @@
           <div class="flex flex-col justify-between">
             <div>
               <h1 class="font-bold text-5xl mb-2">You made it!</h1>
-              <p class="font-bold">Casper keeps growing.</p>
+              <p class="font-bold">{{ characterName }} keeps growing.</p>
               <vimeo-player
                 class="mt-4 absolute Video"
                 ref="player"
@@ -56,6 +56,10 @@ export default {
       default: false,
     },
     videoId: {
+      type: String,
+      required: true,
+    },
+    characterName: {
       type: String,
       required: true,
     },
