@@ -1,15 +1,11 @@
 <template>
   <div>
     <div class="flex justify-between items-baseline">
-      <h1>TODO SOLVE TITLE PROBLEM</h1>
+      <h1 v-text="projectTitle()" />
       <button @click="deleteProject()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="#99154E" d="M10.807 2c-.517 0-1.011.204-1.377.57L9 3H4a1 1 0 1 0 0 2h16a1 1 0 1 0 0-2h-5l-.43-.43A1.943 1.943 0 0 0 13.193 2h-2.386zM4.365 7l1.528 13.264c.132.99.984 1.736 1.982 1.736h8.248c.998 0 1.851-.745 1.984-1.744L19.635 7H4.365z"/></svg>
       </button>
     </div>
-<!--    <h1>{{projectTitle}}</h1>-->
-<!--    <pre>-->
-<!--      {{ userData }}-->
-<!--    </pre>-->
     <Lightbox
       :userId="userId"
       :videoId="getVideoIdFromLevel()"
@@ -259,16 +255,16 @@ export default {
         return String("254736788");
       }
     },
+    projectTitle() {
+      console.log('project title: ', this.project);
+      return (
+        this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1)
+      );
+    },
   },
   computed: {
     usersStorypoints() {
       return this.storypoints;
-    },
-    projectTitle() {
-      return (
-          console.log('project title: ', this.project),
-        this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1)
-      );
     },
   },
   created() {

@@ -7,39 +7,39 @@
         </router-link>
       </div>
 
-      <input type="checkbox" class="menu-btn" id="menu-btn" />
+      <input type="checkbox" class="menu-btn" id="menu-btn" v-model="menuBtn" />
       <label for="menu-btn" class="menu-icon">
         <span class="menu-icon-line"></span>
       </label>
 
       <ul class="nav-links">
-        <li v-if="!userData" class="nav-link font-medium">
-          <router-link class="hover:text-pink-hover" to="/register">
+        <li v-if="!userData" class="nav-link font-medium" @click="closeNavigation">
+          <router-link to="/register">
             Register
           </router-link>
         </li>
 
-        <li v-if="userData" class="nav-link font-medium">
-          <router-link class="hover:text-pink-hover" to="/add-project">
-            Add Projekt
+        <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
+          <router-link to="/add-project">
+            Add Project
           </router-link>
         </li>
 
-        <li v-if="userData" class="nav-link font-medium">
-          <router-link class="hover:text-pink-hover" to="/projects">
+        <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
+          <router-link to="/projects">
             Dashboard
           </router-link>
         </li>
 
-        <li v-if="userData" class="nav-link font-medium">
-          <router-link class="hover:text-pink-hover" to="/user-profile">
+        <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
+          <router-link to="/user-profile">
             Profile
           </router-link>
         </li>
 
         <li v-if="!userData" class="nav-link font-medium">
           <router-link
-            class="hover:text-pink-hover mobile-menu-item extern-link"
+            class="mobile-menu-item extern-link"
             to="/login"
           >
             Login
@@ -67,15 +67,25 @@ export default {
   data: () => {
     return {
       userData: null,
+      showMobileNav: false,
+      menuBtn: false,
     };
   },
 
   methods: {
     logout() {
       localStorage.removeItem("token");
-      // redirect auf die Startseite nach 3 Sekunden
-      window.location.href = "/";
+      this.$router.push("/", () => {
+        this.$toasted.show('Successfully logged out. See you soon!', {
+          duration: 5000,
+          type: 'success',
+          position: 'top-center',
+        });
+      });
     },
+    closeNavigation() {
+      this.menuBtn = false;
+    }
   },
   created() {
     userDataService.me().then((userData) => {
@@ -99,9 +109,14 @@ export default {
 </script>
 
 <style lang="scss">
-nav a.router-link-active {
-  @apply text-pink-main;
-  font-weight: 700;
+@media screen and (min-width: 767px) {
+  nav li:hover {
+    @apply text-pink-main;
+  }
+  nav a.router-link-active {
+    @apply text-pink-main;
+    font-weight: 700;
+  }
 }
 .main-header {
   @apply px-6 py-10 lg:px-12;
@@ -147,10 +162,6 @@ nav a.router-link-active {
 
       &:nth-of-type(2) {
         transition-delay: 0.1s;
-      }
-
-      a:hover {
-        color: #99154e;
       }
     }
   }
@@ -270,6 +281,9 @@ nav a.router-link-active {
         }
         &:nth-of-type(3) {
           transition-delay: 0.9s;
+        }
+        &:nth-of-type(4) {
+          transition-delay: 1s;
         }
       }
     }

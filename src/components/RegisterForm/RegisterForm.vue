@@ -2,7 +2,7 @@
   <div class="mx-auto text-left relative">
     <h1 v-if="headline">{{ headline }}</h1>
     <p v-if="subheadline" class="text-left">{{ subheadline }}</p>
-    <div class="flex justify-between shadow p-11 rounded mt-6">
+    <div class="flex justify-between shadow p-11 rounded mt-6 bg-white">
       <form @submit.prevent="$emit('input', fieldValues)" class="w-64 mr-10">
         <div v-for="field in fields" :key="field.name">
           <keep-alive>
@@ -16,7 +16,7 @@
         <div class="slider-container">
           <ul class="slider" :style="styleObject">
             <li class="slide slide--image">
-              <img src="@/assets/images/placeholder-dragon.png" alt="">
+              <img src="@/assets/images/dragon.png" alt="">
                 <div class="mt-5 text-center">
                   <label class="ml-2 container" for="dragon">
                     Choose this character
@@ -26,7 +26,7 @@
                 </div>
             </li>
             <li class="slide slide--image">
-              <img src="@/assets/images/placeholder-ghost.png" alt="">
+              <img src="@/assets/images/ghost.png" alt="">
                 <div class="mt-5 text-center">
                   <label class="ml-2 container" for="ghost">
                     Choose this character

@@ -118,12 +118,21 @@ export default {
       axios
         .post("http://flow_backend.local/api/add-task/create", formData)
         .then(() => {
-          window.location.href = "/project-board/" + this.project_id;
+          this.$router.push("/project-board/" + this.project_id, () => {
+            this.$toasted.show('Successfully added a new task!', {
+              duration: 5000,
+              type: 'success',
+              position: 'top-center',
+            });
+          });
         })
-        .catch((err) => {
-          alert("Speichern nicht erfolgreich");
-          this.errors = err.response.data.errors;
-          console.log(this.errors);
+        .catch(() => {
+          this.loader = false;
+          this.$toasted.show('Seems like something went wrong. Please try again!', {
+            duration: 5000,
+            type: 'error',
+            position: 'top-center',
+          });
         });
     },
     getAllUsersForThisProject() {
@@ -131,7 +140,6 @@ export default {
         .get("http://flow_backend.local/api/project-users/" + this.project_id)
         .then((res) => {
           this.projectUsers = res.data;
-          console.log("users", this.projectUsers);
         })
         .catch(() => {
           this.error = true;
@@ -151,7 +159,6 @@ export default {
   },
   created() {
     this.newTask.project_id = this.$route.params.id;
-    console.log("created: ", this.newTask.project_id);
   },
 };
 </script>

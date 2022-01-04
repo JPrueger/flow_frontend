@@ -70,13 +70,6 @@ export default {
          * für moved event
          */
         .post("http://flow_backend.local/api/sort-task", newContent)
-        .then(() => {
-          console.log("Speichern erfolgreich");
-        })
-        .catch(() => {
-          alert("Speichern nicht erfolgreich");
-          console.log(this.errors);
-        });
     },
   },
   created() {

@@ -26,7 +26,7 @@
         />
       </li>
     </ul>
-    <router-link class="Button mt-10" to="/add-project"
+    <router-link v-if="!loader" class="Button mt-10" to="/add-project"
       >Add New Project</router-link
     >
   </div>
@@ -63,7 +63,6 @@ export default {
       axios
         .get("http://flow_backend.local/api/projects/" + this.userId)
         .then((res) => {
-          console.log(res.data);
           this.projects = res.data;
         })
         .then(() => {

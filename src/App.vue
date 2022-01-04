@@ -45,8 +45,8 @@ export default {
   }
 
   &.shape-bottom-left {
+    width: 60px;
     @apply bottom-24 left-6;
-    width:60px;
   }
 
   &.shape-bottom-right {
@@ -62,7 +62,7 @@ export default {
     }
 
     &.shape-bottom-left {
-      width:60px;
+      width: 60px;
       @apply bottom-12 left-12;
     }
   }
@@ -76,13 +76,13 @@ export default {
     }
 
     &.shape-bottom-left {
-      width:60px;
-      @apply bottom-32 left-16;
+      width: 60px;
+      @apply bottom-24 left-16;
     }
 
     &.shape-bottom-right {
       display: block;
-      width:110px;
+      width: 110px;
       @apply bottom-20 right-12;
     }
   }

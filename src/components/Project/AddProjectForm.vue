@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-lg mx-auto relative">
-    <h1>Add Projekt</h1>
-    <form @submit.prevent class="shadow p-11 rounded mt-6">
+    <h1>Add Project</h1>
+    <form @submit.prevent class="shadow p-11 rounded mt-6 bg-white">
       <Loader v-if="loader" />
       <div v-if="!loader" class="flex flex-col text-left mb-8" type="text">
         <label for="title" class="pb-2">Title</label>
@@ -15,17 +15,21 @@
           class="InputField"
         />
       </div>
-      <multiselect
-        v-if="!loader" 
-        v-model="value"
-        :options="options"
-        :show-labels="true"
-        :allow-empty="true"
-        :multiple="true"
-        label="name"
-        track-by="id"
-        class="mb-10"
-      />
+      <div v-if="!loader" class="text-left">
+        <label for="name" class="pb-2">Assignees</label>
+        <multiselect
+          id="assignee"
+          v-if="!loader" 
+          v-model="value"
+          :options="options"
+          :show-labels="true"
+          :allow-empty="true"
+          :multiple="true"
+          label="name"
+          track-by="id"
+          class="mb-10"
+        />
+      </div>
       <div class="grid">
         <input v-if="!loader" type="submit" @click="saveProject()" class="Button justify-self-center" value="Save"/>
       </div>
@@ -52,7 +56,6 @@ export default {
       allUsers: [],
       value: null,
       loader: false,
-
       newProject: {
         title: "",
         user_id: "",
@@ -62,13 +65,12 @@ export default {
   methods: {
     saveProject() {
       this.loader = true;
-      console.log("saveProject aufgerufen");
       let formData = new FormData();
       formData.append("title", this.newProject.title);
       formData.append("user_id", this.newProject.user_id);
       if(this.value != null) {
         formData.append("users", JSON.stringify(this.value.map((item) => item.id)));
-      } // todo: hier noch eingegebene user namen mitangeben
+      }
 
       axios
         .post("http://flow_backend.local/api/add-project/create", formData)
@@ -78,11 +80,21 @@ export default {
         .then(() => {
           this.createSuccess = true;
           this.error = false;
-          window.location.href = "/projects/";
+          this.$router.push('/projects', () => {
+            this.$toasted.show('Successfully added a new project!', {
+              duration: 5000,
+              type: 'success',
+              position: 'top-center',
+            });
+          });
         })
         .catch(() => {
           this.loader = false;
-          this.error = true;
+          this.$toasted.show('Seems like something went wrong. Please try again!', {
+            duration: 5000,
+            type: 'error',
+            position: 'top-center',
+          });
         });
     },
 
@@ -91,7 +103,6 @@ export default {
         .get("http://flow_backend.local/api/user/all-users")
         .then((res) => {
           this.allUsers = res.data;
-          console.log("users", this.allUsers);
         })
         .catch(() => {
           this.error = true;
@@ -108,10 +119,8 @@ export default {
       .me()
       .then((userData) => {
         this.newProject.user_id = userData.id;
-        console.log("user id here: ", this.newProject.user_id);
       })
-      .catch(async (error) => {
-        alert("Error: " + error.response.data.message);
+      .catch(async () => {
         this.loading = false;
       });
 
@@ -120,7 +129,6 @@ export default {
   updated() {
     userDataService.me().then((userData) => {
       this.newProject.user_id = userData.id;
-      console.log("user id here: ", this.newProject.user_id);
     });
   },
 };
