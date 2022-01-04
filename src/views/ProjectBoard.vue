@@ -10,6 +10,7 @@
       :userId="userId"
       :videoId="getVideoIdFromLevel()"
       :storypoints="storypoints"
+      :characterName="userData.character_name"
       v-if="(
         (this.storypoints >= 5 && this.storypoints <= 9) && userData.level_one_played !== 1)
         || ((this.storypoints >= 10 && this.storypoints <= 14) && userData.level_two_played !== 1)
@@ -79,6 +80,7 @@ export default {
       project: "",
       userData: "",
       storypoints: null,
+      characterName: '',
       loader: true,
       polling: null,
       userId: ''
@@ -104,6 +106,7 @@ export default {
     },
     deleteProject() {
       axios
+          // todo: löschen geht bei mir nicht, toasty hinzufügen
           .delete(
               "http://flow_backend.local/api/delete-project/" + this.$route.params.id
           )
@@ -252,7 +255,7 @@ export default {
       } else if (this.storypoints >= 15) {
         return String("648594265");
       } else {
-        return String("254736788");
+        return String("648594265");
       }
     },
     projectTitle() {
@@ -278,6 +281,7 @@ export default {
   },
   updated() {
     this.storypoints = this.userData.storypoints;
+    this.characterName = this.userData.characterName;
   },
   beforeDestroy() {
     clearInterval(this.polling);
