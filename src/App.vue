@@ -77,12 +77,14 @@ export default {
 
     &.shape-bottom-left {
       width: 60px;
+      position: fixed;
       @apply bottom-24 left-16;
     }
 
     &.shape-bottom-right {
       display: block;
       width: 110px;
+      position: fixed;
       @apply bottom-20 right-12;
     }
   }
