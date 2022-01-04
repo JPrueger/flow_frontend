@@ -232,37 +232,28 @@ export default {
        // ghost
       if (this.userData.character_id === 2) {
         if (this.storypoints >= 5 && this.storypoints <= 9) {
-          return String("662431051");
+          return String("662269881");
         } else if (
           this.storypoints >= 10 &&
           this.storypoints <= 14
         ) {
-          return String("662431018");
+          return String("662269923");
         } else if (this.storypoints >= 15) {
-          return String("662430984");
+          return String("662269819");
         }
         // dragon
       } else if (this.userData.character_id === 1) {
         if (this.storypoints >= 5 && this.storypoints <= 9) {
-          return String("662430956");
+          return String("662269711");
         } else if (
           this.storypoints >= 10 &&
           this.storypoints <= 14
         ) {
-          return String("662430924");
+          return String("662269767");
         } else if (this.storypoints >= 15) {
-          return String("662430854");
+          return String("662269639");
         }
       }
-      // if (this.storypoints >= 5 && this.storypoints <= 9) {
-      //   return String("648594265");
-      // } else if (this.storypoints >= 10 && this.storypoints <= 14) {
-      //   return String("648594814");
-      // } else if (this.storypoints >= 15) {
-      //   return String("648594265");
-      // } else {
-      //   return String("648594265");
-      // }
     },
     projectTitle() {
       return (
