@@ -209,24 +209,6 @@ export default {
       this.donetasks = this.filtered_tasks_done();
       return this.donetasks;
     },
-    updateTask() {
-      //unused?
-      let formData = new FormData();
-      formData.append("status", this.newUserData.username);
-      formData.append("_method", "PUT");
-
-      axios
-        .post("http://api.ipito.local/api/tasks/{id}", formData, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then(() => {
-          this.taskUpdated = true;
-        });
-    },
     getUserDetails() {
       axios
         .get("http://flow_backend.local/api/user/" + this.userId)
@@ -247,19 +229,42 @@ export default {
       }, 3000);
     },
     getVideoIdFromLevel() {
-      console.log("aktuelle sp: ", this.storypoints);
-      if (this.storypoints >= 5 && this.storypoints <= 9) {
-        return String("648594265");
-      } else if (this.storypoints >= 10 && this.storypoints <= 14) {
-        return String("648594814");
-      } else if (this.storypoints >= 15) {
-        return String("648594265");
-      } else {
-        return String("648594265");
+       // ghost
+      if (this.userData.character_id === 2) {
+        if (this.storypoints >= 5 && this.storypoints <= 9) {
+          return String("662431051");
+        } else if (
+          this.storypoints >= 10 &&
+          this.storypoints <= 14
+        ) {
+          return String("662431018");
+        } else if (this.storypoints >= 15) {
+          return String("662430984");
+        }
+        // dragon
+      } else if (this.userData.character_id === 1) {
+        if (this.storypoints >= 5 && this.storypoints <= 9) {
+          return String("662430956");
+        } else if (
+          this.storypoints >= 10 &&
+          this.storypoints <= 14
+        ) {
+          return String("662430924");
+        } else if (this.storypoints >= 15) {
+          return String("662430854");
+        }
       }
+      // if (this.storypoints >= 5 && this.storypoints <= 9) {
+      //   return String("648594265");
+      // } else if (this.storypoints >= 10 && this.storypoints <= 14) {
+      //   return String("648594814");
+      // } else if (this.storypoints >= 15) {
+      //   return String("648594265");
+      // } else {
+      //   return String("648594265");
+      // }
     },
     projectTitle() {
-      console.log('project title: ', this.project);
       return (
         this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1)
       );
