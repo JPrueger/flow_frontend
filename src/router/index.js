@@ -9,7 +9,6 @@ import TaskDetails from "../views/TaskDetails.vue";
 import AddTask from "../views/AddTask.vue";
 import EditTask from "../views/EditTask.vue";
 import Task from "../views/Task.vue";
-import TestVideo from "../views/TestVideo.vue";
 import Home from "../views/Home.vue";
 import Privacy from "../views/Privacy.vue";
 import Terms from "../views/Terms.vue";
@@ -89,11 +88,6 @@ const routes = [
     path: "/edit-task/:id",
     name: "EditTask",
     component: EditTask,
-  },
-  {
-    path: "/test-video",
-    name: "TestVideo",
-    component: TestVideo,
   },
   {
     path: "/user-profile",
