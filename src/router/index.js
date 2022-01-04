@@ -15,6 +15,7 @@ import Privacy from "../views/Privacy.vue";
 import Terms from "../views/Terms.vue";
 import NotFound from "../views/NotFound.vue";
 import UserProfile from "../views/UserProfile.vue";
+import EditUser from "../views/EditUser.vue";
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/user/edit/:id",
+    name: "EditUser",
+    component: EditUser,
   },
   {
     path: "/project-board/:id",

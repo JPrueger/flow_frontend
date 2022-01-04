@@ -1,6 +1,11 @@
 <template>
   <div class="max-w-3xl mx-auto">
-    <h1>Profile</h1>
+    <div>
+      <h1>Profile</h1>
+      <router-link :to="'/user/edit/' + userId">
+        Edit
+      </router-link>
+    </div>
 <!--    <pre>-->
 <!--      {{ userData }}-->
 <!--    </pre>-->
