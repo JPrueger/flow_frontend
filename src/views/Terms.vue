@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="bg-white w-4/5">
     <h1>Terms and Conditions</h1>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5 terms">
       <h2 class="text-base font-bold mb-2">Introduction</h2>
       <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, flow
         accessible at www.flow-projects.at.</p>
@@ -14,7 +14,7 @@
       <p>Minors or people below 18 years old are not allowed to use this Website.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Intellectual Property Rights</h2>
 
       <p>Other than the content you own, under these Terms, flow and/or its licensors own all the intellectual property
@@ -22,7 +22,7 @@
       <p>You are granted limited license only for purposes of viewing the material contained on this Website.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Restrictions</h2>
 
       <p>You are specifically restricted from all of the following:</p>
@@ -46,7 +46,7 @@
         this Website are confidential and you must maintain confidentiality as well.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Your Content</h2>
 
       <p>In these Website Standard Terms and Conditions, "Your Content" shall mean any audio, video text, images or
@@ -57,13 +57,13 @@
         remove any of Your Content from this Website at any time without notice.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Your Privacy</h2>
 
       <p>Please read Privacy Policy.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">No warranties</h2>
 
       <p>This Website is provided "as is," with all faults, and Flow express no representations or warranties, of any
@@ -71,7 +71,7 @@
         shall be interpreted as advising you.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Limitation of liability</h2>
 
       <p>In no event shall Flow, nor any of its officers, directors and employees, shall be held liable for anything
@@ -79,7 +79,7 @@
         or special liability arising out of or in any way related to your use of this Website.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Indemnification</h2>
 
       <p>You hereby indemnify to the fullest extent Flow from and against any and/or all liabilities, costs, demands,
@@ -88,21 +88,21 @@
 
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Severability</h2>
 
       <p>If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be
         deleted without affecting the remaining provisions herein.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Variation of Terms</h2>
 
       <p>Flow is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected
         to review these Terms on a regular basis.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Assignment</h2>
 
       <p>The Flow is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms
@@ -110,14 +110,14 @@
         and/or obligations under these Terms.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Entire Agreement</h2>
 
       <p>These Terms constitute the entire agreement between Flow and you in relation to your use of this Website, and
         supersede all prior agreements and understandings.</p>
     </div>
 
-    <div class="w-2/3 mb-5">
+    <div class="mb-5">
       <h2 class="text-base font-bold mb-2">Governing Law & Jurisdiction</h2>
 
       <p>These Terms will be governed by and interpreted in accordance with the laws of the State of at, and you submit
@@ -132,4 +132,5 @@ export default {
   name: "Terms",
 };
 </script>
+
 
