@@ -51,9 +51,7 @@ export default {
     toggleAccordion() {
       this.isOpen = !this.isOpen;
     },
-    updateStatus(params) {
-      console.log(params, this.statusKey, this.list )
-      console.log('updateStatus')
+    updateStatus() {
       /**
        * für added event neue logic
        */
@@ -73,10 +71,7 @@ export default {
     },
   },
   created() {
-    console.log(screen.width);
-      // this.isOpen = true;
       this.screenWidth = screen.width;
-      console.log(this.isOpen);
     },
   data: () => ({
     newTodo: "",
@@ -90,7 +85,7 @@ export default {
 
 <style lang="scss">
 .overlay {
-  pointer-events: none;
+  // pointer-events: none;
   cursor: not-allowed;
 }
 </style>

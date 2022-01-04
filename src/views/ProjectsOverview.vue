@@ -54,7 +54,6 @@ export default {
   },
   computed: {
     getRandomInt() {
-      console.log("random number: ", Math.floor(Math.random() * 10));
       return Math.floor(Math.random() * 10);
     },
   },

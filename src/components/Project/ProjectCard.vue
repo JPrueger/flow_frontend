@@ -57,8 +57,6 @@ export default {
   created() {
     this.getUsersOfProject();
     this.getTasksOfProject();
-
-    console.log(this.users);
   },
   components: {
     ColoredUserIcon

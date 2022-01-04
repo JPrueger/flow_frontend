@@ -141,7 +141,6 @@ export default {
         .get("http://flow_backend.local/api/user/" + this.userId)
         .then((res) => {
           this.userData = res.data;
-          console.log(this.userData);
         })
         .then(() => {
           this.loader = false;

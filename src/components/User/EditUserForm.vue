@@ -54,13 +54,11 @@ export default {
           this.user
         )
         .then(() => {
-          // alert("Speichern erfolgreich");
           window.location.href = "/user-profile";
         })
         .catch((err) => {
           alert("Speichern nicht erfolgreich");
           this.errors = err.response.data.errors;
-          console.log(this.errors);
         });
     },
     getUserDetails() {
@@ -68,7 +66,6 @@ export default {
           .get("http://flow_backend.local/api/user/" + this.$route.params.id)
           .then((res) => {
             this.user = res.data;
-            console.log(this.userData);
           })
           .then(() => {
             this.loader = false;
