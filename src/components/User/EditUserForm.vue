@@ -18,16 +18,6 @@
           </div>
         </div>
         <div class="flex flex-col text-left mb-8">
-          <label for="email" class="pb-2">Email</label>
-          <input
-              v-model="user.email"
-              id="email"
-              type="email"
-              :placeholder="user.email"
-              class="InputField"
-          />
-        </div>
-        <div class="flex flex-col text-left mb-8">
           <label for="password" class="pb-2">Password</label>
           <input
               v-model="user.password"
