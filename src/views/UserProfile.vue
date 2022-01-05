@@ -211,7 +211,7 @@ export default {
 .Video {
   width: 200px;
   position: absolute;
-  right: -20px;
+  right: -100px;
   top: 5px;
   @apply bottom-8 -z-10;
 }
