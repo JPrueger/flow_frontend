@@ -1,6 +1,5 @@
 <template>
   <div class="flex loader-wrapper items-center justify-center">
-    <!-- <p class="mb-3">We're getting ready.</p> -->
     <div class="loader">
       <div></div>
       <div></div>
@@ -17,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+// styling of loading animation
 .loader-wrapper {
   height: 40vh;
 }
@@ -32,7 +31,7 @@ export default {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #FFB319;
+  background: #ffb319;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .loader div:nth-child(1) {

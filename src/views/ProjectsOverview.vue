@@ -52,12 +52,10 @@ export default {
       loader: true,
     };
   },
-  computed: {
-    getRandomInt() {
-      return Math.floor(Math.random() * 10);
-    },
-  },
   methods: {
+    /**
+     * Getss current project.
+     */
     getProjects() {
       axios
         .get("http://flow_backend.local/api/projects/" + this.userId)
@@ -68,10 +66,17 @@ export default {
           this.loader = false;
         });
     },
+    /**
+     * Creates random number to make sure that the keys used are always unique.
+     */
     randomNumber() {
       return Math.floor(Math.random() * 1000);
-    }
+    },
   },
+  /**
+   * The me() function gets the current user that is logged in.
+   * See userDataService.js file in src/services
+   */
   created() {
     userDataService.me().then((userData) => {
       this.userId = userData.id;

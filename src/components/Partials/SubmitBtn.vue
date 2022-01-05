@@ -1,23 +1,17 @@
 <template>
-    <button class="Button" type="submit" @click.prevent="method">
-        Submit hier
-    </button>
+  <button class="Button" type="submit" @click.prevent="method">
+    Submit hier
+  </button>
 </template>
 
 <script>
 export default {
-    name: "submitbtn",
-    props: {
-        text: String,
-        method: {
-            type: Function,
-        }
+  name: "submitbtn",
+  props: {
+    text: String,
+    method: {
+      type: Function,
     },
+  },
 };
 </script>
-
-<style>
-button {
-    border: 1px solid red;
-}
-</style>

@@ -33,11 +33,7 @@
       </div>
       <div class="flex flex-col text-left mb-8">
         <label for="state" class="pb-2">Status:</label>
-        <select
-          id="state"
-          class="InputField"
-          v-model="newTask.status"
-        >
+        <select id="state" class="InputField" v-model="newTask.status">
           <option value="open">Open</option>
           <option value="progress">In Progress</option>
           <option value="done">Done</option>
@@ -72,10 +68,66 @@
         />
       </div>
       <div class="grid">
-        <input type="submit" @click="saveTask()" value="Save" class="Button justify-self-center" />
+        <input
+          type="submit"
+          @click="saveTask()"
+          value="Save"
+          class="Button justify-self-center"
+        />
       </div>
     </form>
-    <svg class="absolute -bottom-7 -left-7 form-shape" xmlns="http://www.w3.org/2000/svg" width="70.47" height="68.074"><g data-name="Gruppe 61" fill="none" stroke="#ffb319" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"><g data-name="Gruppe 37"><path data-name="Pfad 27" d="M56.139 32.711c5.135 4.624-3.95 12.932 2.603 18.832"/><path data-name="Pfad 28" d="M34.533 13.258c5.136 4.623-3.948 12.932 2.603 18.831"/><path data-name="Pfad 29" d="M56.139 32.711c-5.136-4.624-12.45 5.278-19.003-.622"/><path data-name="Pfad 31" d="M34.533 13.258c-5.135-4.624-12.448 5.279-19.001-.622"/></g><g data-name="Gruppe 38"><path data-name="Pfad 27" d="M44.139 45.711c5.135 4.624-3.95 12.932 2.603 18.832"/><path data-name="Pfad 28" d="M22.533 26.258c5.136 4.623-3.948 12.932 2.603 18.831"/><path data-name="Pfad 29" d="M44.139 45.711c-5.136-4.624-12.45 5.278-19.003-.622"/><path data-name="Pfad 31" d="M22.533 26.258c-5.135-4.624-12.448 5.279-19.001-.622"/></g></g></svg>
+    <svg
+      class="absolute -bottom-7 -left-7 form-shape"
+      xmlns="http://www.w3.org/2000/svg"
+      width="70.47"
+      height="68.074"
+    >
+      <g
+        data-name="Gruppe 61"
+        fill="none"
+        stroke="#ffb319"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="5"
+      >
+        <g data-name="Gruppe 37">
+          <path
+            data-name="Pfad 27"
+            d="M56.139 32.711c5.135 4.624-3.95 12.932 2.603 18.832"
+          />
+          <path
+            data-name="Pfad 28"
+            d="M34.533 13.258c5.136 4.623-3.948 12.932 2.603 18.831"
+          />
+          <path
+            data-name="Pfad 29"
+            d="M56.139 32.711c-5.136-4.624-12.45 5.278-19.003-.622"
+          />
+          <path
+            data-name="Pfad 31"
+            d="M34.533 13.258c-5.135-4.624-12.448 5.279-19.001-.622"
+          />
+        </g>
+        <g data-name="Gruppe 38">
+          <path
+            data-name="Pfad 27"
+            d="M44.139 45.711c5.135 4.624-3.95 12.932 2.603 18.832"
+          />
+          <path
+            data-name="Pfad 28"
+            d="M22.533 26.258c5.136 4.623-3.948 12.932 2.603 18.831"
+          />
+          <path
+            data-name="Pfad 29"
+            d="M44.139 45.711c-5.136-4.624-12.45 5.278-19.003-.622"
+          />
+          <path
+            data-name="Pfad 31"
+            d="M22.533 26.258c-5.135-4.624-12.448 5.279-19.001-.622"
+          />
+        </g>
+      </g>
+    </svg>
   </div>
 </template>
 <script>
@@ -106,6 +158,9 @@ export default {
     };
   },
   methods: {
+    /**
+     * Appends all relevant input field values to formData.
+     */
     saveTask() {
       let formData = new FormData();
       formData.append("title", this.newTask.title);
@@ -119,22 +174,28 @@ export default {
         .post("http://flow_backend.local/api/add-task/create", formData)
         .then(() => {
           this.$router.push("/project-board/" + this.project_id, () => {
-            this.$toasted.show('Successfully added a new task!', {
+            this.$toasted.show("Successfully added a new task!", {
               duration: 5000,
-              type: 'success',
-              position: 'top-center',
+              type: "success",
+              position: "top-center",
             });
           });
         })
         .catch(() => {
           this.loader = false;
-          this.$toasted.show('Seems like something went wrong. Please try again!', {
-            duration: 5000,
-            type: 'error',
-            position: 'top-center',
-          });
+          this.$toasted.show(
+            "Seems like something went wrong. Please try again!",
+            {
+              duration: 5000,
+              type: "error",
+              position: "top-center",
+            }
+          );
         });
     },
+    /**
+     * Gets all users for the current project.
+     */
     getAllUsersForThisProject() {
       axios
         .get("http://flow_backend.local/api/project-users/" + this.project_id)
@@ -147,6 +208,9 @@ export default {
     },
   },
   computed: {
+    /**
+     * Since only name and id of user is shown, we hand over only those two to options.
+     */
     options() {
       return this.projectUsers.map((item) => ({
         name: item.name,
@@ -154,9 +218,15 @@ export default {
       }));
     },
   },
+  /**
+   * When page is mounted, getAllUsersForThisProject() gets called
+   */
   mounted() {
     this.getAllUsersForThisProject();
   },
+  /**
+   * When page is created, the parameter id gets saved in project_id
+   */
   created() {
     this.newTask.project_id = this.$route.params.id;
   },

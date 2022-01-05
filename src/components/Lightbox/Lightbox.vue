@@ -16,7 +16,6 @@
               />
               <button
                 type="submit"
-    
                 @click="toggleLightbox"
                 class="
                   absolute
@@ -33,7 +32,6 @@
                 X
               </button>
             </div>
-
             <div>
               <p>Current Storypoints:</p>
               <p class="text-xl font-bold">{{ storypoints }}</p>
@@ -70,7 +68,7 @@ export default {
     userId: {
       type: Number,
       required: true,
-    }
+    },
   },
   data: () => ({
     isActive: true,
@@ -89,6 +87,11 @@ export default {
     userData: "",
   }),
   methods: {
+    /**
+     * Appends each level that has been played already.
+     * Once user closes the lightbox, it gets saved to the database,
+     * so the lightbox won't get triggered again.
+     */
     toggleLightbox() {
       this.isActive = !this.isActive;
       let formData = new FormData();
@@ -99,13 +102,14 @@ export default {
       } else if (this.storypoints >= 15) {
         formData.append("levelThreePlayed", this.levelThreePlayed);
       }
-      axios.post(
-        "http://flow_backend.local/api/user/update/" + this.userId,
-        formData
-      )
-      .then(() => {
-        this.$emit.isActive = !this.isActive;
-      })
+      axios
+        .post(
+          "http://flow_backend.local/api/user/update/" + this.userId,
+          formData
+        )
+        .then(() => {
+          this.$emit.isActive = !this.isActive;
+        });
     },
   },
 };

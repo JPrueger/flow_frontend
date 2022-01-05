@@ -6,50 +6,53 @@
           <img src="@/assets/images/logo.svg" alt="flow" class="block h-6" />
         </router-link>
       </div>
-
       <input type="checkbox" class="menu-btn" id="menu-btn" v-model="menuBtn" />
       <label for="menu-btn" class="menu-icon">
         <span class="menu-icon-line"></span>
       </label>
-
       <ul class="nav-links">
-        <li v-if="!userData" class="nav-link font-medium" @click="closeNavigation">
-          <router-link to="/register">
-            Register
-          </router-link>
+        <li
+          v-if="!userData"
+          class="nav-link font-medium"
+          @click="closeNavigation"
+        >
+          <router-link to="/register"> Register </router-link>
         </li>
-
-        <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
-          <router-link to="/add-project">
-            Add Project
-          </router-link>
+        <li
+          v-if="userData"
+          class="nav-link font-medium"
+          @click="closeNavigation"
+        >
+          <router-link to="/add-project"> Add Project </router-link>
         </li>
-
-        <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
-          <router-link to="/projects">
-            Dashboard
-          </router-link>
+        <li
+          v-if="userData"
+          class="nav-link font-medium"
+          @click="closeNavigation"
+        >
+          <router-link to="/projects"> Dashboard </router-link>
         </li>
-
-        <li v-if="userData" class="nav-link font-medium" @click="closeNavigation">
-          <router-link to="/user-profile">
-            Profile
-          </router-link>
+        <li
+          v-if="userData"
+          class="nav-link font-medium"
+          @click="closeNavigation"
+        >
+          <router-link to="/user-profile"> Profile </router-link>
         </li>
-
         <li v-if="!userData" class="nav-link font-medium">
-          <router-link
-            class="mobile-menu-item extern-link"
-            to="/login"
-          >
+          <router-link class="mobile-menu-item extern-link" to="/login">
             Login
           </router-link>
         </li>
-
         <li v-if="userData" class="nav-link">
           <button
             @click="logout()"
-            class="hover:text-pink-hover mobile-menu-item extern-link font-medium"
+            class="
+              hover:text-pink-hover
+              mobile-menu-item
+              extern-link
+              font-medium
+            "
           >
             Logout
           </button>
@@ -73,20 +76,27 @@ export default {
   },
 
   methods: {
+    /**
+     * When user logges out, the token gets removed and success message is shown.
+     */
     logout() {
       localStorage.removeItem("token");
       this.$router.push("/", () => {
-        this.$toasted.show('Successfully logged out. See you soon!', {
+        this.$toasted.show("Successfully logged out. See you soon!", {
           duration: 5000,
-          type: 'success',
-          position: 'top-center',
+          type: "success",
+          position: "top-center",
         });
       });
     },
     closeNavigation() {
       this.menuBtn = false;
-    }
+    },
   },
+  /**
+   * The me() function gets the current user that is logged in.
+   * See userDataService.js file in src/services
+   */
   created() {
     userDataService.me().then((userData) => {
       this.userData = userData;
@@ -94,18 +104,6 @@ export default {
     });
   },
 };
-
-// const header = document.querySelector(".main-header");
-
-// window.addEventListener("scroll", () => {
-//   const scrollPos = window.scrollY;
-
-//   if (scrollPos > 10) {
-//     header.classList.add("scrolled");
-//   } else {
-//     header.classList.remove("scrolled");
-//   }
-// });
 </script>
 
 <style lang="scss">
@@ -118,6 +116,8 @@ export default {
     font-weight: 700;
   }
 }
+
+// Animation for mobile navigation
 .main-header {
   @apply px-6 py-10 lg:px-12;
   position: fixed;
@@ -137,7 +137,6 @@ export default {
   }
 
   .nav-links {
-    // transform: translateY(15px);
     display: flex;
     list-style: none;
     font-weight: 400;
@@ -158,7 +157,7 @@ export default {
 
     .nav-link {
       transition: opacity 0.4s ease-in-out,
-      transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
       &:nth-of-type(2) {
         transition-delay: 0.1s;

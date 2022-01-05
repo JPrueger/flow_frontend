@@ -7,7 +7,7 @@
           <h1>Profile</h1>
         </div>
         <router-link :to="'/user/edit/' + userId">
-          <img src="@/assets/images/edit.svg" class="mt-1">
+          <img src="@/assets/images/edit.svg" class="mt-1" />
         </router-link>
       </div>
       <div
@@ -136,6 +136,9 @@ export default {
     };
   },
   methods: {
+    /**
+     * Gets the current user details.
+     */
     getUserDetails() {
       axios
         .get("http://flow_backend.local/api/user/" + this.userId)
@@ -148,7 +151,14 @@ export default {
     },
   },
   beforeUpdate() {
-    // ghost
+    /**
+     * Before page gets updated, the right vimeo video is gets handed over
+     * accordingly to the current amount of collected storypoints.
+     */
+
+    /**
+     * character_id === 2 is the ghost
+     */
     if (this.userData.character_id === 2) {
       if (this.userData.storypoints >= 5 && this.userData.storypoints <= 9) {
         this.videoId = "662431051";
@@ -160,7 +170,9 @@ export default {
       } else if (this.userData.storypoints >= 15) {
         this.videoId = "662430984";
       }
-      // dragon
+      /**
+       * character_id === 1 is the dragon
+       */
     } else if (this.userData.character_id === 1) {
       if (this.userData.storypoints >= 5 && this.userData.storypoints <= 9) {
         this.videoId = "662430956";
@@ -174,6 +186,10 @@ export default {
       }
     }
   },
+  /**
+   * The me() function gets the current user that is logged in.
+   * See userDataService.js file in src/services
+   */
   mounted() {
     userDataService.me().then((userData) => {
       this.userId = userData.id;

@@ -2,17 +2,28 @@
   <div id="app" class="wrapper relative flex flex-col h-screen justify-between">
     <Navigation />
     <router-view class="mt-20 lg:mt-24 px-6 lg:px-16 py-10 mb-auto" />
-    <img  class="background-shapes shape-top-right mt-3" src="@/assets/images/bg/bg-shape-1.svg" alt="">
-    <img  class="background-shapes shape-bottom-left mt-3" src="@/assets/images/bg/bg-shape-2.svg" alt="">
-    <img  class="background-shapes shape-bottom-right mt-3" src="@/assets/images/bg/bg-shape-4.svg" alt="">
+    <img
+      class="background-shapes shape-top-right mt-3"
+      src="@/assets/images/bg/bg-shape-1.svg"
+      alt=""
+    />
+    <img
+      class="background-shapes shape-bottom-left mt-3"
+      src="@/assets/images/bg/bg-shape-2.svg"
+      alt=""
+    />
+    <img
+      class="background-shapes shape-bottom-right mt-3"
+      src="@/assets/images/bg/bg-shape-4.svg"
+      alt=""
+    />
     <Footer />
   </div>
 </template>
 
 <script>
-import Navigation from '@/components/Navigation/Navigation.vue'
-import Footer from '@/components/Navigation/Footer.vue'
-
+import Navigation from "@/components/Navigation/Navigation.vue";
+import Footer from "@/components/Navigation/Footer.vue";
 
 export default {
   name: "App",
@@ -22,7 +33,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;700&display=swap");
@@ -56,7 +66,6 @@ export default {
 
 @media screen and (min-width: 767px) {
   .background-shapes {
-
     &.shape-top-right {
       @apply top-20 right-12;
     }
@@ -70,7 +79,6 @@ export default {
 
 @media screen and (min-width: 1000px) {
   .background-shapes {
-
     &.shape-top-right {
       @apply top-20 right-12 fixed;
     }
@@ -87,6 +95,4 @@ export default {
     }
   }
 }
-
-
 </style>

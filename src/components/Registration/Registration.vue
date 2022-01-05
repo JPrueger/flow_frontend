@@ -27,31 +27,8 @@ export default {
   },
   data() {
     return {
-      formData: {},
       response: {},
-      errors: [],
-      succesSignin: false,
-      activeSlide: 1
     };
-  },
-  computed: {
-    styleObject: function() {
-      const width = 0 - ((this.activeSlide-1) * 400)
-      return {
-        transform: 'translateX('+width+'px)'
-      }
-    }
-  },
-  methods: {
-    changeSlide: function(num) {
-      this.activeSlide = num
-    },
-    nextSlide: function() { 
-      if(this.activeSlide < 2) this.activeSlide++
-    },
-    prevSlide: function() {
-      if(this.activeSlide > 1) this.activeSlide--
-    }
   },
 };
 </script>

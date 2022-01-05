@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AddTaskForm :project_id="this.$route.params.id"/>
+    <AddTaskForm :project_id="this.$route.params.id" />
   </div>
 </template>
 

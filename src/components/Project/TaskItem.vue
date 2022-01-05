@@ -6,7 +6,10 @@
         <div class="font-bold">{{ task.storypoints }}</div>
       </div>
       <div class="user-icon-width">
-        <ColoredUserIcon :userName="userData.name" :color="userData.tag_color" />
+        <ColoredUserIcon
+          :userName="userData.name"
+          :color="userData.tag_color"
+        />
       </div>
     </div>
   </router-link>
@@ -14,45 +17,51 @@
 
 <script>
 import ColoredUserIcon from "@/components/Partials/ColoredUserIcon.vue";
-
 import axios from "axios";
 
 export default {
   name: "TaskItem",
+  components: {
+    ColoredUserIcon,
+  },
   data: () => {
     return {
       task: "",
-      userData:"",
+      userData: "",
     };
-  },
-  components: {
-    ColoredUserIcon
   },
   props: {
     title: String,
     taskId: Number,
     storypoints: Number,
-    assignedUser: String
+    assignedUser: String,
   },
   methods: {
+    /**
+     * Gets current task.
+     */
     getPost() {
       axios
-          .get(
-              "http://flow_backend.local/api/task/" + this.taskId
-          )
-          .then((res) => {
-            this.task = res.data;
-            this.getUserDetails();
-          });
+        .get("http://flow_backend.local/api/task/" + this.taskId)
+        .then((res) => {
+          this.task = res.data;
+          this.getUserDetails();
+        });
     },
+    /**
+     * Gets user details of current task.
+     */
     getUserDetails() {
       axios
-          .get("http://flow_backend.local/api/user/" + this.task.assigne_id)
-          .then((res) => {
-            this.userData = res.data;
-          });
+        .get("http://flow_backend.local/api/user/" + this.task.assigne_id)
+        .then((res) => {
+          this.userData = res.data;
+        });
     },
   },
+  /**
+   * getPost() gets called when page is created.
+   */
   created() {
     this.getPost();
   },
