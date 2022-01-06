@@ -15,6 +15,7 @@ import Terms from "../views/Terms.vue";
 import NotFound from "../views/NotFound.vue";
 import UserProfile from "../views/UserProfile.vue";
 import EditUser from "../views/EditUser.vue";
+import EditProject from "../views/EditProject.vue";
 
 Vue.use(VueRouter);
 
@@ -68,6 +69,11 @@ const routes = [
     path: "/add-project",
     name: "AddProject",
     component: AddProject,
+  },
+  {
+    path: "/project/edit/:id",
+    name: "EditProject",
+    component: EditProject,
   },
   {
     path: "/tasks",
