@@ -66,3 +66,20 @@ label {
 .multiselect__option--highlight:after {
     @apply text-pink-main bg-white rounded;  
 }
+
+select:required:invalid {
+    color: #A3A3A3 !important;
+    font-size: 0.9rem;
+
+}
+option[value=""][disabled] {
+    display: none;
+}
+option {
+    color: black;
+}
+
+input::placeholder {
+    color: #A3A3A3 !important;
+    font-size: 0.9rem;
+}

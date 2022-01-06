@@ -33,7 +33,8 @@
       </div>
       <div class="flex flex-col text-left mb-8">
         <label for="state" class="pb-2">Status:</label>
-        <select id="state" class="InputField" v-model="newTask.status">
+        <select id="state" class="InputField" v-model="newTask.status" required>
+          <option value="" selected="selected" disabled="disabled">Select...</option>
           <option value="open">Open</option>
           <option value="progress">In Progress</option>
           <option value="done">Done</option>
@@ -45,7 +46,9 @@
           id="storypoints"
           class="InputField"
           v-model="newTask.storypoints"
+          required
         >
+          <option value="" selected="selected" disabled="disabled" class="placeholder">Select...</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -232,3 +235,24 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+
+//select:required:invalid {
+//  color: #A3A3A3 !important;
+//  font-size: 0.9rem;
+//
+//}
+//option[value=""][disabled] {
+//  display: none;
+//}
+//option {
+//  color: black;
+//}
+//
+//input::placeholder {
+//  color: #A3A3A3 !important;
+//  font-size: 0.9rem;
+//}
+
+</style>
