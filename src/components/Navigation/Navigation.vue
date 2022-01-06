@@ -3,7 +3,8 @@
     <nav class="main-header bg-white scroll-navigation">
       <div class="logo">
         <router-link to="/">
-          <img src="@/assets/images/logo.svg" alt="flow" class="block h-6" />
+<!--          <img src="@/assets/images/logo.svg" alt="flow" class="block h-6" />-->
+          <svg class="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 142.2 45.9" style="enable-background:new 0 0 142.2 45.9" xml:space="preserve"><path d="M0 22.7v-7.8h5v-2.6c0-3.8 1.2-6.7 3.7-8.8C11.2 1.4 14.4.3 18.3.3c1.2 0 2.6.2 4.1.7 1.4.4 2.6 1 3.3 1.6l-2.9 7c-1.3-.7-2.6-1-4-1-1.2 0-2.2.4-2.9 1.3-.7.9-1 2.1-1 3.6v1.4h7.2l1.9 7.8h-9v22.5H5V22.7H0zm29.7 22.5V.7l10-.7v45.2h-10zm47.5-6.9c-1.5 2.4-3.5 4.3-6.1 5.6-2.6 1.3-5.6 2-8.9 2-3.4 0-6.3-.6-8.9-1.9-2.6-1.3-4.6-3.1-6-5.6-1.4-2.5-2.1-5.4-2.1-8.9 0-3.3.7-6.2 2.2-8.7 1.5-2.5 3.5-4.4 6.1-5.7 2.6-1.3 5.5-2 8.9-2 3.4 0 6.3.7 8.9 2 2.6 1.3 4.6 3.2 6 5.7 1.4 2.5 2.1 5.4 2.1 8.9 0 3.3-.8 6.2-2.2 8.6zm-10.1-2.8c1.2-1.5 1.9-3.4 1.9-5.8s-.6-4.4-1.8-5.9-2.8-2.3-4.8-2.3c-2.1 0-3.8.7-5 2.2-1.2 1.5-1.9 3.4-1.9 5.9 0 2.4.6 4.4 1.8 5.9 1.2 1.5 2.8 2.2 4.9 2.2s3.7-.8 4.9-2.2zm43 9.7-5.3-17.5-5.2 17.5h-8.8l-9.4-29.4 9.5-2.8 4.7 18.9 4.4-17.8h10l4.7 17.8 4.2-17.8h10.2l-10.1 31h-8.9z" style="fill:#212121" class="st0"/><path id="logo-dot" d="M137 45.2c-1.5 0-2.8-.5-3.8-1.5s-1.5-2.3-1.5-3.7c0-1.5.5-2.8 1.5-3.8s2.3-1.5 3.8-1.5 2.7.5 3.7 1.5 1.5 2.3 1.5 3.8-.5 2.7-1.5 3.7-2.2 1.5-3.7 1.5z" style="fill:#49a6aa" class="st0"/></svg>
         </router-link>
       </div>
       <input type="checkbox" class="menu-btn" id="menu-btn" v-model="menuBtn" />
@@ -107,6 +108,15 @@ export default {
 </script>
 
 <style lang="scss">
+
+.logo {
+  height:35px;
+}
+
+#logo-dot {
+  animation: change-logo-dot 6s infinite step-end;
+}
+
 @media screen and (min-width: 767px) {
   nav li:hover {
     @apply text-pink-main;
@@ -383,6 +393,30 @@ export default {
   }
   100% {
     transform: translateY(0px) rotate(90deg);
+  }
+}
+
+@keyframes change-logo-dot {
+  0% {
+    fill: white;
+  }
+  16% {
+    fill: #49A6AA;
+  }
+  32% {
+    fill:white;
+  }
+  48% {
+    fill: #99154e;
+  }
+  64% {
+    fill: white;
+  }
+  80% {
+    fill: #ffb319;
+  }
+  100%{
+    fill: white;
   }
 }
 </style>
