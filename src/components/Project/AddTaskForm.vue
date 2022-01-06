@@ -5,7 +5,7 @@
       <div>
         <input v-model="newTask.project_id" type="hidden" />
         <div class="flex flex-col text-left mb-8" type="text">
-          <label for="title" class="pb-2">Title</label
+          <label for="title" class="pb-2">Title<span class="text-pink-main"> *</span></label
           ><input
             v-model="newTask.title"
             id="title"
@@ -19,7 +19,7 @@
       </div>
       <div>
         <div class="flex flex-col text-left mb-8" type="text">
-          <label for="description" class="pb-2">Description</label
+          <label for="description" class="pb-2">Description<span class="text-pink-main"> *</span></label
           ><input
             id="description"
             v-model="newTask.description"
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="flex flex-col text-left mb-8">
-        <label for="state" class="pb-2">Status:</label>
+        <label for="state" class="pb-2">Status<span class="text-pink-main"> *</span></label>
         <select id="state" class="InputField" v-model="newTask.status" required>
           <option value="" selected="selected" disabled="disabled">Select...</option>
           <option value="open">Open</option>
@@ -41,7 +41,7 @@
         </select>
       </div>
       <div class="flex flex-col text-left mb-8">
-        <label for="storypoints" class="pb-2">Storypoints:</label>
+        <label for="storypoints" class="pb-2">Storypoints<span class="text-pink-main"> *</span></label>
         <select
           id="storypoints"
           class="InputField"
@@ -58,7 +58,8 @@
           <option value="20">20</option>
         </select>
       </div>
-      <div>
+      <div class="flex flex-col text-left mb-8">
+        <label for="name" class="pb-2">Assignee<span class="text-pink-main"> *</span></label>
         <multiselect
           v-model="value"
           :options="options"
@@ -237,22 +238,5 @@ export default {
 </script>
 
 <style lang="scss">
-
-//select:required:invalid {
-//  color: #A3A3A3 !important;
-//  font-size: 0.9rem;
-//
-//}
-//option[value=""][disabled] {
-//  display: none;
-//}
-//option {
-//  color: black;
-//}
-//
-//input::placeholder {
-//  color: #A3A3A3 !important;
-//  font-size: 0.9rem;
-//}
 
 </style>

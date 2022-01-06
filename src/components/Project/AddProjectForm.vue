@@ -4,7 +4,7 @@
     <form @submit.prevent class="shadow p-11 rounded mt-6 bg-white">
       <Loader v-if="loader" />
       <div v-if="!loader" class="flex flex-col text-left mb-8" type="text">
-        <label for="title" class="pb-2">Title</label>
+        <label for="title" class="pb-2">Title<span class="text-pink-main"> *</span></label>
         <input
           v-model="newProject.title"
           id="title"

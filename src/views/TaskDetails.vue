@@ -33,6 +33,16 @@
         <div class="pb-2">Storypoints:</div>
         <div class="InputField font-normal">{{task.storypoints}}</div>
       </div>
+        <div class="flex flex-col text-left mb-8">
+          <div class="pb-2">Assigne:</div>
+          <div class="user-icon-width">
+            <ColoredUserIcon
+                :userName="userData.name"
+                :color="userData.tag_color"
+            />
+          </div>
+        </div>
+
       <router-link class="Button mx-auto" :to="'/edit-task/' + task.id" v-if="task.status !== 'done'">Edit Task</router-link>
     </form>
     <svg v-if="!loader" class="absolute -bottom-7 -left-7" xmlns="http://www.w3.org/2000/svg" width="70.47" height="68.074"><g data-name="Gruppe 61" fill="none" stroke="#ffb319" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"><g data-name="Gruppe 37"><path data-name="Pfad 27" d="M56.139 32.711c5.135 4.624-3.95 12.932 2.603 18.832"/><path data-name="Pfad 28" d="M34.533 13.258c5.136 4.623-3.948 12.932 2.603 18.831"/><path data-name="Pfad 29" d="M56.139 32.711c-5.136-4.624-12.45 5.278-19.003-.622"/><path data-name="Pfad 31" d="M34.533 13.258c-5.135-4.624-12.448 5.279-19.001-.622"/></g><g data-name="Gruppe 38"><path data-name="Pfad 27" d="M44.139 45.711c5.135 4.624-3.95 12.932 2.603 18.832"/><path data-name="Pfad 28" d="M22.533 26.258c5.136 4.623-3.948 12.932 2.603 18.831"/><path data-name="Pfad 29" d="M44.139 45.711c-5.136-4.624-12.45 5.278-19.003-.622"/><path data-name="Pfad 31" d="M22.533 26.258c-5.135-4.624-12.448 5.279-19.001-.622"/></g></g></svg>
@@ -43,16 +53,18 @@
 <script>
 import axios from "axios";
 import Loader from "@/components/Partials/Loader";
-
+import ColoredUserIcon from "@/components/Partials/ColoredUserIcon.vue";
 
 export default {
   name: "TaskDetails",
   components: {
     Loader,
+    ColoredUserIcon
   },
     data: () => {
       return {
         task: "",
+        userData: "",
         loader: true,
       };
     },
@@ -64,6 +76,7 @@ export default {
         )
         .then((res) => {
           this.task = res.data;
+          this.getUserDetails();
       })
           .then(() => {
             this.loader = false;
@@ -80,7 +93,17 @@ export default {
           .then(() => {
             this.loader = false;
           });
-    }
+    },
+    /**
+     * Gets user details of current task.
+     */
+    getUserDetails() {
+      axios
+          .get("http://flow_backend.local/api/user/" + this.task.assigne_id)
+          .then((res) => {
+            this.userData = res.data;
+          });
+    },
   },
   created() {
       this.getPost();
