@@ -35,7 +35,7 @@
             <div class="mt-4 md:mt-0">
               <h2>Current Storypoints:</h2>
               <p v-if="userData.storypoints === null" class="text-lg font-bold">
-                No Storypoints collected yet.
+                0
               </p>
               <p v-else class="text-lg font-bold">
                 {{ userData.storypoints }} SP
@@ -160,8 +160,8 @@ export default {
      * character_id === 2 is the ghost
      */
     if (this.userData.character_id === 2) {
-      if (this.userData.storypoints === null || (this.userData.storypoints >= 5 && this.userData.storypoints <= 9)) {
-        this.videoId = "662431051";
+      if (this.userData.storypoints === null || this.userData.storypoints <= 9) {
+          this.videoId = "662431051";
       } else if (
         this.userData.storypoints >= 10 &&
         this.userData.storypoints <= 14
@@ -174,7 +174,7 @@ export default {
        * character_id === 1 is the dragon
        */
     } else if (this.userData.character_id === 1) {
-      if (this.userData.storypoints === null || (this.userData.storypoints >= 5 && this.userData.storypoints <= 9)) {
+      if (this.userData.storypoints === null || this.userData.storypoints <= 9) {
         this.videoId = "662430956";
       } else if (
         this.userData.storypoints >= 10 &&
