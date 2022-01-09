@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     /**
-     * gets Task.
+     * Gets Task.
      */
     getPost() {
       axios.get("http://flow_backend.local/api/tasks/index/").then((res) => {
