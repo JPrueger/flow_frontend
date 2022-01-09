@@ -47,7 +47,7 @@
                 {{ v$.newTask.status.$errors[0].$message }}
           </span>
         <label for="state" class="pb-2">Status<span class="text-pink-main"> *</span></label>
-        <select id="state" class="InputField" v-model="newTask.status" required>
+        <select id="state" class="InputField arrow-icon" v-model="newTask.status" required>
           <option value="" selected="selected" disabled="disabled">Select...</option>
           <option value="open">Open</option>
           <option value="progress">In Progress</option>
@@ -61,7 +61,7 @@
         <label for="storypoints" class="pb-2">Storypoints<span class="text-pink-main"> *</span></label>
         <select
           id="storypoints"
-          class="InputField"
+          class="InputField arrow-icon"
           v-model="newTask.storypoints"
           required
         >
@@ -305,7 +305,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-
-</style>

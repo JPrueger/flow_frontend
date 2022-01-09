@@ -55,7 +55,7 @@
         <label for="state" class="pb-2"
           >Status<span class="text-pink-main"> *</span></label
         >
-        <select id="state" class="InputField" v-model="task.status">
+        <select id="state" class="InputField arrow-icon" v-model="task.status">
           <option value="open">Open</option>
           <option value="progress">In Progress</option>
           <option value="done">Done</option>
@@ -65,7 +65,7 @@
         <label for="storypoints" class="pb-2"
           >Storypoints<span class="text-pink-main"> *</span></label
         >
-        <select id="storypoints" class="InputField" v-model="task.storypoints">
+        <select id="storypoints" class="InputField arrow-icon" v-model="task.storypoints">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
