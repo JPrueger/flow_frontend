@@ -104,6 +104,13 @@ export default {
   },
   methods: {
     /**
+     * Für den copy/paste code bekommst du nochmal eine box muffins von uns Alex!
+     * Kerstin gibt dieses mal auch sicher mehr Zucker rein :)
+     * Klingt nach einer Ausrede, aber unser ToDo Liste wächst und wächst deshalb stellen wir das 
+     * refactoren mal ganz nach hinten an: https://media.giphy.com/media/COYGe9rZvfiaQ/giphy.gif
+     */
+
+    /**
      * Gets tasks according to route parameter.
      */
     getPost() {
