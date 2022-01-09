@@ -4,7 +4,12 @@
     <form @submit.prevent class="Form">
       <div>
         <input v-model="newTask.project_id" type="hidden" />
+
         <div class="flex flex-col text-left mb-8" type="text">
+          <span v-if="v$.newTask.title.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.newTask.title.$errors[0].$message }}
+          </span>
+
           <label for="title" class="pb-2">Title<span class="text-pink-main"> *</span></label
           ><input
             v-model="newTask.title"
@@ -19,19 +24,28 @@
       </div>
       <div>
         <div class="flex flex-col text-left mb-8" type="text">
-          <label for="description" class="pb-2">Description<span class="text-pink-main"> *</span></label
-          ><input
-            id="description"
-            v-model="newTask.description"
-            type="text"
-            placeholder="Your Task Description"
-            required="required"
-            maxlength="500"
-            class="InputField"
-          />
+          <span v-if="v$.newTask.description.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.newTask.description.$errors[0].$message }}
+          </span>
+          <label for="description" class="pb-2">Description<span class="text-pink-main"> *</span></label>
+
+          <textarea
+              id="description"
+              v-model="newTask.description"
+              placeholder="Your Task Description"
+              required="required"
+              maxlength="500"
+              type="text"
+              class="InputField"
+              rows="5">
+          </textarea>
+          <span class="mt-1 pl-0.5 text-xs font-normal">{{charactersLeft}}</span>
         </div>
       </div>
       <div class="flex flex-col text-left mb-8">
+        <span v-if="v$.newTask.status.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.newTask.status.$errors[0].$message }}
+          </span>
         <label for="state" class="pb-2">Status<span class="text-pink-main"> *</span></label>
         <select id="state" class="InputField" v-model="newTask.status" required>
           <option value="" selected="selected" disabled="disabled">Select...</option>
@@ -41,6 +55,9 @@
         </select>
       </div>
       <div class="flex flex-col text-left mb-8">
+        <span v-if="v$.newTask.storypoints.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.newTask.storypoints.$errors[0].$message }}
+          </span>
         <label for="storypoints" class="pb-2">Storypoints<span class="text-pink-main"> *</span></label>
         <select
           id="storypoints"
@@ -59,7 +76,7 @@
         </select>
       </div>
       <div class="flex flex-col text-left mb-8">
-        <label for="name" class="pb-2">Assignee<span class="text-pink-main"> *</span></label>
+        <label for="name" class="pb-2">Assignee</label>
         <multiselect
           v-model="value"
           :options="options"
@@ -68,8 +85,9 @@
           :multiple="false"
           label="name"
           track-by="id"
-          class="mb-10"
+          class="mb-2"
         />
+        <span class="pl-0.5 text-xs font-normal mb-10">You can choose an other user to do this task.</span>
       </div>
       <div class="grid">
         <input
@@ -137,10 +155,19 @@
 <script>
 import addTaskFields from "@/data/forms/addTask.js";
 import axios from "axios";
+import useVuelidate from '@vuelidate/core';
+import { required, maxLength, helpers } from '@vuelidate/validators';
+import userDataService from "@/services/userDataService";
+
 
 export default {
   props: {
     project_id: String,
+  },
+  setup () {
+    return {
+      v$: useVuelidate(),
+    }
   },
   data() {
     return {
@@ -151,15 +178,36 @@ export default {
       fields: addTaskFields,
       projectUsers: [],
       value: null,
+      userId: '',
 
       newTask: {
         title: "",
         description: "",
         storypoints: "",
         status: "",
+        assigne_id: "",
         project_id: "",
       },
     };
+  },
+  validations () {
+    return {
+      newTask: {
+        title: {
+          required: helpers.withMessage('Please enter a title', required)
+        },
+        description: {
+          required: helpers.withMessage('Please enter a description', required),
+          maxLength: maxLength(500)
+        },
+        storypoints: {
+          required: helpers.withMessage('Please select Storypoints', required)
+        },
+        status: {
+          required: helpers.withMessage('Please enter a status', required)
+        }
+      }
+    }
   },
   methods: {
     /**
@@ -172,30 +220,42 @@ export default {
       formData.append("storypoints", this.newTask.storypoints);
       formData.append("status", this.newTask.status);
       formData.append("project_id", this.newTask.project_id);
-      formData.append("assigne_id", JSON.stringify(this.value.id));
 
-      axios
-        .post("http://flow_backend.local/api/add-task/create", formData)
-        .then(() => {
-          this.$router.push("/project-board/" + this.project_id, () => {
-            this.$toasted.show("Successfully added a new task!", {
-              duration: 5000,
-              type: "success",
-              position: "top-center",
+      //if no assignee is selected, choose current user as assigne
+      if(this.value === null) {
+        formData.append("assigne_id", this.userId);
+      } else {
+        formData.append("assigne_id", JSON.stringify(this.value.id));
+      }
+
+      // checks all inputs
+      this.v$.$validate();
+
+      //if no errors are occurring, send to backend
+      if (!this.v$.$error) {
+        axios
+            .post("http://flow_backend.local/api/add-task/create", formData)
+            .then(() => {
+              this.$router.push("/project-board/" + this.project_id, () => {
+                this.$toasted.show("Successfully added a new task!", {
+                  duration: 5000,
+                  type: "success",
+                  position: "top-center",
+                });
+              });
+            })
+            .catch(() => {
+              this.loader = false;
+              this.$toasted.show(
+                  "Seems like something went wrong. Please try again!",
+                  {
+                    duration: 5000,
+                    type: "error",
+                    position: "top-center",
+                  }
+              );
             });
-          });
-        })
-        .catch(() => {
-          this.loader = false;
-          this.$toasted.show(
-            "Seems like something went wrong. Please try again!",
-            {
-              duration: 5000,
-              type: "error",
-              position: "top-center",
-            }
-          );
-        });
+      }
     },
     /**
      * Gets all users for the current project.
@@ -221,12 +281,21 @@ export default {
         id: item.id,
       }));
     },
+    charactersLeft() {
+      var char = this.newTask.description.length,
+          limit = 500;
+
+      return (limit - char) + " characters remaining";
+    }
   },
   /**
    * When page is mounted, getAllUsersForThisProject() gets called
    */
   mounted() {
     this.getAllUsersForThisProject();
+    userDataService.me().then((userData) => {
+      this.userId = userData.id;
+    });
   },
   /**
    * When page is created, the parameter id gets saved in project_id
