@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     /**
-     * Getss current project.
+     * Gets current project.
      */
     getProjects() {
       axios
