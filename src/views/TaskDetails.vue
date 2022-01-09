@@ -24,7 +24,7 @@
         <div>
           <div class="flex flex-col text-left mb-8" type="text">
             <div class="pb-2">Description</div>
-            <div class="InputField font-normal bg-greyLight">{{ task.description }}</div>
+            <div class="InputField textarea font-normal bg-greyLight">{{ task.description }}</div>
           </div>
         </div>
         <div class="flex flex-col text-left mb-8">

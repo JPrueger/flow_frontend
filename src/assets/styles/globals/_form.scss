@@ -6,6 +6,10 @@
     @apply rounded p-2 border border-borderGrey;
 }
 
+.textarea {
+    height:210px;
+}
+
 label {
     @apply text-sm;
 }

@@ -5,6 +5,9 @@
       <div>
         <input v-model="task.project_id" type="hidden" />
         <div class="flex flex-col text-left mb-8" type="text">
+          <span v-if="v$.task.title.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.task.title.$errors[0].$message }}
+          </span>
           <label for="title" class="pb-2"
             >Title<span class="text-pink-main"> *</span></label
           ><input
@@ -20,17 +23,32 @@
       </div>
       <div>
         <div class="flex flex-col text-left mb-8" type="text">
+          <span v-if="v$.task.description.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.task.description.$errors[0].$message }}
+          </span>
           <label for="description" class="pb-2"
-            >Description<span class="text-pink-main"> *</span></label
-          ><input
-            id="description"
-            v-model="task.description"
-            type="text"
-            :placeholder="task.description"
-            required="required"
-            maxlength="500"
-            class="InputField"
-          />
+            >Description<span class="text-pink-main"> *</span></label>
+<!--          <input-->
+<!--            id="description"-->
+<!--            v-model="task.description"-->
+<!--            type="text"-->
+<!--            :placeholder="task.description"-->
+<!--            required="required"-->
+<!--            maxlength="500"-->
+<!--            class="InputField"-->
+<!--          />-->
+
+          <textarea
+              id="description"
+              v-model="task.description"
+              :placeholder="task.description"
+              required="required"
+              maxlength="500"
+              type="text"
+              class="InputField textarea"
+              rows="5">
+          </textarea>
+          <span class="mt-1 pl-0.5 text-xs font-normal">{{charactersLeft}}</span>
         </div>
       </div>
       <div class="flex flex-col text-left mb-8">
@@ -59,7 +77,7 @@
       </div>
       <div class="flex flex-col text-left mb-8">
         <label for="name" class="pb-2"
-          >Assignee (choose from list):<span class="text-pink-main">
+          >Assignee<span class="text-pink-main">
             *</span
           ></label
         >
@@ -72,6 +90,7 @@
           label="name"
           track-by="id"
         />
+        <span class="mt-1 pl-0.5 text-xs font-normal">Choose from list.</span>
       </div>
       <input
         type="submit"
@@ -137,8 +156,15 @@
 <script>
 import axios from "axios";
 import addTaskFields from "@/data/forms/addTask.js";
+import useVuelidate from '@vuelidate/core';
+import { required, maxLength, helpers } from '@vuelidate/validators';
 
 export default {
+  setup () {
+    return {
+      v$: useVuelidate(),
+    }
+  },
   data() {
     return {
       loading: false,
@@ -151,6 +177,19 @@ export default {
       value: null,
       assigneeValue: null,
     };
+  },
+  validations () {
+    return {
+      task: {
+        title: {
+          required: helpers.withMessage('Please enter a title', required)
+        },
+        description: {
+          required: helpers.withMessage('Please enter a description', required),
+          maxLength: maxLength(500)
+        }
+      }
+    }
   },
   props: {
     taskId: Number,
@@ -170,30 +209,36 @@ export default {
       formData.append("storypoints", this.task.storypoints);
       formData.append("assigne_id", JSON.stringify(this.assigneeValue.id));
 
-      axios
-        .post(
-          "http://flow_backend.local/api/edit-task/" + this.idOfTask,
-          formData
-        )
-        .then(() => {
-          this.$router.push("/project-board/" + this.task.project_id, () => {
-            this.$toasted.show("Successfully updated your task!", {
-              duration: 5000,
-              type: "success",
-              position: "top-center",
+      // checks all inputs
+      this.v$.$validate();
+
+
+      if (!this.v$.$error) {
+        axios
+            .post(
+                "http://flow_backend.local/api/edit-task/" + this.idOfTask,
+                formData
+            )
+            .then(() => {
+              this.$router.push("/project-board/" + this.task.project_id, () => {
+                this.$toasted.show("Successfully updated your task!", {
+                  duration: 5000,
+                  type: "success",
+                  position: "top-center",
+                });
+              });
+            })
+            .catch(() => {
+              this.$toasted.show(
+                  "Seems like something went wrong. Please try again!",
+                  {
+                    duration: 5000,
+                    type: "error",
+                    position: "top-center",
+                  }
+              );
             });
-          });
-        })
-        .catch(() => {
-          this.$toasted.show(
-            "Seems like something went wrong. Please try again!",
-            {
-              duration: 5000,
-              type: "error",
-              position: "top-center",
-            }
-          );
-        });
+      }
     },
     /**
      * Gets task according to route parameter.
@@ -238,6 +283,12 @@ export default {
         id: item.id,
       }));
     },
+    charactersLeft() {
+      var char = this.task.description.length,
+          limit = 500;
+
+      return (limit - char) + " characters remaining";
+    }
   },
   /**
    * When page is mounted, getAllUsersForThisProject() and getAllUsersForThisProject() gets called

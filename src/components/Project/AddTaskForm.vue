@@ -36,7 +36,7 @@
               required="required"
               maxlength="500"
               type="text"
-              class="InputField"
+              class="InputField textarea"
               rows="5">
           </textarea>
           <span class="mt-1 pl-0.5 text-xs font-normal">{{charactersLeft}}</span>
