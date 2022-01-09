@@ -5,6 +5,9 @@
         <div>
           <input v-model="user.id" type="hidden" />
           <div class="flex flex-col text-left mb-8" type="text">
+            <span v-if="v$.user.name.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.user.name.$errors[0].$message }}
+            </span>
             <label for="name" class="pb-2">Name</label
             ><input
               v-model="user.name"
@@ -18,6 +21,9 @@
           </div>
         </div>
         <div class="flex flex-col text-left mb-8">
+          <span v-if="v$.user.password.$error" class="text-pink-main font-medium text-sm">
+                    {{ v$.user.password.$errors[0].$message }}
+              </span>
           <label for="password" class="pb-2">Password</label>
           <input
               v-model="user.password"
@@ -35,8 +41,15 @@
 </template>
 <script>
 import axios from "axios";
+import useVuelidate from '@vuelidate/core';
+import {required, helpers} from '@vuelidate/validators';
 
 export default {
+  setup () {
+    return {
+      v$: useVuelidate(),
+    }
+  },
   data() {
     return {
       loading: false,
@@ -46,20 +59,36 @@ export default {
       user: "",
     };
   },
+  validations () {
+    return {
+      user: {
+        name: {
+          required: helpers.withMessage('Please enter a username', required)
+        },
+        password: {
+          required: helpers.withMessage('Please enter a password', required)
+        },
+      }
+    }
+  },
   methods: {
     saveUser() {
-      axios
-        .post(
-          "http://flow_backend.local/api/user/edit/" + this.$route.params.id,
-          this.user
-        )
-        .then(() => {
-          window.location.href = "/user-profile";
-        })
-        .catch((err) => {
-          alert("Speichern nicht erfolgreich");
-          this.errors = err.response.data.errors;
-        });
+      this.v$.$validate() // checks all inputs
+      if (!this.v$.$error) {
+        // submit form when there are no errors occurring
+        axios
+            .post(
+                "http://flow_backend.local/api/user/edit/" + this.$route.params.id,
+                this.user
+            )
+            .then(() => {
+              window.location.href = "/user-profile";
+            })
+            .catch((err) => {
+              alert("Speichern nicht erfolgreich");
+              this.errors = err.response.data.errors;
+            });
+      }
     },
     getUserDetails() {
       axios
