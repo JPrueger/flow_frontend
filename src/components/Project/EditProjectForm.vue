@@ -5,6 +5,9 @@
       <div>
         <input v-model="project.id" type="hidden" />
         <div class="flex flex-col text-left mb-8" type="text">
+          <span v-if="v$.project.title.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.project.title.$errors[0].$message }}
+          </span>
           <label for="title" class="pb-2"
             >Title<span class="text-pink-main"> *</span></label
           ><input
@@ -46,8 +49,15 @@
 import axios from "axios";
 import userDataService from "@/services/userDataService";
 import addProjectFields from "@/data/forms/addProject.js";
+import useVuelidate from '@vuelidate/core';
+import {required, helpers} from '@vuelidate/validators';
 
 export default {
+  setup () {
+    return {
+      v$: useVuelidate(),
+    }
+  },
   data() {
     return {
       loading: false,
@@ -60,6 +70,15 @@ export default {
       value: null,
     };
   },
+  validations () {
+    return {
+      project: {
+        title: {
+          required: helpers.withMessage('Please enter a title', required)
+        }
+      }
+    }
+  },
   methods: {
     /**
      * Updated Project gets saved to database.
@@ -67,7 +86,6 @@ export default {
      * if value != null the chosen users are getting added as well.
      */
     saveProject() {
-      this.loader = true;
       let formData = new FormData();
       formData.append("title", this.project.title);
       formData.append("user_id", this.project.user_id);
@@ -78,42 +96,49 @@ export default {
         );
       }
 
-      axios
-        .post(
-          "http://flow_backend.local/api/project/edit/" + this.project.id,
-          formData
-        )
-        .then(() => {
-          this.loader = false;
-        })
-        /**
-         * When post request has been successfully, user gets redirected to all projects overview.
-         */
-        .then(() => {
-          this.createSuccess = true;
-          this.error = false;
-          this.$router.push("/projects", () => {
-            this.$toasted.show("Successfully added a new project!", {
-              duration: 5000,
-              type: "success",
-              position: "top-center",
+      // checks all inputs
+      this.v$.$validate();
+
+      //if no errors are occurring, send to backend
+      if (!this.v$.$error) {
+        this.loader = true;
+        axios
+            .post(
+                "http://flow_backend.local/api/project/edit/" + this.project.id,
+                formData
+            )
+            .then(() => {
+              this.loader = false;
+            })
+            /**
+             * When post request has been successfully, user gets redirected to all projects overview.
+             */
+            .then(() => {
+              this.createSuccess = true;
+              this.error = false;
+              this.$router.push("/projects", () => {
+                this.$toasted.show("Successfully added a new project!", {
+                  duration: 5000,
+                  type: "success",
+                  position: "top-center",
+                });
+              });
+            })
+            /**
+             * Otherwise toasty error message is shown.
+             */
+            .catch(() => {
+              this.loader = false;
+              this.$toasted.show(
+                  "Seems like something went wrong. Please try again!",
+                  {
+                    duration: 5000,
+                    type: "error",
+                    position: "top-center",
+                  }
+              );
             });
-          });
-        })
-        /**
-         * Otherwise toasty error message is shown.
-         */
-        .catch(() => {
-          this.loader = false;
-          this.$toasted.show(
-            "Seems like something went wrong. Please try again!",
-            {
-              duration: 5000,
-              type: "error",
-              position: "top-center",
-            }
-          );
-        });
+      }
     },
     /**
      * Gets project details according to route parameter. 
