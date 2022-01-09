@@ -59,7 +59,9 @@
       </div>
       <div class="flex flex-col text-left mb-8">
         <label for="name" class="pb-2"
-          >Assignee (choose from list):<span class="text-pink-main"> *</span></label
+          >Assignee (choose from list):<span class="text-pink-main">
+            *</span
+          ></label
         >
         <multiselect
           v-model="assigneeValue"
@@ -136,7 +138,6 @@
 import axios from "axios";
 import addTaskFields from "@/data/forms/addTask.js";
 
-
 export default {
   data() {
     return {
@@ -155,6 +156,11 @@ export default {
     taskId: Number,
   },
   methods: {
+    /**
+     * Task gets saved to database.
+     * When successfully saved, user gets redirected to the general project board.
+     * Otherwise toasty message with error gets shown.
+     */
     saveTask() {
       let formData = new FormData();
       formData.append("project_id", this.task.project_id);
@@ -166,26 +172,32 @@ export default {
 
       axios
         .post(
-          "http://flow_backend.local/api/edit-task/" + this.ifOfTask,
+          "http://flow_backend.local/api/edit-task/" + this.idOfTask,
           formData
         )
         .then(() => {
           this.$router.push("/project-board/" + this.task.project_id, () => {
-            this.$toasted.show('Successfully updated your task!', {
+            this.$toasted.show("Successfully updated your task!", {
               duration: 5000,
-              type: 'success',
-              position: 'top-center',
+              type: "success",
+              position: "top-center",
             });
           });
         })
         .catch(() => {
-          this.$toasted.show('Seems like something went wrong. Please try again!', {
-            duration: 5000,
-            type: 'error',
-            position: 'top-center',
-          });
+          this.$toasted.show(
+            "Seems like something went wrong. Please try again!",
+            {
+              duration: 5000,
+              type: "error",
+              position: "top-center",
+            }
+          );
         });
     },
+    /**
+     * Gets task according to route parameter.
+     */
     getPost() {
       axios
         .get("http://flow_backend.local/api/task/" + this.$route.params.id)
@@ -199,17 +211,22 @@ export default {
      */
     getAllUsersForThisProject() {
       axios
-          .get("http://flow_backend.local/api/project-users/" + this.task.project_id)
-          .then((res) => {
-            this.projectUsers = res.data;
-          })
-          .catch(() => {
-            this.error = true;
-          });
+        .get(
+          "http://flow_backend.local/api/project-users/" + this.task.project_id
+        )
+        .then((res) => {
+          this.projectUsers = res.data;
+        })
+        .catch(() => {
+          this.error = true;
+        });
     },
   },
   computed: {
-    ifOfTask() {
+    /**
+     * Returns the task's id.
+     */
+    idOfTask() {
       return this.task.id;
     },
     /**
