@@ -7,7 +7,12 @@
         <div class="w-64 mr-6">
           <div>
             <div class="flex flex-col text-left mb-8" type="text">
-              <label for="title" class="pb-2">Name *</label
+
+              <span v-if="v$.newUser.name.$error" class="text-pink-main font-medium text-sm">
+                    {{ v$.newUser.name.$errors[0].$message }}
+              </span>
+
+              <label for="name" class="pb-2">Name *</label
               ><input
                 v-model="newUser.name"
                 id="name"
@@ -21,7 +26,12 @@
           </div>
           <div>
             <div class="flex flex-col text-left mb-8" type="text">
-              <label for="description" class="pb-2">E-Mail Address *</label
+
+              <span v-if="v$.newUser.email.$error" class="text-pink-main font-medium text-sm">
+                    {{ v$.newUser.email.$errors[0].$message }}
+              </span>
+
+              <label for="email" class="pb-2">E-Mail Address *</label
               ><input
                 id="email"
                 v-model="newUser.email"
@@ -35,7 +45,10 @@
           </div>
           <div>
             <div class="flex flex-col text-left mb-8" type="text">
-              <label for="description" class="pb-2">Character Name *</label
+              <span v-if="v$.newUser.characterName.$error" class="text-pink-main font-medium text-sm">
+                    {{ v$.newUser.characterName.$errors[0].$message }}
+              </span>
+              <label for="characterName" class="pb-2">Character Name *</label
               ><input
                 id="characterName"
                 v-model="newUser.characterName"
@@ -49,7 +62,11 @@
           </div>
           <div>
             <div class="flex flex-col text-left mb-8 relative" type="text">
-              <label for="description" class="pb-2">Password *</label
+              <span v-if="v$.newUser.password.$error" class="text-pink-main font-medium text-sm">
+                    {{ v$.newUser.password.$errors[0].$message }}
+              </span>
+
+              <label for="password" class="pb-2">Password *</label
               ><input
                 id="password"
                 ref="passwordField"
@@ -182,8 +199,20 @@
 </template>
 <script>
 import axios from "axios";
+import useVuelidate from '@vuelidate/core';
+import { required, email,helpers } from '@vuelidate/validators';
+
 
 export default {
+  setup () {
+    return {
+      v$: useVuelidate(),
+      newUser: {
+        name: "",
+        email: "",
+      },
+    }
+  },
   data() {
     return {
       fieldValues: {},
@@ -193,7 +222,7 @@ export default {
         email: "",
         password: "",
         characterName: "",
-        characterId: null,
+        characterId: 1,
       },
     };
   },
@@ -219,6 +248,26 @@ export default {
       type: Array,
       required: true,
     },
+  },
+
+  validations () {
+    return {
+      newUser: {
+        name: {
+          required: helpers.withMessage('Please enter a username', required)
+        },
+        email: {
+          required: helpers.withMessage('Please enter a email', required),
+          email
+        },
+        characterName: {
+          required: helpers.withMessage('Please give your character a name', required)
+        },
+        password: {
+          required: helpers.withMessage('Please enter a password', required)
+        },
+      }
+    }
   },
   computed: {
     /**
@@ -262,28 +311,32 @@ export default {
      * Saves created user to database.
      */
     saveUser() {
-      axios
-        .post("http://flow_backend.local/api/user/register", this.newUser)
-        .then(() => {
-          this.$toasted.show("Hey there! Successfully registered.", {
-            duration: 5000,
-            type: "success",
-            position: "top-center",
-          });
-        })
-        .then(() => {
-          this.succesSignin = true;
-        })
-        .catch(() => {
-          this.$toasted.show(
-            "Seems like something went wrong. Please try again!",
-            {
+      this.v$.$validate() // checks all inputs
+      if (!this.v$.$error) {
+        // submit form when there are no errors occurring
+        axios
+          .post("http://flow_backend.local/api/user/register", this.newUser)
+          .then(() => {
+            this.$toasted.show("Hey there! Successfully registered.", {
               duration: 5000,
-              type: "error",
+              type: "success",
               position: "top-center",
-            }
-          );
-        });
+            });
+          })
+          .then(() => {
+            this.succesSignin = true;
+          })
+          .catch(() => {
+            this.$toasted.show(
+              "Seems like something went wrong. Please try again!",
+              {
+                duration: 5000,
+                type: "error",
+                position: "top-center",
+              }
+            );
+          });
+      }
     },
   },
   watch: {
