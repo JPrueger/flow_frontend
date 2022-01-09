@@ -4,6 +4,9 @@
     <form @submit.prevent class="shadow p-11 rounded mt-6 bg-white">
       <Loader v-if="loader" />
       <div v-if="!loader" class="flex flex-col text-left mb-8" type="text">
+         <span v-if="v$.newProject.title.$error" class="text-pink-main font-medium text-sm">
+                {{ v$.newProject.title.$errors[0].$message }}
+          </span>
         <label for="title" class="pb-2">Title<span class="text-pink-main"> *</span></label>
         <input
           v-model="newProject.title"
@@ -99,10 +102,17 @@ import addProjectFields from "@/data/forms/addProject.js";
 import axios from "axios";
 import userDataService from "@/services/userDataService";
 import Loader from "../Partials/Loader";
+import useVuelidate from '@vuelidate/core';
+import {required, helpers} from '@vuelidate/validators';
 
 export default {
   components: {
     Loader,
+  },
+  setup () {
+    return {
+      v$: useVuelidate(),
+    }
   },
   data() {
     return {
@@ -119,6 +129,15 @@ export default {
       },
     };
   },
+  validations () {
+    return {
+      newProject: {
+        title: {
+          required: helpers.withMessage('Please enter a title', required)
+        }
+      }
+    }
+  },
   methods: {
     /**
      * Project gets saved to database.
@@ -126,7 +145,6 @@ export default {
      * if value != null the chosen users are getting added as well.
      */
     saveProject() {
-      this.loader = true;
       let formData = new FormData();
       formData.append("title", this.newProject.title);
       formData.append("user_id", this.newProject.user_id);
@@ -136,33 +154,41 @@ export default {
           JSON.stringify(this.value.map((item) => item.id))
         );
       }
-      axios
-        .post("http://flow_backend.local/api/add-project/create", formData)
-        .then(() => {
-          this.loader = false;
-        })
-        .then(() => {
-          this.createSuccess = true;
-          this.error = false;
-          this.$router.push("/projects", () => {
-            this.$toasted.show("Successfully added a new project!", {
-              duration: 5000,
-              type: "success",
-              position: "top-center",
+
+      // checks all inputs
+      this.v$.$validate();
+
+      //if no errors are occurring, send to backend
+      if (!this.v$.$error) {
+        this.loader = true;
+        axios
+            .post("http://flow_backend.local/api/add-project/create", formData)
+            .then(() => {
+              this.loader = false;
+            })
+            .then(() => {
+              this.createSuccess = true;
+              this.error = false;
+              this.$router.push("/projects", () => {
+                this.$toasted.show("Successfully added a new project!", {
+                  duration: 5000,
+                  type: "success",
+                  position: "top-center",
+                });
+              });
+            })
+            .catch(() => {
+              this.loader = false;
+              this.$toasted.show(
+                  "Seems like something went wrong. Please try again!",
+                  {
+                    duration: 5000,
+                    type: "error",
+                    position: "top-center",
+                  }
+              );
             });
-          });
-        })
-        .catch(() => {
-          this.loader = false;
-          this.$toasted.show(
-            "Seems like something went wrong. Please try again!",
-            {
-              duration: 5000,
-              type: "error",
-              position: "top-center",
-            }
-          );
-        });
+      }
     },
     /**
      * Getting all users from database to show them in multiselect.
