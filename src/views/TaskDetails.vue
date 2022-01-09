@@ -18,22 +18,22 @@
         <div>
           <div class="flex flex-col text-left mb-8" type="text">
             <div class="pb-2">Title</div>
-            <div class="InputField font-normal">{{ task.title }}</div>
+            <div class="InputField font-normal bg-greyLight">{{ task.title }}</div>
           </div>
         </div>
         <div>
           <div class="flex flex-col text-left mb-8" type="text">
             <div class="pb-2">Description</div>
-            <div class="InputField font-normal">{{ task.description }}</div>
+            <div class="InputField font-normal bg-greyLight">{{ task.description }}</div>
           </div>
         </div>
         <div class="flex flex-col text-left mb-8">
           <div class="pb-2">Status:</div>
-          <div class="InputField font-normal">{{ task.status }}</div>
+          <div class="InputField font-normal bg-greyLight">{{ task.status }}</div>
         </div>
         <div class="flex flex-col text-left mb-8">
           <div class="pb-2">Storypoints:</div>
-          <div class="InputField font-normal">{{ task.storypoints }}</div>
+          <div class="InputField font-normal bg-greyLight">{{ task.storypoints }}</div>
         </div>
         <div class="flex flex-col text-left mb-8">
           <div class="pb-2">Assigne:</div>
