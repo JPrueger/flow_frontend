@@ -326,6 +326,9 @@ export default {
           .then(() => {
             this.succesSignin = true;
           })
+          .then(() => {
+            this.$router.push("/login");
+          })
           .catch(() => {
             this.$toasted.show(
               "Seems like something went wrong. Please try again!",
