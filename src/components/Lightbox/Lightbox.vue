@@ -102,6 +102,11 @@ export default {
       } else if (this.storypoints >= 15) {
         formData.append("levelThreePlayed", this.levelThreePlayed);
       }
+
+      if(!this.isActive) {
+        this.enableScroll();
+      }
+
       axios
         .post(
           "http://flow_backend.local/api/user/update/" + this.userId,
@@ -111,7 +116,23 @@ export default {
           this.$emit.isActive = !this.isActive;
         });
     },
+     disableScroll() {
+       //scroll to top and disable scrolling when overlay is active
+       window.scrollTo(0, 0);
+          window.onscroll = function() {
+            window.scrollTo(0, 0);
+          };
+     },
+      enableScroll() {
+      //enable scrolling again
+        window.onscroll = function() {};
+      },
   },
+  created() {
+    if(this.isActive) {
+      this.disableScroll();
+    }
+  }
 };
 </script>
 
