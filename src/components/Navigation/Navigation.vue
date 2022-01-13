@@ -23,13 +23,6 @@
           class="nav-link font-medium"
           @click="closeNavigation"
         >
-          <router-link to="/add-project"> Add Project </router-link>
-        </li>
-        <li
-          v-if="userData"
-          class="nav-link font-medium"
-          @click="closeNavigation"
-        >
           <router-link to="/projects"> Dashboard </router-link>
         </li>
         <li
