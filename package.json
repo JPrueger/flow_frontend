@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "npm run build",
+    "start": "node server.js"
   },
   "dependencies": {
     "@vue/composition-api": "^1.4.3",
@@ -13,7 +15,9 @@
     "@vuelidate/validators": "^2.0.0-alpha.26",
     "axios": "^0.23.0",
     "core-js": "^3.6.5",
+    "express": "^4.17.2",
     "sass": "^1.43.4",
+    "serve-static": "^1.14.2",
     "v-video-embed": "^1.0.8",
     "vue": "^2.6.11",
     "vue-axios": "^3.3.7",
