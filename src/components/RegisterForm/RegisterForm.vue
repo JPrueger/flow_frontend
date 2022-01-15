@@ -202,7 +202,6 @@ import axios from "axios";
 import useVuelidate from '@vuelidate/core';
 import { required, email,helpers } from '@vuelidate/validators';
 
-
 export default {
   setup () {
     return {
@@ -315,7 +314,7 @@ export default {
       if (!this.v$.$error) {
         // submit form when there are no errors occurring
         axios
-          .post("http://flow_backend.local/api/user/register", this.newUser)
+          .post(`${process.env.VUE_APP_API_URL}/user/register`, this.newUser)
           .then(() => {
             this.$toasted.show("Hey there! Successfully registered.", {
               duration: 5000,
