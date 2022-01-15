@@ -5,7 +5,6 @@ const app = express();
 
 function redirectUnmatched(req, res) {
     res.sendfile(path.join(__dirname, 'dist/index.html'))
-    // res.redirect("https://flow-projects.herokuapp.com/");
 }
 
 app.use(serveStatic(path.join(__dirname, 'dist')));
