@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const laravelUrl = "http://flow_backend.local/api";
+const laravelUrl = process.env.VUE_APP_API_URL;
 
 const postDataService = {
   /**

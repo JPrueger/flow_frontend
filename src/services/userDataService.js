@@ -5,7 +5,7 @@ const userDataService = {
      * Holt die eingeloggten Userdaten
      */
     me: (userData) => {
-      const requestUrl = "/user/me";
+      const requestUrl = `${process.env.VUE_APP_API_URL}/user/me`;
   
       return axiosClient().get(requestUrl, userData).then((res) => {
         return res.data.user;
@@ -16,7 +16,7 @@ const userDataService = {
      * Erstellt einen neuen User Account
      */
     register: (userData) => {
-      const requestUrl = "/user/register";
+      const requestUrl = `${process.env.VUE_APP_API_URL}/user/register`;
   
       return axiosClient().post(requestUrl, userData).then((res) => {
         return res.data;
