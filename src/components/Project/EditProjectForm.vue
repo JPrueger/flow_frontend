@@ -68,6 +68,7 @@ export default {
       allUsers: [],
       fields: addProjectFields,
       value: null,
+      loader: false,
     };
   },
   validations () {
@@ -169,6 +170,16 @@ export default {
           this.error = true;
         });
     },
+    /**
+     * Gets all User of the current project.
+     */
+    getUsersOfProject() {
+      axios
+        .get("http://flow_backend.local/api/project-users/" + this.$route.params.id)
+        .then((res) => {
+          this.value = res.data;
+        });
+    },
   },
   computed: {
     /**
@@ -202,6 +213,7 @@ export default {
    */
   created() {
     this.getProjectDetails();
+    this.getUsersOfProject();
   },
   /**
    * When page has been updated:

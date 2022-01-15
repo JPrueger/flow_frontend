@@ -3,7 +3,7 @@
     <div class="flex justify-between md:justify-start items-baseline">
         <h1 v-text="projectTitle()" class="md:mr-8" />
         <div class="flex justify-between items-baseline">
-          <router-link :to="'/project/edit/' + this.$route.params.id">
+          <router-link class="mr-4" :to="'/project/edit/' + this.$route.params.id">
             <img src="@/assets/images/edit.svg" class="mt-1" />
           </router-link>
           <button @click="deleteProject()">
