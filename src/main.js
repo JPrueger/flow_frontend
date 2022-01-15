@@ -12,7 +12,7 @@ import Multiselect from 'vue-multiselect';
 import Toasted from 'vue-toasted';
 import VueTailwind from 'vue-tailwind';
 
-import RegisterForm from "@/components/RegisterForm.vue";
+import RegisterForm from "@/components/RegisterForm/RegisterForm.vue";
 
 const components = {
   RegisterForm
