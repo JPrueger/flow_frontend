@@ -32,9 +32,9 @@ export default {
     screenWidth: null,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
-      muted: false,
+      muted: true,
       autoplay: true,
-      controls: false,
+      controls: true,
       loop: true,
     },
     videoSource: "",

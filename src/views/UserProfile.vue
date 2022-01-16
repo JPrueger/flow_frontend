@@ -127,9 +127,9 @@ export default {
       userId: "",
       loader: true,
       options: {
-        muted: false,
+        muted: true,
         autoplay: true,
-        controls: false,
+        controls: true,
         loop: true,
       },
       videoId: "",
