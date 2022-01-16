@@ -20,9 +20,10 @@
           md:h-80
           relative
           wrapper-profile
+          bg-white
         "
       >
-        <div class="md:flex justify-between">
+        <div class="md:flex md:justify-between">
           <div
             class="text-left flex flex-col justify-between md:mr-10 lg:mr-12"
           >
@@ -42,7 +43,7 @@
               </p>
             </div>
           </div>
-          <div class="flex justify-end h-auto flex-col relative">
+          <div>
             <div>
               <vimeo-player
                 class="mt-4 Video"
@@ -50,6 +51,7 @@
                 :options="options"
                 :video-id="videoId"
                 :player-height="height"
+                :player-width="'350'"
               />
             </div>
           </div>
@@ -205,14 +207,6 @@ export default {
 }
 
 .wrapper-profile {
-  width: 650px;
-}
-
-.Video {
-  width: 200px;
-  position: absolute;
-  right: -100px;
-  top: 5px;
-  @apply bottom-8 -z-10;
+  min-width: 420px;
 }
 </style>

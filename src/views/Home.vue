@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .Video {
   border: 1px solid lightgray;
 }
