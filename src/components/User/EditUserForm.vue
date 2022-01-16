@@ -78,7 +78,7 @@ export default {
         // submit form when there are no errors occurring
         axios
             .post(
-                "http://flow_backend.local/api/user/edit/" + this.$route.params.id,
+                `${process.env.VUE_APP_API_URL}/user/edit/` + this.$route.params.id,
                 this.user
             )
             .then(() => {
@@ -92,7 +92,7 @@ export default {
     },
     getUserDetails() {
       axios
-          .get("http://flow_backend.local/api/user/" + this.$route.params.id)
+          .get(`${process.env.VUE_APP_API_URL}/user/` + this.$route.params.id)
           .then((res) => {
             this.user = res.data;
           })

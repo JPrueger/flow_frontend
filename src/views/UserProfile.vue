@@ -141,7 +141,7 @@ export default {
      */
     getUserDetails() {
       axios
-        .get("http://flow_backend.local/api/user/" + this.userId)
+        .get(`${process.env.VUE_APP_API_URL}/user/` + this.userId)
         .then((res) => {
           this.userData = res.data;
         })

@@ -27,7 +27,7 @@ const userDataService = {
      * Erstellt einen neuen User Account
      */
     login: (userData) => {
-      const requestUrl = "/user/login";
+      const requestUrl = `${process.env.VUE_APP_API_URL}/user/login`;
   
       return axiosClient().post(requestUrl, userData).then((res) => {
         return res.data;
