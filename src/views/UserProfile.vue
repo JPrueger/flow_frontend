@@ -127,7 +127,7 @@ export default {
       userId: "",
       loader: true,
       options: {
-        muted: true,
+        muted: false,
         autoplay: true,
         controls: false,
         loop: true,

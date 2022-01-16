@@ -75,7 +75,7 @@ export default {
     height: 380,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
-      muted: true,
+      muted: false,
       autoplay: true,
       controls: false,
       loop: true,
