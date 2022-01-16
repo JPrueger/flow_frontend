@@ -2,12 +2,11 @@
   <div class="lg:w-1/4 mb-10">
     <div class="flex justify-between">
       <h2 class="mb-4 font-bold text-xl text-left">{{ columnName }}</h2>
-      <span
-        @click="toggleAccordion()"
-        :aria-expanded="isOpen"
-        :aria-controls="`collapse${_uid}`"
-        >+</span
-      >
+<!--      <span-->
+<!--        @click="toggleAccordion()"-->
+<!--        :aria-expanded="isOpen"-->
+<!--        :aria-controls="`collapse${_uid}`"-->
+<!--        >+</span>-->
     </div>
     <draggable
       class="bg-grey h-full rounded-sm p-6"
@@ -63,9 +62,9 @@ export default {
     screenWidth: "",
   }),
   methods: {
-    toggleAccordion() {
-      this.isOpen = !this.isOpen;
-    },
+    // toggleAccordion() {
+    //   this.isOpen = !this.isOpen;
+    // },
     updateStatus() {
       /**
        * Updates status and posts newContent to database.
@@ -77,7 +76,7 @@ export default {
           newStatus: this.statusKey,
         };
       });
-      axios.post("http://flow_backend.local/api/sort-task", newContent);
+      axios.post(`${process.env.VUE_APP_API_URL}/sort-task`, newContent);
     },
   },
   /**

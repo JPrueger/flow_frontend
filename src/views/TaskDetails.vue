@@ -133,7 +133,7 @@ export default {
      */
     getPost() {
       axios
-        .get("http://flow_backend.local/api/task/" + this.$route.params.id)
+        .get(`${process.env.VUE_APP_API_URL}/task/` + this.$route.params.id)
         .then((res) => {
           this.task = res.data;
           this.getUserDetails();
@@ -148,7 +148,7 @@ export default {
     deleteTask() {
       axios
         .delete(
-          "http://flow_backend.local/api/delete-task/" + this.$route.params.id
+            `${process.env.VUE_APP_API_URL}/delete-task/` + this.$route.params.id
         )
         .then(() => {
           window.location.href = "/project-board/" + this.task.project_id;
@@ -162,7 +162,7 @@ export default {
      */
     getUserDetails() {
       axios
-        .get("http://flow_backend.local/api/user/" + this.task.assigne_id)
+        .get(`${process.env.VUE_APP_API_URL}/user/` + this.task.assigne_id)
         .then((res) => {
           this.userData = res.data;
         });

@@ -52,7 +52,7 @@ export default {
      */
     getUsersOfProject() {
       axios
-        .get("http://flow_backend.local/api/project-users/" + this.project_id)
+        .get(`${process.env.VUE_APP_API_URL}/project-users/` + this.project_id)
         .then((res) => {
           this.users = res.data;
         });
@@ -62,7 +62,7 @@ export default {
      */
     getTasksOfProject() {
       axios
-        .get("http://flow_backend.local/api/project-tasks/" + this.project_id)
+        .get(`${process.env.VUE_APP_API_URL}/project-tasks/` + this.project_id)
         .then((res) => {
           this.tasks = res.data;
         });

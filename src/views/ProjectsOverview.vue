@@ -58,7 +58,7 @@ export default {
      */
     getProjects() {
       axios
-        .get("http://flow_backend.local/api/projects/" + this.userId)
+        .get(`${process.env.VUE_APP_API_URL}/projects/` + this.userId)
         .then((res) => {
           this.projects = res.data;
         })

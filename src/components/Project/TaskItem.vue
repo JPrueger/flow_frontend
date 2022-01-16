@@ -42,7 +42,7 @@ export default {
      */
     getPost() {
       axios
-        .get("http://flow_backend.local/api/task/" + this.taskId)
+        .get(`${process.env.VUE_APP_API_URL}/task/` + this.taskId)
         .then((res) => {
           this.task = res.data;
           this.getUserDetails();
@@ -53,7 +53,7 @@ export default {
      */
     getUserDetails() {
       axios
-        .get("http://flow_backend.local/api/user/" + this.task.assigne_id)
+        .get(`${process.env.VUE_APP_API_URL}/user/` + this.task.assigne_id)
         .then((res) => {
           this.userData = res.data;
         });

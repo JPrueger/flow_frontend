@@ -109,7 +109,7 @@ export default {
 
       axios
         .post(
-          "http://flow_backend.local/api/user/update/" + this.userId,
+            `${process.env.VUE_APP_API_URL}/user/update/` + this.userId,
           formData
         )
         .then(() => {

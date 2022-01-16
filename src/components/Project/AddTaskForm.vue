@@ -234,7 +234,7 @@ export default {
       //if no errors are occurring, send to backend
       if (!this.v$.$error) {
         axios
-            .post("http://flow_backend.local/api/add-task/create", formData)
+            .post(`${process.env.VUE_APP_API_URL}/add-task/create`, formData)
             .then(() => {
               this.$router.push("/project-board/" + this.project_id, () => {
                 this.$toasted.show("Successfully added a new task!", {
@@ -262,7 +262,7 @@ export default {
      */
     getAllUsersForThisProject() {
       axios
-        .get("http://flow_backend.local/api/project-users/" + this.project_id)
+        .get(`${process.env.VUE_APP_API_URL}/project-users/` + this.project_id)
         .then((res) => {
           this.projectUsers = res.data;
         })

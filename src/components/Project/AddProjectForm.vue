@@ -162,7 +162,7 @@ export default {
       if (!this.v$.$error) {
         this.loader = true;
         axios
-            .post("http://flow_backend.local/api/add-project/create", formData)
+            .post(`${process.env.VUE_APP_API_URL}/add-project/create`, formData)
             .then(() => {
               this.loader = false;
             })
@@ -195,7 +195,7 @@ export default {
      */
     getAllUsers() {
       axios
-        .get("http://flow_backend.local/api/user/all-users")
+        .get(`${process.env.VUE_APP_API_URL}/user/all-users`)
         .then((res) => {
           this.allUsers = res.data;
         })

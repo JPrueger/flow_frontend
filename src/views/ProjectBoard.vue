@@ -116,7 +116,7 @@ export default {
     getPost() {
       axios
         .get(
-          "http://flow_backend.local/api/tasks/index/" + this.$route.params.id
+            `${process.env.VUE_APP_API_URL}/tasks/index/` + this.$route.params.id
         )
         .then((res) => {
           this.tasks = res.data;
@@ -136,7 +136,7 @@ export default {
     deleteProject() {
       axios
         .delete(
-          "http://flow_backend.local/api/delete-project/" +
+            `${process.env.VUE_APP_API_URL}/delete-project/` +
             this.$route.params.id
         )
         .then(() => {
@@ -152,7 +152,7 @@ export default {
     getProjectDetails() {
       axios
         .get(
-          "http://flow_backend.local/api/project-details/" +
+            `${process.env.VUE_APP_API_URL}/project-details/` +
             this.$route.params.id
         )
         .then((res) => {
@@ -244,7 +244,7 @@ export default {
      */
     getUserDetails() {
       axios
-        .get("http://flow_backend.local/api/user/" + this.userId)
+        .get(`${process.env.VUE_APP_API_URL}/user/` + this.userId)
         .then((res) => {
           this.userData = res.data;
         });
@@ -254,7 +254,7 @@ export default {
      */
     firstTimePlayed() {
       axios
-        .post("http://flow_backend.local/api/user/" + this.userId)
+        .post(`${process.env.VUE_APP_API_URL}/user/` + this.userId)
         .then((res) => {
           this.userData = res.data;
         });

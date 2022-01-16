@@ -216,7 +216,7 @@ export default {
       if (!this.v$.$error) {
         axios
             .post(
-                "http://flow_backend.local/api/edit-task/" + this.idOfTask,
+                `${process.env.VUE_APP_API_URL}/edit-task/` + this.idOfTask,
                 formData
             )
             .then(() => {
@@ -245,7 +245,7 @@ export default {
      */
     getPost() {
       axios
-        .get("http://flow_backend.local/api/task/" + this.$route.params.id)
+        .get(`${process.env.VUE_APP_API_URL}/task/` + this.$route.params.id)
         .then((res) => {
           this.task = res.data;
           this.getAllUsersForThisProject();
@@ -257,7 +257,7 @@ export default {
     getAllUsersForThisProject() {
       axios
         .get(
-          "http://flow_backend.local/api/project-users/" + this.task.project_id
+            `${process.env.VUE_APP_API_URL}/project-users/` + this.task.project_id
         )
         .then((res) => {
           this.projectUsers = res.data;

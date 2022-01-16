@@ -24,7 +24,7 @@ export default {
      * Gets Task.
      */
     getPost() {
-      axios.get("http://flow_backend.local/api/tasks/index/").then((res) => {
+      axios.get(`${process.env.VUE_APP_API_URL}/tasks/index/`).then((res) => {
         this.tasks = res.data;
       });
     },
