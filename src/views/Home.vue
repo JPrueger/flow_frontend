@@ -12,17 +12,13 @@
     </div>
     <div class="xl:w-100 flex justify-end">
       <vimeo-player
-          ref="player"
-          :options="options"
-          :video-id="664821191"
-          :player-height="height"
-          :player-width="width"
+        class="mt-8 m-auto"
+        ref="player"
+        :options="options"
+        :video-id="'254736788'"
+        :player-width="getScreenWidth()"
       />
-<!--      <img-->
-<!--        class="invisible lg:visible md:mt-6"-->
-<!--        src="../assets/images/home/home_header_img.png"-->
-<!--        alt="preview of the project board"-->
-<!--      />-->
+      <!-- :player-height="height" -->
     </div>
   </div>
 </template>
@@ -33,8 +29,7 @@ import CtaLink from "../components/Partials/CtaLink";
 export default {
   name: "Home",
   data: () => ({
-    height: 550,
-    width: 1000,
+    screenWidth: null,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
       muted: true,
@@ -46,5 +41,17 @@ export default {
     userData: "",
   }),
   components: { CtaLink },
+  methods: {
+    getScreenWidth() {
+      if(screen.width > 700) {
+        return this.screenWidth = 600;
+      }
+      this.screenWidth = screen.width;
+      return this.screenWidth - 65;
+    }
+  },
+  created() {
+    this.getScreenWidth();
+  }
 };
 </script>
