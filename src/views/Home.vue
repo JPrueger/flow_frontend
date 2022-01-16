@@ -10,15 +10,15 @@
       </p>
       <CtaLink />
     </div>
-    <div class="xl:w-100 flex justify-end">
+    <div class="flex justify-end">
       <vimeo-player
         class="mt-8 m-auto"
         ref="player"
         :options="options"
         :video-id="'254736788'"
         :player-width="getScreenWidth()"
+        :player-height="getScreenHeight()"
       />
-      <!-- :player-height="height" -->
     </div>
   </div>
 </template>
@@ -44,14 +44,21 @@ export default {
   methods: {
     getScreenWidth() {
       if(screen.width > 700) {
-        return this.screenWidth = 600;
+        return this.screenWidth = 850;
       }
       this.screenWidth = screen.width;
       return this.screenWidth - 65;
+    },
+    getScreenHeight() {
+      if(screen.width > 700) {
+        return this.screenWidth = 500;
+      }
+      return this.screenWidth = 250;
     }
   },
   created() {
     this.getScreenWidth();
+    this.getScreenHeight();
   }
 };
 </script>
