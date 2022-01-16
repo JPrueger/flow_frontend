@@ -2,18 +2,31 @@
   <div>
     <form @submit.prevent>
       <div v-if="isActive" class="Lightbox" @click="toggleLightbox">
-        <div class="Lightbox--card text-left p-10 rounded flex justify-between">
+        <div class="Lightbox--card text-left p-7 rounded flex justify-between">
           <div class="flex flex-col justify-between">
             <div>
-              <h1 class="font-bold text-5xl mb-2">You made it!</h1>
-              <p class="font-bold">{{ characterName }} keeps growing.</p>
-              <vimeo-player
-                class="mt-4 absolute Video"
-                ref="player"
-                :options="options"
-                :video-id="videoId"
-                :player-height="height"
-              />
+              <div class="md:flex justify-between">
+                <div>
+                  <h1 class="font-bold text-5xl mb-2">You made it!</h1>
+                  <p class="font-bold">{{ characterName }} keeps growing.</p>
+                </div>
+                <div>
+                  <div>
+                    <vimeo-player
+                      class="mt-4 Video"
+                      ref="player"
+                      :options="options"
+                      :video-id="videoId"
+                      :player-height="height"
+                      :player-width="'350'"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="Storypoints">
+                <p>Current Storypoints:</p>
+                <p class="text-xl font-bold">{{ storypoints }}</p>
+              </div>
               <button
                 type="submit"
                 @click="toggleLightbox"
@@ -31,10 +44,6 @@
               >
                 X
               </button>
-            </div>
-            <div>
-              <p>Current Storypoints:</p>
-              <p class="text-xl font-bold">{{ storypoints }}</p>
             </div>
           </div>
         </div>
@@ -72,7 +81,7 @@ export default {
   },
   data: () => ({
     isActive: true,
-    height: 380,
+    height: 350,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
       muted: true,
@@ -147,16 +156,21 @@ export default {
   background-color: rgba(0, 0, 0, 0.7);
   @apply w-screen h-screen absolute top-0 left-0;
 
-  .Video {
-    right: -120px;
-    @apply bottom-8 -z-10;
-  }
-
   &--card {
-    width: 700px;
-    height: 500px;
+    width: 400px;
     transform: translate(-50%, -50%);
     @apply bg-white absolute top-1/2 left-1/2;
+  }
+
+  @media screen and (min-width: 767px) {
+    .Video {
+      transform: translateY(60px);
+      @apply mt-12;
+    }
+
+    &--card {
+      width: 750px;
+    }
   }
 }
 .active {

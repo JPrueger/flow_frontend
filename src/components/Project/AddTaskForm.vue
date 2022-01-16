@@ -87,7 +87,7 @@
           track-by="id"
           class="mb-2"
         />
-        <span class="pl-0.5 text-xs font-normal mb-10">You can choose an other user to do this task.</span>
+        <span class="pl-0.5 text-xs font-normal mb-10">You can choose another user to do this task.</span>
       </div>
       <div class="grid">
         <input
