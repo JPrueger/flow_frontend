@@ -44,7 +44,7 @@ export default {
 
     actions: {
         async login({ commit }, credentials) {
-            await axios.post("http://flow_backend.local/api/login", credentials).then((res) => {
+            await axios.post(`${process.env.VUE_APP_API_URL}/login`, credentials).then((res) => {
               commit('SET_AUTHENTICATED', true)
               commit('SET_USERTOKEN', res.data)
               commit('SET_SUCCESS', true)            
@@ -60,7 +60,7 @@ export default {
             });
         },
         async logout({ commit }) {
-          await axios.get("http://flow_backend.local/api/logout").then(() => {
+          await axios.get(`${process.env.VUE_APP_API_URL}/logout`).then(() => {
             commit('SET_AUTHENTICATED', false)
             commit('SET_USER', null)
             commit('SET_SUCCESS', false)            
