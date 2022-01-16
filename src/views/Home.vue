@@ -10,12 +10,12 @@
       </p>
       <CtaLink />
     </div>
-    <div class="flex justify-end">
+    <div class="flex justify-end bg-white">
       <vimeo-player
-        class="mt-8 m-auto"
+        class="mt-8 m-auto Video"
         ref="player"
         :options="options"
-        :video-id="'254736788'"
+        :video-id="'664821191'"
         :player-width="getScreenWidth()"
         :player-height="getScreenHeight()"
       />
@@ -62,3 +62,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.Video {
+  border: 1px solid lightgray;
+}
+</style>
