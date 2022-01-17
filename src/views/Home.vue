@@ -12,12 +12,22 @@
     </div>
     <div class="flex justify-end bg-white">
       <vimeo-player
+        v-if="screenWidth >= 700"
         class="mt-8 m-auto Video"
         ref="player"
         :options="options"
         :video-id="'664821191'"
-        :player-width="getScreenWidth()"
-        :player-height="getScreenHeight()"
+        :player-width="850"
+        :player-height="500"
+      />
+      <vimeo-player
+        v-else
+        class="mt-8 m-auto Video"
+        ref="player"
+        :options="options"
+        :video-id="'664821191'"
+        :player-width="410"
+        :player-height="250"
       />
     </div>
   </div>
@@ -43,22 +53,11 @@ export default {
   components: { CtaLink },
   methods: {
     getScreenWidth() {
-      if(screen.width > 700) {
-        return this.screenWidth = 850;
-      }
-      const width = screen.width;
-      return this.screenWidth = width - 65;
+      return this.screenWidth = screen.width
     },
-    getScreenHeight() {
-      if(screen.width > 700) {
-        return this.screenWidth = 500;
-      }
-      return this.screenWidth = 250;
-    }
   },
   created() {
     this.getScreenWidth();
-    this.getScreenHeight();
   }
 };
 </script>
