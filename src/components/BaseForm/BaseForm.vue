@@ -2,7 +2,7 @@
   <div class="max-w-lg mx-auto text-left relative">
     <h1 v-if="headline">{{ headline }}</h1>
     <p v-if="subheadline" class="text-left">{{ subheadline }}</p>
-    <form @submit.prevent="$emit('input', fieldValues)" class="Form">
+    <form @submit.prevent="$emit('input', fieldValues)" class="Form bg-white">
       <div v-for="field in fields" :key="field.name">
         <keep-alive>
           <Component :is="getComponent(field.type)" v-bind="field" v-model="value[field.name]" />
