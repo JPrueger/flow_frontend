@@ -46,8 +46,8 @@ export default {
       if(screen.width > 700) {
         return this.screenWidth = 850;
       }
-      this.screenWidth = screen.width;
-      return this.screenWidth = this.screenWidth - 65;
+      const width = screen.width;
+      return this.screenWidth = width - 65;
     },
     getScreenHeight() {
       if(screen.width > 700) {
