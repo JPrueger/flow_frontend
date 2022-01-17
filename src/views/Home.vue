@@ -12,7 +12,7 @@
     </div>
     <div class="flex justify-end bg-white">
       <vimeo-player
-        v-if="screenWidth >= 700"
+        v-if="screenWidth >= 912"
         class="mt-8 m-auto Video"
         ref="player"
         :options="options"
