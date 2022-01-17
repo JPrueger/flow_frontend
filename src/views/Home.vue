@@ -26,8 +26,8 @@
         ref="player"
         :options="options"
         :video-id="'664821191'"
-        :player-width="410"
-        :player-height="250"
+        :player-width="490"
+        :player-height="270"
       />
     </div>
   </div>
@@ -39,7 +39,7 @@ import CtaLink from "../components/Partials/CtaLink";
 export default {
   name: "Home",
   data: () => ({
-    screenWidth: null,
+    screenWidth: window.innerWidth,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
       muted: true,
@@ -52,13 +52,17 @@ export default {
   }),
   components: { CtaLink },
   methods: {
-    getScreenWidth() {
-      return this.screenWidth = screen.width
+    onResize() {
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
     },
   },
   created() {
-    this.getScreenWidth();
-  }
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
 };
 </script>
 
