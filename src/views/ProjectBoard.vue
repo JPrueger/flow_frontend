@@ -25,11 +25,11 @@
       v-if="
         (this.storypoints >= 5 &&
           this.storypoints <= 9 &&
-          ((userData.level_one_played !== 1) && (userData.level_one_played !== true))) ||
+          userData.level_one_played !== 1) ||
         (this.storypoints >= 10 &&
           this.storypoints <= 14 &&
-          ((userData.level_two_played !== 1) && (userData.level_one_played !== true))) ||
-        (userData.storypoints >= 15 && ((userData.level_three_played !== 1) && (userData.level_one_played !== true)))
+          userData.level_two_played !== 1 ) ||
+        (userData.storypoints >= 15 && userData.level_three_played !== 1)
       "
     />
     <!-- Loader is shown until everything has been loaded successfully -->
