@@ -10,24 +10,15 @@
       </p>
       <CtaLink />
     </div>
+    {{ onResize() }}
     <div class="flex justify-end bg-white">
       <vimeo-player
-        v-if="screenWidth >= 912"
         class="mt-8 m-auto Video"
         ref="player"
         :options="options"
         :video-id="'664821191'"
-        :player-width="850"
-        :player-height="500"
-      />
-      <vimeo-player
-        v-else
-        class="mt-8 m-auto Video"
-        ref="player"
-        :options="options"
-        :video-id="'664821191'"
-        :player-width="490"
-        :player-height="270"
+        :player-width="width"
+        :player-height="height"
       />
     </div>
   </div>
@@ -40,6 +31,8 @@ export default {
   name: "Home",
   data: () => ({
     screenWidth: window.innerWidth,
+    width: null,
+    height: null,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
       muted: true,
@@ -53,8 +46,15 @@ export default {
   components: { CtaLink },
   methods: {
     onResize() {
-      this.width = window.innerWidth;
-      this.height = window.innerHeight;
+      this.screenWidth = window.innerWidth;
+      if(this.screenWidth >= 912) {
+        this.width = 830;
+        this.height = 500;
+        return;
+      } else {
+        this.width = this.screenWidth - 65;
+        this.height = 260;
+      }
     },
   },
   created() {
