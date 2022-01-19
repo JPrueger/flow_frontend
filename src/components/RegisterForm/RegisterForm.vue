@@ -2,7 +2,13 @@
   <div class="mx-auto text-left relative">
     <h1 v-if="headline">{{ headline }}</h1>
     <p v-if="subheadline" class="text-left">{{ subheadline }}</p>
-    <div class="flex justify-between Registration Form mt-5">
+    <div v-if="easterEggActive" class="my-4 Container--easteregg">
+      <h1 class="mb-1">Titankiller!?</h1>
+      <h3 class="mb-5">Das kann nur jmd bestimmtes sein! :D</h3>
+      <p>Wunderbärchen, dass du dich anmeldest. <strong>Danke(!)</strong> nochmal Alex für deine Unterstützung in unserem Projekt. Ohne dich wär es nur halb-so-lustig, und vermutlich auch nur halb-so-fertig geworden. Ein kleiner (sneaky) Screenshot von unserer ersten Datenbank Struktur Session (wo wir alle schon sichtlich müde waren haha) & jetzt ist schon alles live! Wohooo! :)</p>
+      <img class="Wunderbaerchen my-3" src="@/assets/images/alex.png" alt="easteregg alex">
+    </div>
+    <div class="flex justify-between Registration Form bg-white mt-5">
       <form @submit.prevent class="flex">
         <div class="w-64 mr-6">
           <div>
@@ -223,6 +229,8 @@ export default {
         characterName: "",
         characterId: 1,
       },
+      easterEggActive: false,
+      search: 'titankiller',
     };
   },
   props: {
@@ -341,6 +349,15 @@ export default {
       }
     },
   },
+  updated() {
+    if(
+      this.newUser.name.toLowerCase().includes(this.search.toLowerCase()) ||
+      this.newUser.email.toLowerCase().includes(this.search.toLowerCase()) ||
+      this.newUser.characterName.toLowerCase().includes(this.search.toLowerCase())
+    ) {
+      return this.easterEggActive = true;
+    }
+  },
   watch: {
     value(newVal) {
       this.fieldValues = newVal;
@@ -357,5 +374,15 @@ export default {
 .eye-icon {
   fill: #99154e;
   @apply h-4 w-4;
+}
+
+.Wunderbaerchen {
+  @apply rounded;
+}
+
+.Container--easteregg {
+  width: 810px;
+  border-top: 1px solid lightgray;
+  @apply pt-5;
 }
 </style>

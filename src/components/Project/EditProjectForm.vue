@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-lg mx-auto relative">
     <h1>Edit: {{ project.title }}</h1>
-    <form @submit.prevent class="Form">
+    <form @submit.prevent class="Form bg-white">
       <div>
         <input v-model="project.id" type="hidden" />
         <div class="flex flex-col text-left mb-8" type="text">

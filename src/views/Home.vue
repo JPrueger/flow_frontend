@@ -10,14 +10,15 @@
       </p>
       <CtaLink />
     </div>
+    {{ onResize() }}
     <div class="flex justify-end bg-white">
       <vimeo-player
         class="mt-8 m-auto Video"
         ref="player"
         :options="options"
         :video-id="'664821191'"
-        :player-width="getScreenWidth()"
-        :player-height="getScreenHeight()"
+        :player-width="width"
+        :player-height="height"
       />
     </div>
   </div>
@@ -29,7 +30,9 @@ import CtaLink from "../components/Partials/CtaLink";
 export default {
   name: "Home",
   data: () => ({
-    screenWidth: null,
+    screenWidth: window.innerWidth,
+    width: null,
+    height: null,
     // see options here: https://www.npmjs.com/package/vue-vimeo-player
     options: {
       muted: true,
@@ -42,24 +45,24 @@ export default {
   }),
   components: { CtaLink },
   methods: {
-    getScreenWidth() {
-      if(screen.width > 700) {
-        return this.screenWidth = 850;
+    onResize() {
+      this.screenWidth = window.innerWidth;
+      if(this.screenWidth >= 912) {
+        this.width = 830;
+        this.height = 500;
+        return;
+      } else {
+        this.width = this.screenWidth - 65;
+        this.height = 260;
       }
-      this.screenWidth = screen.width;
-      return this.screenWidth - 65;
     },
-    getScreenHeight() {
-      if(screen.width > 700) {
-        return this.screenWidth = 500;
-      }
-      return this.screenWidth = 250;
-    }
   },
   created() {
-    this.getScreenWidth();
-    this.getScreenHeight();
-  }
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
 };
 </script>
 
