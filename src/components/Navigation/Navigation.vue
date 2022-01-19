@@ -32,7 +32,7 @@
         >
           <router-link to="/user-profile"> Profile </router-link>
         </li>
-        <li v-if="!userData" class="nav-link font-medium">
+        <li v-if="!userData" class="nav-link font-medium" @click="closeNavigation">
           <router-link class="mobile-menu-item extern-link" to="/login">
             Login
           </router-link>
