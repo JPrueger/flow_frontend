@@ -179,8 +179,8 @@ export default {
       display: block;
       position: relative;
       background-color: black;
-      height: 2px;
-      width: 20px;
+      height: 4px;
+      width: 30px;
       border-radius: 4px;
       transition: background-color 0.8s ease;
 
@@ -197,11 +197,11 @@ export default {
       }
 
       &::before {
-        transform: translateY(-5px);
+        transform: translateY(-9px);
       }
 
       &::after {
-        transform: translateY(5px);
+        transform: translateY(9px);
       }
     }
   }
