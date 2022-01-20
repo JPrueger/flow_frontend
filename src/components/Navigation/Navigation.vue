@@ -39,7 +39,7 @@
         </li>
         <li v-if="userData" class="nav-link">
           <button
-            @click="logout()"
+            @click="logout(); closeNavigation();"
             class="
               hover:text-pink-hover
               mobile-menu-item
