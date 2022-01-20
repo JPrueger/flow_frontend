@@ -140,10 +140,25 @@ export default {
             this.$route.params.id
         )
         .then(() => {
-          window.location.href = "/projects";
-        })
-        .then(() => {
           this.loader = false;
+          this.$router.push("/projects", () => {
+            this.$toasted.show("Successfully deleted the project!", {
+              duration: 5000,
+              type: "success",
+              position: "top-center",
+            });
+          });
+        })
+        .catch(() => {
+          this.loader = false;
+          this.$toasted.show(
+              "Seems like something went wrong. Please try again!",
+              {
+                duration: 5000,
+                type: "error",
+                position: "top-center",
+              }
+          );
         });
     },
     /**
