@@ -41,6 +41,8 @@
               <p v-else class="text-lg font-bold">
                 {{ userData.storypoints }} SP
               </p>
+              <p v-if="userData.storypoints <= 39" class="mt-3 block text-xs">Collect {{ nextLevel }} SP in total to reach next level.</p>
+              <p v-if="userData.storypoints >= 40" class="mt-3 block text-xs"><strong class="block">Awesome!</strong> Your character has reached it's final level.</p>
             </div>
           </div>
           <div>
@@ -135,6 +137,7 @@ export default {
         loop: true,
       },
       videoId: "",
+      nextLevel: '',
     };
   },
   methods: {
@@ -195,6 +198,25 @@ export default {
       else if (this.userData.storypoints >= 40) {
         this.videoId = "662430854";
       }
+    }
+
+    /**
+     * Returns String on how many SO have to be collected in total to reach next character level.
+     */
+    if (this.userData.storypoints === null || this.userData.storypoints <= 14) {
+      this.nextLevel = '15 SP';
+    } else if (
+      this.userData.storypoints >= 15 &&
+      this.userData.storypoints <= 24
+    ) {
+      this.nextLevel = '25';
+    }  else if (this.userData.storypoints >= 25 &&
+      this.userData.storypoints <= 39
+    ) {
+      this.nextLevel = '40';
+    }
+    else if (this.userData.storypoints >= 40) {
+      this.nextLevel = 'Awesome! You have reached the final level.';
     }
   },
   /**
