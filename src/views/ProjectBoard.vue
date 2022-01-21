@@ -23,13 +23,13 @@
       :storypoints="storypoints"
       :characterName="userData.character_name"
       v-if="
-        (this.storypoints >= 5 &&
-          this.storypoints <= 9 &&
+        (this.storypoints >= 15 &&
+          this.storypoints <= 24 &&
           !userData.level_one_played) ||
-        (this.storypoints >= 10 &&
-          this.storypoints <= 14 &&
+        (this.storypoints >= 25 &&
+          this.storypoints <= 39 &&
           !userData.level_two_played) ||
-        (userData.storypoints >= 15 && !userData.level_three_played)
+        (userData.storypoints >= 40 && !userData.level_three_played)
       "
     />
     <!-- Loader is shown until everything has been loaded successfully -->
@@ -288,22 +288,22 @@ export default {
        * character_id === 2 = ghost
        */
       if (this.userData.character_id === 2) {
-        if (this.storypoints >= 5 && this.storypoints <= 9) {
+        if (this.storypoints >= 15 && this.storypoints <= 24) {
           return String("668307087");
-        } else if (this.storypoints >= 10 && this.storypoints <= 14) {
+        } else if (this.storypoints >= 25 && this.storypoints <= 39) {
           return String("668307150");
-        } else if (this.storypoints >= 15) {
+        } else if (this.storypoints >= 40) {
           return String("668307207");
         }
         /**
          * character_id === 1 = dragon
          */
       } else if (this.userData.character_id === 1) {
-        if (this.storypoints >= 5 && this.storypoints <= 9) {
+        if (this.storypoints >= 15 && this.storypoints <= 24) {
           return String("668306876");
-        } else if (this.storypoints >= 10 && this.storypoints <= 14) {
+        } else if (this.storypoints >= 25 && this.storypoints <= 39) {
           return String("668306936");
-        } else if (this.storypoints >= 15) {
+        } else if (this.storypoints >= 40) {
           return String("668307006");
         }
       }

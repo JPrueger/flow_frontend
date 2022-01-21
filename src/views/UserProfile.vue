@@ -162,28 +162,37 @@ export default {
      * character_id === 2 is the ghost
      */
     if (this.userData.character_id === 2) {
-      if (this.userData.storypoints === null || this.userData.storypoints <= 9) {
-          this.videoId = "662431051";
+      if (this.userData.storypoints === null || this.userData.storypoints <= 14) {
+          this.videoId = "668756005";
       } else if (
-        this.userData.storypoints >= 10 &&
-        this.userData.storypoints <= 14
+        this.userData.storypoints >= 15 &&
+        this.userData.storypoints <= 24
+      ) {
+        this.videoId = "662431051";
+      } else if (this.userData.storypoints >= 25 &&
+        this.userData.storypoints <= 39
       ) {
         this.videoId = "662431018";
-      } else if (this.userData.storypoints >= 15) {
+      } else if (this.userData.storypoints >= 40) {
         this.videoId = "662430984";
       }
       /**
        * character_id === 1 is the dragon
        */
     } else if (this.userData.character_id === 1) {
-      if (this.userData.storypoints === null || this.userData.storypoints <= 9) {
-        this.videoId = "662430956";
+      if (this.userData.storypoints === null || this.userData.storypoints <= 14) {
+        this.videoId = "668756110";
       } else if (
-        this.userData.storypoints >= 10 &&
-        this.userData.storypoints <= 14
+        this.userData.storypoints >= 15 &&
+        this.userData.storypoints <= 24
+      ) {
+        this.videoId = "662430956";
+      }  else if (this.userData.storypoints >= 25 &&
+        this.userData.storypoints <= 39
       ) {
         this.videoId = "662430924";
-      } else if (this.userData.storypoints >= 15) {
+      }
+      else if (this.userData.storypoints >= 40) {
         this.videoId = "662430854";
       }
     }

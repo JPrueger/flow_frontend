@@ -104,11 +104,11 @@ export default {
     toggleLightbox() {
       this.isActive = !this.isActive;
       let formData = new FormData();
-      if (this.storypoints >= 5 && this.storypoints <= 9) {
+      if (this.storypoints >= 15 && this.storypoints <= 24) {
         formData.append("levelOnePlayed", this.levelOnePlayed);
-      } else if (this.storypoints >= 10 && this.storypoints <= 14) {
+      } else if (this.storypoints >= 25 && this.storypoints <= 39) {
         formData.append("levelTwoPlayed", this.levelTwoPlayed);
-      } else if (this.storypoints >= 15) {
+      } else if (this.storypoints >= 40) {
         formData.append("levelThreePlayed", this.levelThreePlayed);
       }
 
