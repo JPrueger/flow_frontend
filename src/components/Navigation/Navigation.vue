@@ -23,7 +23,7 @@
           class="nav-link font-medium"
           @click="closeNavigation"
         >
-          <router-link to="/projects"> Dashboard </router-link>
+          <router-link to="/projects"> Projects </router-link>
         </li>
         <li
           v-if="userData"
