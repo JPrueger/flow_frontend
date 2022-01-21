@@ -126,14 +126,14 @@ export default {
         });
     },
      disableScroll() {
-       //scroll to top and disable scrolling when overlay is active
+       // scroll to top and disable scrolling when overlay is active
        window.scrollTo(0, 0);
           window.onscroll = function() {
             window.scrollTo(0, 0);
           };
      },
       enableScroll() {
-      //enable scrolling again
+        // enable scrolling again
         window.onscroll = function() {};
       },
   },

@@ -289,22 +289,22 @@ export default {
        */
       if (this.userData.character_id === 2) {
         if (this.storypoints >= 5 && this.storypoints <= 9) {
-          return String("662269881");
+          return String("668307087");
         } else if (this.storypoints >= 10 && this.storypoints <= 14) {
-          return String("662269923");
+          return String("668307150");
         } else if (this.storypoints >= 15) {
-          return String("662269819");
+          return String("668307207");
         }
         /**
          * character_id === 1 = dragon
          */
       } else if (this.userData.character_id === 1) {
         if (this.storypoints >= 5 && this.storypoints <= 9) {
-          return String("662269711");
+          return String("668306876");
         } else if (this.storypoints >= 10 && this.storypoints <= 14) {
-          return String("662269767");
+          return String("668306936");
         } else if (this.storypoints >= 15) {
-          return String("662269639");
+          return String("668307006");
         }
       }
     },
