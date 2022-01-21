@@ -16,7 +16,7 @@
         class="mt-8 m-auto Video"
         ref="player"
         :options="options"
-        :video-id="'664821191'"
+        :video-id="'668811687'"
         :player-width="width"
         :player-height="height"
       />
@@ -47,9 +47,13 @@ export default {
   methods: {
     onResize() {
       this.screenWidth = window.innerWidth;
-      if(this.screenWidth >= 912) {
+      if(this.screenWidth >= 912 && this.screenWidth < 1800) {
         this.width = 830;
         this.height = 500;
+        return;
+      } else if(this.screenWidth >= 1800) {
+        this.width = 1200;
+        this.height = 630;
         return;
       } else {
         this.width = this.screenWidth - 65;
