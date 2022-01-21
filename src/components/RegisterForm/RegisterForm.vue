@@ -1,16 +1,16 @@
 <template>
   <div class="mx-auto text-left relative">
     <h1 v-if="headline">{{ headline }}</h1>
-    <p v-if="subheadline" class="text-left">{{ subheadline }}</p>
+    <p v-if="subheadline" class="text-left Subheadline">{{ subheadline }}</p>
     <div v-if="easterEggActive" class="my-4 Container--easteregg">
       <h1 class="mb-1">Titankiller!?</h1>
       <h3 class="mb-5">Das kann nur jmd bestimmtes sein! :D</h3>
       <p>Wunderbärchen, dass du dich anmeldest. <strong>Danke(!)</strong> nochmal Alex für deine Unterstützung in unserem Projekt. Ohne dich wär es nur halb-so-lustig, und vermutlich auch nur halb-so-fertig geworden. Ein kleiner (sneaky) Screenshot von unserer ersten Datenbank Struktur Session (wo wir alle schon sichtlich müde waren haha) & jetzt ist schon alles live! Wohooo! :)</p>
       <img class="Wunderbaerchen my-3" src="@/assets/images/alex.png" alt="easteregg alex">
     </div>
-    <div class="flex justify-between Registration Form bg-white mt-5">
-      <form @submit.prevent class="flex">
-        <div class="w-64 mr-6">
+    <div class="Registration shadow p-6 rounded bg-white mt-5">
+      <form @submit.prevent class="Registration--form">
+        <div class="Register--Inputs">
           <div>
             <div class="flex flex-col text-left mb-8" type="text">
 
@@ -96,15 +96,24 @@
               </button>
             </div>
           </div>
+          <div class="grid">
+            <input
+              type="submit"
+              @click="saveUser()"
+              value="Submit!"
+              class="Button justify-self-start mt-1"
+            />
+          </div>
         </div>
         <div>
+          <label class="pb-2 pl-6">Pick a character *</label>
           <div class="slider-container">
             <ul class="slider" :style="styleObject">
               <li class="slide slide--image">
-                <img src="@/assets/images/dragon.png" alt="" />
-                <div class="mt-5 text-center">
+                <video src="@/assets/videos/dragon.mp4" type="video/mp4" autoplay="true" loop="true" muted  />
+                <div class="mt-1 text-center">
                   <label class="ml-2 container" for="dragon">
-                    Choose this character
+                    Dragon
                     <input
                       v-model="newUser.characterId"
                       type="radio"
@@ -117,10 +126,10 @@
                 </div>
               </li>
               <li class="slide slide--image">
-                <img src="@/assets/images/ghost.png" alt="" />
-                <div class="mt-5 text-center">
+                <video src="@/assets/videos/ghost.mp4" type="video/mp4" autoplay="true" loop="true" muted  />
+                <div class="mt-2 text-center">
                   <label class="ml-2 container" for="ghost">
-                    Choose this character
+                    Ghost
                     <input
                       v-model="newUser.characterId"
                       type="radio"
@@ -138,14 +147,6 @@
             <li @click="changeSlide(1)">1</li>
             <li @click="changeSlide(2)">2</li>
           </ul>
-          <div class="grid">
-            <input
-              type="submit"
-              @click="saveUser()"
-              value="Submit!"
-              class="Button justify-self-center mt-4"
-            />
-          </div>
         </div>
       </form>
       <svg
@@ -349,6 +350,9 @@ export default {
       }
     },
   },
+  /**
+   * Check if alex :D has written search string "titankiller" somewhere
+   */
   updated() {
     if(
       this.newUser.name.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -371,6 +375,10 @@ export default {
   max-width: unset;
 }
 
+// .Registration {
+//   max-width: 86%;
+// }
+
 .eye-icon {
   fill: #99154e;
   @apply h-4 w-4;
@@ -380,9 +388,35 @@ export default {
   @apply rounded;
 }
 
+.Subheadline {
+  max-width: 70%;
+}
+
+// .Character--video {
+//   max-width: 70%;
+// }
+
 .Container--easteregg {
   width: 810px;
   border-top: 1px solid lightgray;
   @apply pt-5;
+}
+
+@media screen and (min-width: 767px) {
+  .Registration--form {
+    @apply flex justify-between;
+  }
+
+  .Register--Inputs {
+    @apply w-64 mr-6; 
+  }
+
+  // .Character--video {
+  //   max-width: unset;
+  // }
+
+  .Subheadline {
+    max-width: unset;
+  }
 }
 </style>

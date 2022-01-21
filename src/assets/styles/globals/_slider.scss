@@ -1,13 +1,13 @@
 .slider-container {
     width: 400px;
-    height: 345px;
+    height: 500px;
     margin: 0 auto;
     @apply overflow-hidden;
 }
 
 .slider {
     width: 800px;
-    height: 345px;
+    height: 500px;
     transition: all 0.32s ease;
     @apply overflow-hidden;
 }
