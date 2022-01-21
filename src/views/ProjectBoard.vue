@@ -29,9 +29,8 @@
         (this.storypoints >= 25 &&
           this.storypoints <= 39 &&
           !userData.level_two_played) ||
-        (userData.storypoints >= 40 && !userData.level_three_played)
-      "
-    />
+        (userData.storypoints >= 40 && !userData.level_three_played)"
+      />
     <!-- Loader is shown until everything has been loaded successfully -->
     <Loader v-if="loader" />
     <div class="lg:flex lg:justify-between mb-10 columns-wrapper">

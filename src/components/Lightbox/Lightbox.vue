@@ -102,7 +102,7 @@ export default {
      * so the lightbox won't get triggered again.
      */
     toggleLightbox() {
-      this.isActive = !this.isActive;
+      this.isActive = false;
       let formData = new FormData();
       if (this.storypoints >= 15 && this.storypoints <= 24) {
         formData.append("levelOnePlayed", this.levelOnePlayed);
