@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-between md:justify-start items-baseline">
+    <div class="flex justify-between md:justify-between items-baseline">
         <h1 v-text="projectTitle()" class="md:mr-8" />
         <div class="flex justify-between items-baseline">
           <router-link class="mr-4" :to="'/project/edit/' + this.$route.params.id">

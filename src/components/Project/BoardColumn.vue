@@ -2,11 +2,6 @@
   <div class="lg:w-1/4 mb-10">
     <div class="flex justify-between">
       <h2 class="mb-4 font-bold text-xl text-left">{{ columnName }}</h2>
-<!--      <span-->
-<!--        @click="toggleAccordion()"-->
-<!--        :aria-expanded="isOpen"-->
-<!--        :aria-controls="`collapse${_uid}`"-->
-<!--        >+</span>-->
     </div>
     <draggable
       class="bg-grey h-full rounded-sm p-6"
@@ -30,6 +25,7 @@
         />
       </div>
     </draggable>
+    <p class="mt-2 text-xs" v-if="statusKey === 'done'"><strong>Note: </strong>Once your task is dragged to done, it can't be reopened again.</p>
   </div>
 </template>
 
@@ -62,9 +58,6 @@ export default {
     screenWidth: "",
   }),
   methods: {
-    // toggleAccordion() {
-    //   this.isOpen = !this.isOpen;
-    // },
     updateStatus() {
       /**
        * Updates status and posts newContent to database.
@@ -89,7 +82,7 @@ export default {
 </script>
 
 <style lang="scss">
-//Once your taks is "done", it can't be reopened again
+// Once your task is "done", it can't be reopened again
 .overlay {
   pointer-events: none;
   cursor: not-allowed;
