@@ -312,7 +312,7 @@ export default {
      */
     projectTitle() {
       return (
-        this.project.title.charAt(0).toUpperCase() + this.project.title.slice(1)
+        this.project?.title.charAt(0).toUpperCase() + this.project.title.slice(1)
       );
     },
   },
