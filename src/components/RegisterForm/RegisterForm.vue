@@ -96,7 +96,7 @@
               </button>
             </div>
           </div>
-          <div class="grid">
+          <div class="grid Submit--button">
             <input
               type="submit"
               @click="saveUser()"
@@ -105,8 +105,8 @@
             />
           </div>
         </div>
-        <div>
-          <label class="pb-2 pl-6">Pick a character *</label>
+        <div class="Character--picker">
+          <label class="Label--character pb-2">Pick a character *</label>
           <div class="slider-container">
             <ul class="slider" :style="styleObject">
               <li class="slide slide--image">
@@ -375,10 +375,6 @@ export default {
   max-width: unset;
 }
 
-// .Registration {
-//   max-width: 86%;
-// }
-
 .eye-icon {
   fill: #99154e;
   @apply h-4 w-4;
@@ -392,14 +388,25 @@ export default {
   max-width: 70%;
 }
 
-// .Character--video {
-//   max-width: 70%;
-// }
-
 .Container--easteregg {
   width: 810px;
   border-top: 1px solid lightgray;
   @apply pt-5;
+}
+
+@media screen and (max-width: 766px) {
+  .Registration {
+    @apply relative;
+  }
+
+  .Submit--button {
+    width: 80%;
+    @apply absolute bottom-6;
+  }
+
+  .Character--picker {
+    @apply mt-8 mb-16;  
+  }
 }
 
 @media screen and (min-width: 767px) {
@@ -411,9 +418,13 @@ export default {
     @apply w-64 mr-6; 
   }
 
-  // .Character--video {
-  //   max-width: unset;
-  // }
+  .Label--character {
+    @apply pl-6;
+  }
+
+  .Character--picker {
+    @apply mt-0;
+  }
 
   .Subheadline {
     max-width: unset;
