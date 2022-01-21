@@ -89,8 +89,9 @@ export default {
 </script>
 
 <style lang="scss">
+//Once your taks is "done", it can't be reopened again
 .overlay {
-  // pointer-events: none;
+  pointer-events: none;
   cursor: not-allowed;
 }
 </style>
