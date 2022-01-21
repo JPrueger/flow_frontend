@@ -28,16 +28,6 @@
           </span>
           <label for="description" class="pb-2"
             >Description<span class="text-pink-main"> *</span></label>
-<!--          <input-->
-<!--            id="description"-->
-<!--            v-model="task.description"-->
-<!--            type="text"-->
-<!--            :placeholder="task.description"-->
-<!--            required="required"-->
-<!--            maxlength="500"-->
-<!--            class="InputField"-->
-<!--          />-->
-
           <textarea
               id="description"
               v-model="task.description"
@@ -284,7 +274,7 @@ export default {
       }));
     },
     charactersLeft() {
-      var char = this.task.description.length,
+      var char = this.task?.description?.length,
           limit = 500;
 
       return (limit - char) + " characters remaining";

@@ -254,7 +254,7 @@ export default {
     },
     fields: {
       type: Array,
-      required: true,
+      required: false,
     },
   },
 

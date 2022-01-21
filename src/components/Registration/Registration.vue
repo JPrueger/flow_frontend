@@ -28,6 +28,9 @@ export default {
   data() {
     return {
       response: {},
+      fields: [],
+      saveUser: '',
+      newUser: {},
     };
   },
 };

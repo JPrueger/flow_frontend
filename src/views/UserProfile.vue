@@ -52,7 +52,6 @@
                 ref="player"
                 :options="options"
                 :video-id="videoId"
-                :player-height="height"
                 :player-width="'350'"
               />
             </div>
