@@ -80,7 +80,7 @@ export default {
 @media screen and (min-width: 1000px) {
   .background-shapes {
     &.shape-top-right {
-      @apply top-20 right-12 fixed;
+      @apply top-16 right-12 fixed;
     }
 
     &.shape-bottom-left {
