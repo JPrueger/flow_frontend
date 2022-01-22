@@ -13,7 +13,7 @@
     {{ onResize() }}
     <div class="flex justify-end bg-white">
       <vimeo-player
-        class="mt-8 m-auto Video"
+        class="mt-8 m-auto shadow"
         ref="player"
         :options="options"
         :video-id="'668811687'"
@@ -69,9 +69,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.Video {
-  border: 1px solid lightgray;
-}
-</style>
