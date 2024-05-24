@@ -127,10 +127,12 @@ export default {
   position: fixed;
   display: flex;
   top: 0;
+  left: 0;
+  right: 0;
   justify-content: space-between;
   align-items: center;
   height: 65px;
-  width: 100vw;
+  min-width: 100vw;
   color: #000;
   z-index: 1;
   transition: 0.4s ease-out;
@@ -241,12 +243,13 @@ export default {
       position: absolute;
       top: 0;
       left: 0;
+      right: 0;
       opacity: 0;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
       padding: 10rem 0;
-      width: 100vw;
+      min-width: 100vw;
       height: 100vh;
       font-size: 2rem;
       color: white;
